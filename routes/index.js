@@ -8,8 +8,8 @@ router.get("/", (req, res) => {
   res.send("API working");
 });
 router.use("/auth", authRouter);
-router.use("user", userRouter);
-router.use("vett", vettRouter);
-router.use("payment", paymentRouter);
+router.use("/user", userRouter);
+router.use("/vett", vettRouter);
+router.use("/payment", paymentRouter);
 
 module.exports = router;

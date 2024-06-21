@@ -4,7 +4,7 @@ require("dotenv").config({
   path: "../.env",
 });
 const { PrismaClient } = require("@prisma/client");
-const saltRounds = 10;
+const sendotp = require("../functions/sendotp");
 
 const prisma = new PrismaClient();
 
@@ -94,7 +94,7 @@ const signup = async (req, res) => {
     });
 
   // encrypt password
-  const encryptedPassword = bcrypt.hashSync(password, saltRounds);
+  const encryptedPassword = bcrypt.hashSync(password, 10);
 
   // Create User Object in DB
   const newUser = await prisma.user.create({
@@ -118,6 +118,11 @@ const signup = async (req, res) => {
   });
 
   // Send OTP to new user email
+  sendotp(
+    newUser.email,
+    "Complete your Vettme account creation",
+    `Your OTP is ${otp}. It expires in 10 minutes.`
+  );
 
   // return message to user
   const { password: newUserPassword, isActive, ...newUserData } = newUser;
@@ -125,7 +130,6 @@ const signup = async (req, res) => {
   res.status(201).json({
     status: "Account created successfully. OTP has been sent to user email",
     user: newUserData,
-    otp: newOTP.otp,
   });
 };
 
