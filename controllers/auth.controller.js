@@ -110,7 +110,7 @@ const signup = async (req, res) => {
   const otp = Math.floor(Math.random() * 1000000);
 
   // Store OTP to DB
-  const newOTP = await prisma.otp.create({
+  await prisma.otp.create({
     data: {
       userId: newUser.id,
       otp,
@@ -133,6 +133,7 @@ const signup = async (req, res) => {
   });
 };
 
+// Verify OTP
 const verifyotp = async (req, res) => {
   const { userId, otp } = req.body;
 
