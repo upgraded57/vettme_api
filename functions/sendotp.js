@@ -23,7 +23,8 @@ const sendotp = (recipient, subject, text) => {
   };
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
-      throw error;
+      if (error.syscall === "getaddrinfo") return;
+      console.log(error);
     } else {
       return "Email sent: " + info.response;
     }
