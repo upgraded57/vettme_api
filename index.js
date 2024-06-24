@@ -3,12 +3,13 @@ const cookieParser = require("cookie-parser");
 require("dotenv").config({
   path: "./.env",
 });
-
+const cors = require("cors");
 const rootRouter = require("./routes/index.js");
 const ErrorHandler = require("./middlewares/errors.js");
 
 // Initialize Application
 const app = express();
+app.use(cors());
 app.use(cookieParser());
 
 // Allow application to parse request body

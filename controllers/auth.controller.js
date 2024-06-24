@@ -62,25 +62,19 @@ const login = async (req, res, next) => {
   if (!user.isActive)
     return next(
       new UnauthorizedRequestException(
-        {
-          mssg: "User account not activated. Activate account with OTP",
-          userId: user.id,
-        },
+        "User account not activated. Activate account with OTP",
         loginErrors.USER_INACTIVE
       )
     );
 
   // Check if user is verified
-  if (!user.isVerified)
-    return next(
-      new UnauthorizedRequestException(
-        {
-          mssg: "User account not verified.",
-          userId: user.id,
-        },
-        loginErrors.USER_UNVERIFIED
-      )
-    );
+  // if (!user.isVerified)
+  //   return next(
+  //     new UnauthorizedRequestException(
+  //       "User account not verified.",
+  //       loginErrors.USER_UNVERIFIED
+  //     )
+  //   );
 
   // Generate token on login
   var token = jwt.sign({ userId: user.id }, process.env.JWT_KEY, {
@@ -114,7 +108,7 @@ const signup = async (req, res, next) => {
   }
 
   // Validate email
-  const emailPattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   if (!email.match(emailPattern)) {
     return next(
@@ -191,7 +185,8 @@ const signup = async (req, res, next) => {
   const { password: newUserPassword, isActive, ...newUserData } = newUser;
 
   res.status(201).json({
-    status: "Account created successfully. OTP has been sent to user email",
+    status: "success",
+    mssg: "Account created successfully",
     user: newUserData,
   });
 };
@@ -228,7 +223,7 @@ const resendOtp = async (req, res, next) => {
       )
     );
 
-  const otp = createOtp(userId);
+  const otp = await createOtp(userId);
 
   // Send OTP to new user email
   sendotp(
