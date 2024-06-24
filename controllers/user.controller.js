@@ -2,6 +2,8 @@ require("dotenv").config({
   path: "../.env",
 });
 const { PrismaClient } = require("@prisma/client");
+const NotFoundErrorException = require("../exceptions/not-found");
+const { notFoundErrors } = require("../exceptions/status-codes");
 
 const prisma = new PrismaClient();
 
@@ -17,7 +19,6 @@ const getUser = async (req, res) => {
 
     omit: {
       password: true,
-      isActive: true,
     },
   });
 
@@ -36,7 +37,7 @@ const getUser = async (req, res) => {
 };
 
 // Delete a user
-const deleteUser = async (req, res) => {
+const deleteUser = async (req, res, next) => {
   const { user_id } = req.params;
 
   // query DB for user
@@ -51,11 +52,12 @@ const deleteUser = async (req, res) => {
   });
 
   if (!foundUser)
-    return res.status(404).json({
-      status: "success",
-      mssg: "User not found",
-      user: null,
-    });
+    return next(
+      new NotFoundErrorException(
+        "User does not exist",
+        notFoundErrors.USER_NOT_FOUND
+      )
+    );
 
   const deletedUser = await prisma.user.delete({
     where: {
@@ -63,7 +65,6 @@ const deleteUser = async (req, res) => {
     },
     omit: {
       password: true,
-      isActive: true,
     },
   });
 

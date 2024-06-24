@@ -13,11 +13,35 @@ const signupErrors = {
   INVALID_PHONE_NUMBER_PATTERN: "RG-1002",
   USER_WITH_EMAIL_ALREADY_EXISTS: "RG-1003",
   USER_WITH_PHONE_NUMBER_ALREADY_EXISTS: "RG-1004",
+  USER_WITH_NIN_ALREADY_EXISTS: "RG-1005",
 };
 
 const otpErrors = {
-  INVALID_OTP: "OTP-1000",
-  OTP_BLACKLISTED: "OTP-1001",
+  USER_ID_NOT_PROVIDED: "OTP-1000",
+  OTP_NOT_PROVIDED: "OTP-1001",
+  INVALID_OTP: "OTP-1002",
+  OTP_BLACKLISTED: "OTP-1003",
+  USER_ALREADY_ACTIVE: "OTP-1004",
 };
 
-module.exports = { loginErrors, signupErrors, otpErrors };
+const verificationErrors = {
+  USER_DATA_MISMATCH: "VE-1000",
+  DATABASE_VERIFICATION_ERROR: "VE-1001",
+};
+
+const authenticationErrors = {
+  COOKIE_NOT_PROVIDED: "AE-1000",
+  AUTHENTICATION_DATA_NOT_PROVIDED: "AE-1001",
+};
+
+const notFoundErrors = {
+  USER_NOT_FOUND: "NF-1000",
+};
+module.exports = {
+  loginErrors,
+  signupErrors,
+  otpErrors,
+  verificationErrors,
+  authenticationErrors,
+  notFoundErrors,
+};
