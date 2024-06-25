@@ -5,7 +5,9 @@ const { PrismaClient } = require("@prisma/client");
 const NotFoundErrorException = require("../exceptions/not-found");
 const { notFoundErrors } = require("../exceptions/status-codes");
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({
+  log: ["query", "info", "warn", "error"],
+});
 
 // Get a user
 const getUser = async (req, res) => {

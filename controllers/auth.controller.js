@@ -17,7 +17,9 @@ const UnauthorizedRequestException = require("../exceptions/unauthorized");
 const verifyUser = require("../functions/verifyUser");
 const ServerErrorException = require("../exceptions/server-error");
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({
+  log: ["query", "info", "warn", "error"],
+});
 
 // Login
 const login = async (req, res) => {

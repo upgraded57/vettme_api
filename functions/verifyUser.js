@@ -5,9 +5,9 @@
 
 const axios = require("axios");
 const { PrismaClient } = require("@prisma/client");
-const prisma = new PrismaClient();
-
-const baseUrl = "";
+const prisma = new PrismaClient({
+  log: ["query", "info", "warn", "error"],
+});
 
 const verifyUser = async (userId) => {
   const user = await prisma.user.findUnique({ where: { id: userId } });
