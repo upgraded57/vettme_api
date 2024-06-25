@@ -10,10 +10,11 @@ const loginErrors = {
 const signupErrors = {
   INCOMPLETE_SIGNUP_CREDENTIALS: "RG-1000",
   INVALID_EMAIL_PATTERN: "RG-1001",
-  INVALID_PHONE_NUMBER_PATTERN: "RG-1002",
-  USER_WITH_EMAIL_ALREADY_EXISTS: "RG-1003",
-  USER_WITH_PHONE_NUMBER_ALREADY_EXISTS: "RG-1004",
-  USER_WITH_NIN_ALREADY_EXISTS: "RG-1005",
+  INVALID_NIN_PATTERN: "RG-1002",
+  INVALID_PHONE_NUMBER_PATTERN: "RG-1003",
+  USER_WITH_EMAIL_ALREADY_EXISTS: "RG-1004",
+  USER_WITH_PHONE_NUMBER_ALREADY_EXISTS: "RG-1005",
+  USER_WITH_NIN_ALREADY_EXISTS: "RG-1006",
 };
 
 const otpErrors = {
@@ -37,6 +38,10 @@ const authenticationErrors = {
 const notFoundErrors = {
   USER_NOT_FOUND: "NF-1000",
 };
+
+const serverErrors = {
+  UNKNOWN_ERROR: "SE-1000",
+};
 module.exports = {
   loginErrors,
   signupErrors,
@@ -44,4 +49,5 @@ module.exports = {
   verificationErrors,
   authenticationErrors,
   notFoundErrors,
+  serverErrors,
 };

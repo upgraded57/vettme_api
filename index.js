@@ -5,7 +5,7 @@ require("dotenv").config({
 });
 const cors = require("cors");
 const rootRouter = require("./routes/index.js");
-const ErrorHandler = require("./middlewares/errors.js");
+const { ErrorHandler } = require("./middlewares/errors.js");
 
 // Initialize Application
 const app = express();

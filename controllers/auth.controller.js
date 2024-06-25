@@ -20,16 +20,17 @@ const ServerErrorException = require("../exceptions/server-error");
 const prisma = new PrismaClient();
 
 // Login
-const login = async (req, res, next) => {
+const login = async (req, res) => {
   const { email, password } = req.body;
 
   // check if login info were provided
+  const emptyRequests = [];
+  if (!email) emptyRequests.push("Email");
+  if (!password) emptyRequests.push("Password");
   if (!email || !password)
-    return next(
-      new BadRequestException(
-        "Login credentials not provided",
-        loginErrors.INCOMPLETE_LOGIN_CREDENTIALS
-      )
+    throw new BadRequestException(
+      `${emptyRequests.join(",")} fields required`,
+      loginErrors.INCOMPLETE_LOGIN_CREDENTIALS
     );
 
   // Checks if user with email already exist
@@ -38,11 +39,9 @@ const login = async (req, res, next) => {
   });
 
   if (!user) {
-    return next(
-      new BadRequestException(
-        "Incorrect login credentials",
-        loginErrors.USER_DOES_NOT_EXIST
-      )
+    throw new BadRequestException(
+      "Incorrect login credentials",
+      loginErrors.USER_DOES_NOT_EXIST
     );
   }
 
@@ -50,31 +49,25 @@ const login = async (req, res, next) => {
   const userPasswordIsCorrect = bcrypt.compareSync(password, user.password);
 
   if (!userPasswordIsCorrect) {
-    return next(
-      new BadRequestException(
-        "Incorrect login credentials",
-        loginErrors.INCORRECT_PASSWORD
-      )
+    throw new BadRequestException(
+      "Incorrect login credentials",
+      loginErrors.INCORRECT_PASSWORD
     );
   }
 
   // Check if user is active
   if (!user.isActive)
-    return next(
-      new UnauthorizedRequestException(
-        "User account not activated. Activate account with OTP",
-        loginErrors.USER_INACTIVE
-      )
+    new UnauthorizedRequestException(
+      "User account not activated. Activate account with OTP",
+      loginErrors.USER_INACTIVE
     );
 
   // Check if user is verified
   // if (!user.isVerified)
-  //   return next(
   //     new UnauthorizedRequestException(
   //       "User account not verified.",
   //       loginErrors.USER_UNVERIFIED
   //     )
-  //   );
 
   // Generate token on login
   var token = jwt.sign({ userId: user.id }, process.env.JWT_KEY, {
@@ -94,16 +87,21 @@ const login = async (req, res, next) => {
 };
 
 // Sign up
-const signup = async (req, res, next) => {
+const signup = async (req, res) => {
   const { full_name, email, phone_number, password, nin } = req.body;
 
   // Check if all fields are provided
+  const emptyRequests = [];
+  if (!full_name) emptyRequests.push("Full Name");
+  if (!email) emptyRequests.push("Email");
+  if (!phone_number) emptyRequests.push("Phone Number");
+  if (!password) emptyRequests.push("Password");
+  if (!nin) emptyRequests.push("NIN");
+
   if (!full_name || !email || !password || !phone_number || !nin) {
-    return next(
-      new BadRequestException(
-        "All fields are required",
-        signupErrors.INCOMPLETE_SIGNUP_CREDENTIALS
-      )
+    throw new BadRequestException(
+      `${emptyRequests.join(",")} field required`,
+      signupErrors.INCOMPLETE_SIGNUP_CREDENTIALS
     );
   }
 
@@ -111,23 +109,29 @@ const signup = async (req, res, next) => {
   const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   if (!email.match(emailPattern)) {
-    return next(
-      new BadRequestException(
-        "Invalid email address provided",
-        signupErrors.INVALID_EMAIL_PATTERN
-      )
+    throw new BadRequestException(
+      "Invalid email address provided",
+      signupErrors.INVALID_EMAIL_PATTERN
     );
   }
 
+  // Validate NIN
+  const ninPattern = /^\d{10}$/;
+  if (!nin.match(ninPattern))
+    throw new BadRequestException(
+      "Invalid NIN provided",
+      signupErrors.INVALID_NIN_PATTERN
+    );
+
   // Checks if user with same email already exist
-  const userWithEmailExists = await prisma.user.findFirst({ where: { email } });
+  const userWithEmailExists = await prisma.user.findFirst({
+    where: { email },
+  });
 
   if (userWithEmailExists) {
-    return next(
-      new BadRequestException(
-        "User with email already exists",
-        signupErrors.USER_WITH_EMAIL_ALREADY_EXISTS
-      )
+    throw new BadRequestException(
+      "User with email already exists",
+      signupErrors.USER_WITH_EMAIL_ALREADY_EXISTS
     );
   }
 
@@ -137,24 +141,20 @@ const signup = async (req, res, next) => {
   });
 
   if (userWithPhoneNumberExists)
-    return next(
-      new BadRequestException(
-        "User with phone number already exists",
-        signupErrors.USER_WITH_PHONE_NUMBER_ALREADY_EXISTS
-      )
+    throw new BadRequestException(
+      "User with phone number already exists",
+      signupErrors.USER_WITH_PHONE_NUMBER_ALREADY_EXISTS
     );
 
   // Checks if user with same nin already exist
-  const userWithNinExists = await prisma.user.findFirst({
+  const userWithNinExists = await prisma.user.findUnique({
     where: { nin },
   });
 
   if (userWithNinExists)
-    return next(
-      new BadRequestException(
-        "User with nin already exists",
-        signupErrors.USER_WITH_NIN_ALREADY_EXISTS
-      )
+    throw new BadRequestException(
+      "User with nin already exists",
+      signupErrors.USER_WITH_NIN_ALREADY_EXISTS
     );
 
   // encrypt password
@@ -182,7 +182,7 @@ const signup = async (req, res, next) => {
   );
 
   // return message to user
-  const { password: newUserPassword, isActive, ...newUserData } = newUser;
+  const { password: newUserPassword, ...newUserData } = newUser;
 
   res.status(201).json({
     status: "success",
@@ -192,35 +192,29 @@ const signup = async (req, res, next) => {
 };
 
 // Resend OTP
-const resendOtp = async (req, res, next) => {
+const resendOtp = async (req, res) => {
   const { userId } = req.body;
 
   if (!userId)
-    return next(
-      new BadRequestException(
-        "User id not provided",
-        otpErrors.USER_ID_NOT_PROVIDED
-      )
+    throw new BadRequestException(
+      "User id not provided",
+      otpErrors.USER_ID_NOT_PROVIDED
     );
 
   // Check user
   const user = await prisma.user.findUnique({ where: { id: userId } });
 
   if (!user)
-    return next(
-      new BadRequestException(
-        "User with supplied user_id not found",
-        loginErrors.USER_DOES_NOT_EXIST
-      )
+    throw new BadRequestException(
+      "User with supplied user_id not found",
+      loginErrors.USER_DOES_NOT_EXIST
     );
 
   // Check if user is already active
   if (user.isActive)
-    return next(
-      new BadRequestException(
-        "User is already active",
-        otpErrors.USER_ALREADY_ACTIVE
-      )
+    throw new BadRequestException(
+      "User is already active",
+      otpErrors.USER_ALREADY_ACTIVE
     );
 
   const otp = await createOtp(userId);
@@ -239,22 +233,21 @@ const resendOtp = async (req, res, next) => {
 };
 
 // Verify OTP
-const verifyotp = async (req, res, next) => {
+const verifyotp = async (req, res) => {
   const { userId, otp } = req.body;
 
   // Check if userId was provided by app
   if (!userId)
-    return next(
-      new BadRequestException(
-        "User id not provided",
-        otpErrors.USER_ID_NOT_PROVIDED
-      )
+    throw new BadRequestException(
+      "User id not provided",
+      otpErrors.USER_ID_NOT_PROVIDED
     );
 
   // Check if otp was provided by app
   if (!userId)
-    return next(
-      new BadRequestException("Otp not provided", otpErrors.OTP_NOT_PROVIDED)
+    throw new BadRequestException(
+      "Otp not provided",
+      otpErrors.OTP_NOT_PROVIDED
     );
 
   // Check if user exists
@@ -263,11 +256,9 @@ const verifyotp = async (req, res, next) => {
   });
 
   if (!user) {
-    return next(
-      new BadRequestException(
-        "User does not exist",
-        loginErrors.USER_DOES_NOT_EXIST
-      )
+    throw new BadRequestException(
+      "User does not exist",
+      loginErrors.USER_DOES_NOT_EXIST
     );
   }
 
@@ -279,17 +270,16 @@ const verifyotp = async (req, res, next) => {
   });
 
   if (!otpExists)
-    return next(
-      new BadRequestException("Invalid otp provided", otpErrors.INVALID_OTP)
+    throw new BadRequestException(
+      "Invalid otp provided",
+      otpErrors.INVALID_OTP
     );
 
   // Check if OTP has not been used
   if (otpExists.used)
-    return next(
-      new BadRequestException(
-        "Otp has been blacklisted",
-        otpErrors.OTP_BLACKLISTED
-      )
+    throw new BadRequestException(
+      "Otp has been blacklisted",
+      otpErrors.OTP_BLACKLISTED
     );
 
   // Activate user account
@@ -322,16 +312,14 @@ const verifyotp = async (req, res, next) => {
 };
 
 // Verify user data
-const verifyUserData = async (req, res, next) => {
+const verifyUserData = async (req, res) => {
   const { userId } = req.body;
 
   // check if userId is provided
   if (!userId)
-    return next(
-      new BadRequestException(
-        "User ID not provided",
-        otpErrors.USER_ID_NOT_PROVIDED
-      )
+    throw new BadRequestException(
+      "User ID not provided",
+      otpErrors.USER_ID_NOT_PROVIDED
     );
 
   // Checks if user with email already exist
@@ -340,11 +328,9 @@ const verifyUserData = async (req, res, next) => {
   });
 
   if (!user) {
-    return next(
-      new BadRequestException(
-        "User does not exist",
-        loginErrors.USER_DOES_NOT_EXIST
-      )
+    throw new BadRequestException(
+      "User does not exist",
+      loginErrors.USER_DOES_NOT_EXIST
     );
   }
 
@@ -352,11 +338,9 @@ const verifyUserData = async (req, res, next) => {
 
   // Verify user if supplied data matches NIN data
   if (!userDataMatch)
-    return next(
-      new UnauthorizedRequestException(
-        "User data does not match NIN data",
-        verificationErrors.USER_DATA_MISMATCH
-      )
+    throw new UnauthorizedRequestException(
+      "User data does not match NIN data",
+      verificationErrors.USER_DATA_MISMATCH
     );
 
   // Update user data if data matches
@@ -367,13 +351,12 @@ const verifyUserData = async (req, res, next) => {
     },
   });
 
-  // Throw error if server fails to verify user
+  // Throw new error if server fails to verify user
   if (!userVerified)
-    return next(
-      new ServerErrorException(
-        "User cannot be verified. Please retry",
-        verificationErrors.DATABASE_VERIFICATION_ERROR
-      )
+    throw new ServerErrorException(
+      "User cannot be verified. Please retry",
+      verificationErrors.DATABASE_VERIFICATION_ERROR,
+      null
     );
 
   res.status(200).json({

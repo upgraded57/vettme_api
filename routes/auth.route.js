@@ -7,24 +7,25 @@ const {
   verifyUserData,
   logout,
 } = require("../controllers/auth.controller.js");
+const { globalErrorCatcher } = require("../middlewares/errors.js");
 
 // Create user
-router.post("/signup", signup);
+router.post("/signup", globalErrorCatcher(signup));
 
 // Login
-router.post("/login", login);
+router.post("/login", globalErrorCatcher(login));
 
 // Logout
-router.post("/logout", logout);
+router.post("/logout", globalErrorCatcher(logout));
 
 // Resend OTP
-router.post("/resendotp", resendOtp);
+router.post("/resendotp", globalErrorCatcher(resendOtp));
 
 // Validate OTP on signup
-router.post("/verifyotp", verifyotp);
+router.post("/verifyotp", globalErrorCatcher(verifyotp));
 
 // Verify User
-router.post("/verifyuser", verifyUserData);
+router.post("/verifyuser", globalErrorCatcher(verifyUserData));
 
 // destroy token on logout
 
