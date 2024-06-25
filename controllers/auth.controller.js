@@ -149,7 +149,7 @@ const signup = async (req, res) => {
     );
 
   // Checks if user with same nin already exist
-  const userWithNinExists = await prisma.user.findUnique({
+  const userWithNinExists = await prisma.user.findFirst({
     where: { nin },
   });
 
@@ -204,7 +204,7 @@ const resendOtp = async (req, res) => {
     );
 
   // Check user
-  const user = await prisma.user.findUnique({ where: { id: userId } });
+  const user = await prisma.user.findFirst({ where: { id: userId } });
 
   if (!user)
     throw new BadRequestException(
@@ -325,7 +325,7 @@ const verifyUserData = async (req, res) => {
     );
 
   // Checks if user with email already exist
-  const user = await prisma.user.findUnique({
+  const user = await prisma.user.findFirst({
     where: { id: userId },
   });
 
