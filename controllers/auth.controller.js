@@ -149,15 +149,15 @@ const signup = async (req, res) => {
     );
 
   // Checks if user with same nin already exist
-  const userWithNinExists = await prisma.user.findFirst({
-    where: { nin },
-  });
+  // const userWithNinExists = await prisma.user.findFirst({
+  //   where: { nin: nin },
+  // });
 
-  if (userWithNinExists)
-    throw new BadRequestException(
-      "User with nin already exists",
-      signupErrors.USER_WITH_NIN_ALREADY_EXISTS
-    );
+  // if (userWithNinExists)
+  //   throw new BadRequestException(
+  //     "User with nin already exists",
+  //     signupErrors.USER_WITH_NIN_ALREADY_EXISTS
+  //   );
 
   // encrypt password
   const encryptedPassword = bcrypt.hashSync(password, 10);
