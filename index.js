@@ -1,5 +1,4 @@
 const express = require("express");
-const cookieParser = require("cookie-parser");
 require("dotenv").config({
   path: "./.env",
 });
@@ -31,7 +30,6 @@ app.use(
     credentials: true,
   })
 );
-app.use(cookieParser());
 
 // Allow application to parse request body
 app.use(express.json());

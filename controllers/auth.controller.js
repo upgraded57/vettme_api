@@ -76,20 +76,13 @@ const login = async (req, res) => {
     expiresIn: 60 * 60 * 24,
   });
 
-  // Store token in http only cookie
-  res.cookie("token", token, {
-    httpOnly: true,
-    maxAge: 60 * 60 * 24,
-    secure: process.env.COOKIE_SECURE,
-    sameSite: process.env.COOKIE_SAMESITE,
-  });
-
   // send user data to app
   const { password: userPassword, ...userData } = user;
   res.status(200).json({
     status: "success",
     mssg: "User login succesfully",
     user: userData,
+    token,
   });
 };
 
@@ -372,22 +365,10 @@ const verifyUserData = async (req, res) => {
   });
 };
 
-// Logout
-const logout = async (req, res) => {
-  // Destroy cookie
-  res.clearCookie("token", { httpOnly: true });
-
-  res.status(200).json({
-    status: "success",
-    mssg: "User logout successfully",
-  });
-};
-
 module.exports = {
   verifyotp,
   signup,
   login,
   resendOtp,
   verifyUserData,
-  logout,
 };

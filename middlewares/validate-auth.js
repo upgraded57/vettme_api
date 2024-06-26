@@ -6,19 +6,9 @@ require("dotenv").config({
 });
 
 const validateAuth = async (req, res, next) => {
-  // Check if user cookie is present
-  if (!req.cookies) {
-    return next(
-      new UnauthorizedRequestException(
-        "Authentication credentials not provided",
-        authenticationErrors.COOKIE_NOT_PROVIDED
-      )
-    );
-  }
+  const { token } = req.headers;
 
-  // Check if user auth cookie is present
-  const { token } = req.cookies;
-
+  // Check if token is present
   if (!token)
     return next(
       new UnauthorizedRequestException(
@@ -29,25 +19,15 @@ const validateAuth = async (req, res, next) => {
 
   const tokenData = jwt.decode(token, process.env.JWT_KEY);
 
-  // Check if user auth cookie is expired.
+  // Check if user auth token is expired.
   if (Date.now() >= tokenData.exp * 1000) {
-    // clear cookie and issue new one
-    res.clearCookie("token", { httpOnly: true });
-
-    // Issue a new cookie
-    const newToken = jwt.sign(
-      { userId: tokenData.userId },
-      process.env.JWT_KEY,
-      {
-        expiresIn: 60 * 60 * 24,
-      }
+    // Issue a new token
+    return next(
+      new UnauthorizedRequestException(
+        "Session expired. Please login again",
+        authenticationErrors.AUTHENTICATION_DATA_NOT_PROVIDED
+      )
     );
-    res.cookie("token", newToken, {
-      httpOnly: true,
-      maxAge: 60 * 60 * 24,
-      secure: process.env.COOKIE_SECURE,
-      sameSite: process.env.COOKIE_SAMESITE,
-    });
   }
 
   next();

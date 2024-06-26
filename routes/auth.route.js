@@ -5,7 +5,6 @@ const {
   login,
   resendOtp,
   verifyUserData,
-  logout,
 } = require("../controllers/auth.controller.js");
 const { globalErrorCatcher } = require("../middlewares/errors.js");
 
@@ -14,9 +13,6 @@ router.post("/signup", globalErrorCatcher(signup));
 
 // Login
 router.post("/login", globalErrorCatcher(login));
-
-// Logout
-router.post("/logout", globalErrorCatcher(logout));
 
 // Resend OTP
 router.post("/resendotp", globalErrorCatcher(resendOtp));
