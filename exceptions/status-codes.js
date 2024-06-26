@@ -28,6 +28,8 @@ const otpErrors = {
 const verificationErrors = {
   USER_DATA_MISMATCH: "VE-1000",
   DATABASE_VERIFICATION_ERROR: "VE-1001",
+  OLD_PASSWORD_MISMATCH: "VE-1002",
+  UNAUTHORIZED_RESOURCE_ACCESS: "VE-1003",
 };
 
 const authenticationErrors = {
