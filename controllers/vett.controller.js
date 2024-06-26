@@ -11,7 +11,7 @@ const prisma = new PrismaClient({
 
 // Get verifications history
 const getVerifications = async (req, res) => {
-  const { token } = req.cookies;
+  const { token } = req.headers;
 
   const tokenData = jwt.decode(token, process.env.JWT_KEY);
   const { userId } = tokenData;
@@ -38,7 +38,7 @@ const getVerifications = async (req, res) => {
 };
 
 const verifyPersonnel = async (req, res) => {
-  const { token } = req.cookies;
+  const { token } = req.headers;
 
   const tokenData = jwt.decode(token, process.env.JWT_KEY);
   const { userId } = tokenData;

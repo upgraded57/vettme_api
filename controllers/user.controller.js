@@ -51,7 +51,7 @@ const getUser = async (req, res) => {
 const deleteUser = async (req, res) => {
   const { user_id } = req.params;
 
-  const { token } = req.cookies;
+  const { token } = req.headers;
 
   // Compare user id to id of cookie
   const userFromToken = jwt.decode(token, process.env.JWT_TOKEN);
@@ -105,7 +105,7 @@ const deleteUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
   const { user_id } = req.params;
-  const { token } = req.cookies;
+  const { token } = req.headers;
   const { full_name, email, phone_number, old_password, new_password } =
     req.body;
 
