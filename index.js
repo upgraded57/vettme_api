@@ -29,9 +29,6 @@ app.use(
       return callback(null, true);
     },
     credentials: true,
-    Headers: {
-      "Access-Control-Allow-Credentials": true,
-    },
   })
 );
 app.use(cookieParser());
