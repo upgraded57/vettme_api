@@ -42,9 +42,12 @@ const validateAuth = async (req, res, next) => {
         expiresIn: 60 * 60 * 24,
       }
     );
-    res.cookie("token", newToken, { httpOnly: true, maxAge: 60 * 60 * 24 });
-
-    console.log(newToken);
+    res.cookie("token", newToken, {
+      httpOnly: true,
+      maxAge: 60 * 60 * 24,
+      secure: false,
+      sameSite: "Lax",
+    });
   }
 
   next();

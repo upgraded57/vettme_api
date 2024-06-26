@@ -161,6 +161,7 @@ const updateUser = async (req, res) => {
           mssg: "User data updated successfully",
           user: others,
         });
+        console.log(updatedUser);
       })
       .catch((err) => {
         throw new ServerErrorException(

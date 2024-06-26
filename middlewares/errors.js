@@ -20,7 +20,7 @@ const globalErrorCatcher = (fn) => {
         exception = err;
       } else {
         exception = new ServerErrorException(
-          "Soemthing went wrong",
+          "Something went wrong",
           serverErrors.UNKNOWN_ERROR,
           err
         );

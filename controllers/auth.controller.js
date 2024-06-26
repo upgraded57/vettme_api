@@ -77,7 +77,12 @@ const login = async (req, res) => {
   });
 
   // Store token in http only cookie
-  res.cookie("token", token, { httpOnly: true, maxAge: 60 * 60 * 24 });
+  res.cookie("token", token, {
+    httpOnly: true,
+    maxAge: 60 * 60 * 24,
+    secure: false,
+    sameSite: "Lax",
+  });
 
   // send user data to app
   const { password: userPassword, ...userData } = user;
