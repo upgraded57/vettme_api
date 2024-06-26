@@ -45,8 +45,8 @@ const validateAuth = async (req, res, next) => {
     res.cookie("token", newToken, {
       httpOnly: true,
       maxAge: 60 * 60 * 24,
-      secure: false,
-      sameSite: "Lax",
+      secure: true,
+      sameSite: "None",
     });
   }
 

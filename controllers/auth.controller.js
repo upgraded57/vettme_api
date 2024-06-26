@@ -80,8 +80,8 @@ const login = async (req, res) => {
   res.cookie("token", token, {
     httpOnly: true,
     maxAge: 60 * 60 * 24,
-    secure: false,
-    sameSite: "Lax",
+    secure: true,
+    sameSite: "None",
   });
 
   // send user data to app
