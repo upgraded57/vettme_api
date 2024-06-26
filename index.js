@@ -11,10 +11,10 @@ const { ErrorHandler } = require("./middlewares/errors.js");
 const app = express();
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: process.env.CLIENT_ORIGIN,
     credentials: true,
     Headers: {
-      "Access-Control-Allow-Origin": "http://localhost:5173",
+      "Access-Control-Allow-Origin": process.env.CLIENT_ORIGIN,
       "Access-Control-Allow-Credentials": true,
     },
   })
