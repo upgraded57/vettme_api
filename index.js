@@ -9,12 +9,27 @@ const { ErrorHandler } = require("./middlewares/errors.js");
 
 // Initialize Application
 const app = express();
+const allowedOrigins = [
+  process.env.DEV_CLIENT,
+  process.env.SERVER_CLIENT, // Add other allowed origins as needed
+];
+
 app.use(
   cors({
-    origin: process.env.CLIENT_ORIGIN,
+    origin: function (origin, callback) {
+      // Allow requests with no origin (like mobile apps or curl requests)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.indexOf(origin) === -1) {
+        // If the origin is not in the allowedOrigins list, return an error
+        const msg = `The CORS policy for this site does not allow access from the specified origin: ${origin}`;
+        return callback(new Error(msg), false);
+      }
+
+      return callback(null, true);
+    },
     credentials: true,
     Headers: {
-      "Access-Control-Allow-Origin": process.env.CLIENT_ORIGIN,
       "Access-Control-Allow-Credentials": true,
     },
   })
