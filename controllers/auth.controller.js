@@ -116,7 +116,7 @@ const signup = async (req, res) => {
   }
 
   // Validate NIN
-  const ninPattern = /^\d{10}$/;
+  const ninPattern = /^\d{11}$/;
   if (!nin.match(ninPattern))
     throw new BadRequestException(
       "Invalid NIN provided",
