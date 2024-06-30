@@ -15,7 +15,7 @@ const jwt = require("jsonwebtoken");
 const UnauthorizedRequestException = require("../exceptions/unauthorized");
 
 const prisma = new PrismaClient({
-  log: ["query", "info", "warn", "error"],
+  log: ["warn", "error"],
 });
 
 // Get a user

@@ -6,7 +6,7 @@ const { PrismaClient } = require("@prisma/client");
 const ServerErrorException = require("../exceptions/server-error");
 const { serverErrors } = require("../exceptions/status-codes");
 const prisma = new PrismaClient({
-  log: ["query", "info", "warn", "error"],
+  log: ["warn", "error"],
 });
 
 // Get verifications history

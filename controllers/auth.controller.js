@@ -18,7 +18,7 @@ const verifyUser = require("../functions/verifyUser");
 const ServerErrorException = require("../exceptions/server-error");
 
 const prisma = new PrismaClient({
-  log: ["query", "info", "warn", "error"],
+  log: ["warn", "error"],
 });
 
 // Login
