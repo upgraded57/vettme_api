@@ -25,6 +25,16 @@ const prisma = new PrismaClient({
 const login = async (req, res) => {
   const { email, password } = req.body;
 
+  // Validate email
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  if (!email.match(emailPattern)) {
+    throw new BadRequestException(
+      "Invalid email address provided",
+      signupErrors.INVALID_EMAIL_PATTERN
+    );
+  }
+
   // check if login info were provided
   const emptyRequests = [];
   if (!email) emptyRequests.push("Email");
@@ -105,6 +115,16 @@ const signup = async (req, res) => {
     );
   }
 
+  // Validate Full Name
+  const fullNamePattern = /^[A-Za-z]+(?:\s[A-Za-z]+)*$/;
+
+  if (!full_name.match(fullNamePattern)) {
+    throw new BadRequestException(
+      "Only letters are allowed for full name input",
+      signupErrors.INVALID_EMAIL_PATTERN
+    );
+  }
+
   // Validate email
   const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -121,6 +141,14 @@ const signup = async (req, res) => {
     throw new BadRequestException(
       "Invalid NIN provided",
       signupErrors.INVALID_NIN_PATTERN
+    );
+
+  // Validate Phone number
+  const PhoneNumberPattern = /^\d{11}$/;
+  if (!phone_number.match(PhoneNumberPattern))
+    throw new BadRequestException(
+      "A valid 11 digits phone number is required",
+      signupErrors.INVALID_PHONE_NUMBER_PATTERN
     );
 
   // Checks if user with same email already exist
