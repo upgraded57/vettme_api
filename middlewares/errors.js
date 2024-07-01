@@ -6,6 +6,7 @@ const {
 } = require("../exceptions/status-codes");
 
 const ErrorHandler = (error, req, res, next) => {
+  console.log(error);
   res.status(error.statusCode).json({
     message: error.message,
     errorCode: error.errorCode,
@@ -13,6 +14,8 @@ const ErrorHandler = (error, req, res, next) => {
   });
 
   Error.captureStackTrace(this, this.constructor);
+
+  return;
 };
 
 const globalErrorCatcher = (fn) => {
@@ -34,17 +37,15 @@ const globalErrorCatcher = (fn) => {
 };
 
 const handleVerificationErrors = (err) => {
-  console.log(err);
-
   // Throw error if network was reset
-  if (err.code === "ECONNRESET")
+  if (err.code && err.code === "ECONNRESET")
     throw new ServerErrorException(
       "Network error. Please retry",
       serverErrors.NETWORK_RESET_ERROR
     );
 
   // Throw error if network aborted request
-  if (err.code === "ECONNABORTED")
+  if (err.code && err.code === "ECONNABORTED")
     throw new ServerErrorException(
       "Connection timed out. Please retry",
       serverErrors.NETWORK_RESET_ERROR
@@ -52,7 +53,9 @@ const handleVerificationErrors = (err) => {
 
   // Throw error if unable to connect with dojah API
   if (
+    err.response.status &&
     err.response.status === 401 &&
+    err.response.statusText &&
     err.response.statusText === "Unauthorized"
   ) {
     throw new ServerErrorException(

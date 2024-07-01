@@ -88,7 +88,7 @@ const login = async (req, res) => {
 
   // send user data to app
   const { password: userPassword, ...userData } = user;
-  res.status(200).json({
+  return res.status(200).json({
     status: "success",
     message: "User login succesfully",
     user: userData,
@@ -212,7 +212,7 @@ const signup = async (req, res) => {
   // return message to user
   const { password: newUserPassword, ...newUserData } = newUser;
 
-  res.status(201).json({
+  return res.status(201).json({
     status: "success",
     message: "Account created successfully",
     user: newUserData,
@@ -254,7 +254,7 @@ const resendOtp = async (req, res) => {
     `Your OTP is ${otp}. It expires in 10 minutes.`
   );
 
-  res.status(200).json({
+  return res.status(200).json({
     status: "success",
     message: "New OTP has been sent to user email",
   });
@@ -387,7 +387,7 @@ const verifyUserData = async (req, res) => {
       null
     );
 
-  res.status(200).json({
+  return res.status(200).json({
     status: "success",
     message: "User verified successfully",
   });

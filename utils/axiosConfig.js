@@ -9,7 +9,7 @@ const APIKey = process.env.DOJAH_TEST_KEY;
 
 const axiosInstance = axios.create({
   baseURL: baseUrl,
-  timeout: 1000 * 30, // One Minute
+  timeout: 1000 * 60, // 1 minute
   headers: {
     "Content-Type": "application/json",
   },

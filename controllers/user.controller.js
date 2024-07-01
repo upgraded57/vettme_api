@@ -40,7 +40,7 @@ const getUser = async (req, res) => {
       user: null,
     });
 
-  res.status(200).json({
+  return res.status(200).json({
     status: "success",
     message: "User found",
     user,
@@ -156,7 +156,7 @@ const updateUser = async (req, res) => {
       })
       .then((updatedUser) => {
         const { password, ...others } = updatedUser;
-        res.status(200).json({
+        return res.status(200).json({
           status: "success",
           message: "User data updated successfully",
           user: others,
@@ -204,7 +204,7 @@ const updateUser = async (req, res) => {
       })
       .then((updatedUser) => {
         const { password, ...others } = updatedUser;
-        res.status(200).json({
+        return res.status(200).json({
           status: "success",
           message: "User password updated successfully",
           user: others,
