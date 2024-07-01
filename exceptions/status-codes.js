@@ -31,6 +31,8 @@ const verificationErrors = {
   DATABASE_VERIFICATION_ERROR: "VE-1001",
   OLD_PASSWORD_MISMATCH: "VE-1002",
   UNAUTHORIZED_RESOURCE_ACCESS: "VE-1003",
+  VERIFICATION_DATA_NOT_PROVIDED: "VE-1004",
+  INVALID_VERIFICATION_DATA: "VE-1005",
 };
 
 const authenticationErrors = {
@@ -43,8 +45,14 @@ const notFoundErrors = {
 };
 
 const serverErrors = {
-  UNKNOWN_ERROR: "SE-1000",
+  DOJAH_AUTHENTICATION_ERROR: "SE-1000",
+  REQUEST_TIMEOUT_ERROR: "SE-1002",
+  NETWORK_RESET_ERROR: "SE-1003",
+  NETWORK_ABORT_ERROR: "SE-1004",
+  VERIFICATION_RECORD_NOT_CREATED: "SE-1005",
+  UNKNOWN_ERROR: "SE-1005",
 };
+
 module.exports = {
   loginErrors,
   signupErrors,

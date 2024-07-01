@@ -1,6 +1,9 @@
 const HttpExceptions = require("../exceptions/root");
 const ServerErrorException = require("../exceptions/server-error");
-const { serverErrors } = require("../exceptions/status-codes");
+const {
+  serverErrors,
+  verificationErrors,
+} = require("../exceptions/status-codes");
 
 const ErrorHandler = (error, req, res, next) => {
   res.status(error.statusCode).json({
@@ -30,10 +33,40 @@ const globalErrorCatcher = (fn) => {
   };
 };
 
-module.exports = { ErrorHandler, globalErrorCatcher };
+const handleVerificationErrors = (err) => {
+  console.log(err);
 
-// Error status codes
-// Protected Routes
+  // Throw error if network was reset
+  if (err.code === "ECONNRESET")
+    throw new ServerErrorException(
+      "Network error. Please retry",
+      serverErrors.NETWORK_RESET_ERROR
+    );
 
-// USER_NOT_VERIFIED
-// USER_NOT_ACTIVE
+  // Throw error if network aborted request
+  if (err.code === "ECONNABORTED")
+    throw new ServerErrorException(
+      "Connection timed out. Please retry",
+      serverErrors.NETWORK_RESET_ERROR
+    );
+
+  // Throw error if unable to connect with dojah API
+  if (
+    err.response.status === 401 &&
+    err.response.statusText === "Unauthorized"
+  ) {
+    throw new ServerErrorException(
+      "Something went wrong",
+      serverErrors.DOJAH_AUTHENTICATION_ERROR,
+      { error: "Error communicating with database" }
+    );
+  }
+
+  throw new ServerErrorException(
+    err.response.data.error,
+    verificationErrors.INVALID_VERIFICATION_DATA,
+    err.response.data
+  );
+};
+
+module.exports = { ErrorHandler, globalErrorCatcher, handleVerificationErrors };

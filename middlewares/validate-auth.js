@@ -8,8 +8,6 @@ require("dotenv").config({
 const validateAuth = async (req, res, next) => {
   const { token } = req.headers;
 
-  console.log(token);
-
   // Check if token is present
   if (!token)
     return next(

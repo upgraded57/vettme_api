@@ -90,7 +90,7 @@ const login = async (req, res) => {
   const { password: userPassword, ...userData } = user;
   res.status(200).json({
     status: "success",
-    mssg: "User login succesfully",
+    message: "User login succesfully",
     user: userData,
     token,
   });
@@ -214,7 +214,7 @@ const signup = async (req, res) => {
 
   res.status(201).json({
     status: "success",
-    mssg: "Account created successfully",
+    message: "Account created successfully",
     user: newUserData,
   });
 };
@@ -335,7 +335,7 @@ const verifyotp = async (req, res) => {
 
   return res.status(200).json({
     status: "success",
-    mssg: "Account activation successful",
+    message: "Account activation successful",
   });
 };
 
@@ -389,7 +389,7 @@ const verifyUserData = async (req, res) => {
 
   res.status(200).json({
     status: "success",
-    mssg: "User verified successfully",
+    message: "User verified successfully",
   });
 };
 

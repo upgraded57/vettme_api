@@ -36,13 +36,13 @@ const getUser = async (req, res) => {
   if (!user)
     return res.status(404).json({
       status: "success",
-      mssg: "User not found",
+      message: "User not found",
       user: null,
     });
 
   res.status(200).json({
     status: "success",
-    mssg: "User found",
+    message: "User found",
     user,
   });
 };
@@ -92,13 +92,13 @@ const deleteUser = async (req, res) => {
   if (!deletedUser)
     return res.status(500).json({
       status: "error",
-      mssg: "Unable to delete user",
+      message: "Unable to delete user",
       user: null,
     });
 
   return res.status(200).json({
     status: "success",
-    mssg: "User deleted",
+    message: "User deleted",
     user: deletedUser,
   });
 };
@@ -158,7 +158,7 @@ const updateUser = async (req, res) => {
         const { password, ...others } = updatedUser;
         res.status(200).json({
           status: "success",
-          mssg: "User data updated successfully",
+          message: "User data updated successfully",
           user: others,
         });
       })
@@ -206,7 +206,7 @@ const updateUser = async (req, res) => {
         const { password, ...others } = updatedUser;
         res.status(200).json({
           status: "success",
-          mssg: "User password updated successfully",
+          message: "User password updated successfully",
           user: others,
         });
       })
