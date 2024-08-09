@@ -36,8 +36,9 @@ const verificationErrors = {
 };
 
 const authenticationErrors = {
-  COOKIE_NOT_PROVIDED: "AE-1000",
+  UNAUTHORIZED_CORS_ACCESS: "AE-1000",
   AUTHENTICATION_DATA_NOT_PROVIDED: "AE-1001",
+  COOKIE_NOT_PROVIDED: "AE-1002",
 };
 
 const notFoundErrors = {

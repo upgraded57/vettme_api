@@ -5,7 +5,7 @@ require("dotenv").config({
 
 const sendotp = (recipient, subject, text) => {
   const transporter = nodemailer.createTransport({
-    host: "mail.ijmgloballimited.com",
+    host: "smtp.gmail.com",
     port: 587,
     secure: false,
     requireTLS: true,

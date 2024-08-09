@@ -248,7 +248,7 @@ const resendOtp = async (req, res) => {
   const otp = await createOtp(userId);
 
   // Send OTP to new user email
-  sendotp(
+  await sendotp(
     user.email,
     "Complete your Vettme account creation",
     `Your OTP is ${otp}. It expires in 10 minutes.`

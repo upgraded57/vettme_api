@@ -5,6 +5,8 @@ require("dotenv").config({
 const cors = require("cors");
 const rootRouter = require("./routes/index.js");
 const { ErrorHandler } = require("./middlewares/errors.js");
+const UnauthorizedRequestException = require("./exceptions/unauthorized.js");
+const { authenticationErrors } = require("./exceptions/status-codes.js");
 
 // Initialize Application
 const app = express();
@@ -22,7 +24,10 @@ app.use(
       if (allowedOrigins.indexOf(origin) === -1) {
         // If the origin is not in the allowedOrigins list, return an error
         const msg = `The CORS policy for this site does not allow access from the specified origin: ${origin}`;
-        return callback(new Error(msg), false);
+        throw new UnauthorizedRequestException(
+          msg,
+          authenticationErrors.UNAUTHORIZED_CORS_ACCESS
+        );
       }
 
       return callback(null, true);
