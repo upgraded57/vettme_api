@@ -42,7 +42,6 @@ model Verification {
   personnel_name  String
   verified_with   String
   info            Json
-  cost            Int @default(0)
   status          String
   createdAt       DateTime @default(now())
 }
@@ -64,4 +63,11 @@ model otp {
   otp         Int
   used        Boolean @default(false)
   createdAt   DateTime @default(now())
+}
+
+model Waitlist {
+  id            String @id @default(uuid())
+  name          String 
+  email         String @unique
+  phone_number  String @unique
 }

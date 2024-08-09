@@ -15,6 +15,8 @@ const allowedOrigins = [
   process.env.SERVER_CLIENT, // Add other allowed origins as needed
   "https://vettme-basic-git-main-upgraded57s-projects.vercel.app",
   "https://vettme-basic-irzfsg9jl-upgraded57s-projects.vercel.app",
+  "https://ijmgloballimited.com",
+  "https://ijm-client.vercel.app",
 ];
 
 app.use(
