@@ -42,6 +42,7 @@ model Verification {
   personnel_name  String
   verified_with   String
   info            Json
+  cost            Int @default(0)
   status          String
   createdAt       DateTime @default(now())
 }
