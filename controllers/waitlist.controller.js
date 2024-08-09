@@ -26,6 +26,8 @@ const getWaitlistUsers = async (req, res) => {
 const createWaitlistUser = async (req, res) => {
   const { name, email, phone_number } = req.body;
 
+  console.log(req.body);
+
   if (!name || !email || !phone_number)
     return res.status(400).json({
       status: "error",
@@ -34,6 +36,23 @@ const createWaitlistUser = async (req, res) => {
     });
 
   try {
+    const existingUserWithEmail = await prisma.waitlist.findFirst({
+      where: {
+        email,
+      },
+    });
+    const existingUserWithPhone = await prisma.waitlist.findFirst({
+      where: {
+        phone_number,
+      },
+    });
+
+    if (existingUserWithEmail || existingUserWithPhone)
+      return res.status(409).json({
+        status: "error",
+        message: "You are already a waitlist member",
+      });
+
     const newUser = await prisma.waitlist.create({
       data: { name, email, phone_number },
     });

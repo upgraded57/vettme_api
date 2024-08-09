@@ -17,6 +17,7 @@ const allowedOrigins = [
   "https://vettme-basic-irzfsg9jl-upgraded57s-projects.vercel.app",
   "https://ijmgloballimited.com",
   "https://ijm-client.vercel.app",
+  "http://192.168.71.244:5173",
 ];
 
 app.use(
