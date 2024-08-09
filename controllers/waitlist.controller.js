@@ -26,8 +26,6 @@ const getWaitlistUsers = async (req, res) => {
 const createWaitlistUser = async (req, res) => {
   const { name, email, phone_number } = req.body;
 
-  console.log(req.body);
-
   if (!name || !email || !phone_number)
     return res.status(400).json({
       status: "error",
