@@ -7,15 +7,11 @@ const {
 
 const ErrorHandler = (error, req, res, next) => {
   console.log(error);
-  res.status(error.statusCode).json({
+  return res.status(error.statusCode).json({
     message: error.message,
     errorCode: error.errorCode,
     errors: error.errors,
   });
-
-  Error.captureStackTrace(this, this.constructor);
-
-  return;
 };
 
 const globalErrorCatcher = (fn) => {
