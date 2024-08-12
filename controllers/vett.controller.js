@@ -45,6 +45,7 @@ const getVerifications = async (req, res) => {
     });
 };
 
+// Verify Personnel
 const verifyPersonnel = async (req, res) => {
   const { token } = req.headers;
 
@@ -60,6 +61,10 @@ const verifyPersonnel = async (req, res) => {
     );
   }
 
+  // Store request configuration in variable
+  let requestConfig;
+
+  // Configure request based on verification data type
   switch (type) {
     case "bvn":
       // Throw error if user does not provide BVN
@@ -80,30 +85,13 @@ const verifyPersonnel = async (req, res) => {
       }
 
       // Send request to dojah database
-      await axiosInstance
-        .get(endpoints.bvn, {
+      requestConfig = async () =>
+        await axiosInstance.get(endpoints.bvn, {
           params: {
             bvn: data.bvn,
           },
-        })
-        .then(async (result) => {
-          const record = await createVerificationRecord(
-            userId,
-            title,
-            personnel_name,
-            type,
-            result.data
-          );
-
-          return res.status(200).json({
-            status: "success",
-            message: "User data fetched successfully",
-            data: record.info,
-          });
-        })
-        .catch((err) => {
-          handleVerificationErrors(err);
         });
+
       break;
 
     case "nin":
@@ -124,40 +112,13 @@ const verifyPersonnel = async (req, res) => {
         );
       }
 
-      await axiosInstance
-        .get(endpoints.nin, {
+      requestConfig = async () =>
+        await axiosInstance.get(endpoints.nin, {
           params: {
             nin: data.nin,
           },
-        })
-        .then(async (result) => {
-          const record = await createVerificationRecord(
-            userId,
-            title,
-            personnel_name,
-            type,
-            result.data
-          );
-
-          if (record) {
-            return res.status(200).json({
-              status: "success",
-              message: "User data fetched successfully",
-              data: record.info,
-            });
-          } else {
-            return res.status(200).json({
-              status: "success",
-              message:
-                "User data fetched but could not create verification record",
-              data: result,
-            });
-          }
-        })
-
-        .catch((err) => {
-          handleVerificationErrors(err);
         });
+      break;
 
     case "phone_number":
       // Throw error if NIN is not provided
@@ -177,39 +138,13 @@ const verifyPersonnel = async (req, res) => {
         );
       }
 
-      await axiosInstance
-        .get(endpoints.phone_number, {
+      requestConfig = async () =>
+        await axiosInstance.get(endpoints.phone_number, {
           params: {
             phone_number: data.phone_number,
           },
-        })
-        .then(async (result) => {
-          const record = await createVerificationRecord(
-            userId,
-            title,
-            personnel_name,
-            type,
-            result.data
-          );
-
-          if (record) {
-            return res.status(200).json({
-              status: "success",
-              message: "User data fetched successfully",
-              data: record.info,
-            });
-          } else {
-            return res.status(200).json({
-              status: "success",
-              message:
-                "User data fetched but could not create verification record",
-              data: result,
-            });
-          }
-        })
-        .catch((err) => {
-          handleVerificationErrors(err);
         });
+      break;
 
     case "drivers_licence":
       // Throw error if licence number is not provided
@@ -229,39 +164,13 @@ const verifyPersonnel = async (req, res) => {
         );
       }
 
-      await axiosInstance
-        .get(endpoints.drivers_licence, {
+      requestConfig = async () =>
+        await axiosInstance.get(endpoints.drivers_licence, {
           params: {
             license_number: data.license_number,
           },
-        })
-        .then(async (result) => {
-          const record = await createVerificationRecord(
-            userId,
-            title,
-            personnel_name,
-            type,
-            result.data
-          );
-
-          if (record) {
-            return res.status(200).json({
-              status: "success",
-              message: "User data fetched successfully",
-              data: record.info,
-            });
-          } else {
-            return res.status(200).json({
-              status: "success",
-              message:
-                "User data fetched but could not create verification record",
-              data: result,
-            });
-          }
-        })
-        .catch((err) => {
-          handleVerificationErrors(err);
         });
+      break;
 
     case "voters_id":
       // Throw error if licence number is not provided
@@ -281,39 +190,14 @@ const verifyPersonnel = async (req, res) => {
         );
       }
 
-      await axiosInstance
-        .get(endpoints.voters_id, {
+      requestConfig = async () =>
+        await axiosInstance.get(endpoints.voters_id, {
           params: {
             vin: data.vin,
           },
-        })
-        .then(async (result) => {
-          const record = await createVerificationRecord(
-            userId,
-            title,
-            personnel_name,
-            type,
-            result.data
-          );
-
-          if (record) {
-            return res.status(200).json({
-              status: "success",
-              message: "User data fetched successfully",
-              data: record.info,
-            });
-          } else {
-            return res.status(200).json({
-              status: "success",
-              message:
-                "User data fetched but could not create verification record",
-              data: result,
-            });
-          }
-        })
-        .catch((err) => {
-          handleVerificationErrors(err);
         });
+
+      break;
 
     case "nuban":
       // Throw error if licence number is not provided
@@ -342,46 +226,80 @@ const verifyPersonnel = async (req, res) => {
         );
       }
 
-      await axiosInstance
-        .get(endpoints.nuban, {
+      requestConfig = async () =>
+        await axiosInstance.get(endpoints.nuban, {
           params: {
             account_number: data.account_number,
             bank_code: data.bank_code,
           },
-        })
-        .then(async (result) => {
-          const record = await createVerificationRecord(
-            userId,
-            title,
-            personnel_name,
-            type,
-            result.data
-          );
-
-          if (record) {
-            return res.status(200).json({
-              status: "success",
-              message: "User data fetched successfully",
-              data: record.info,
-            });
-          } else {
-            return res.status(200).json({
-              status: "success",
-              message:
-                "User data fetched but could not create verification record",
-              data: result,
-            });
-          }
-        })
-        .catch((err) => {
-          handleVerificationErrors(err);
         });
+      break;
+
     default:
       throw new BadRequestException(
         "Unknown data type supplied",
         verificationErrors.INVALID_VERIFICATION_DATA
       );
   }
+
+  // Process request
+  await requestConfig()
+    .then(async (result) => {
+      // The verification cost will be deducted here
+
+      // If request succeed, create record with status "success" in db
+      try {
+        const record = await createVerificationRecord(
+          userId,
+          title,
+          personnel_name,
+          type,
+          result.data,
+          "success"
+        );
+
+        // Return a successful record data to user
+        return res.status(200).json({
+          status: "success",
+          message: "User data fetched successfully",
+          data: record.info,
+        });
+      } catch (error) {
+        // Throw an error if fetch successful from dojah but record cannot be created in db
+        throw new BadRequestException(
+          "Verification data not provided",
+          verificationErrors.VERIFICATION_DATA_NOT_PROVIDED
+        );
+      }
+    })
+    .catch(async (err) => {
+      console.log(err);
+      // If djoah fetching fails
+      try {
+        // Create new record in case of dojah.io failure
+        await createVerificationRecord(
+          userId,
+          title,
+          personnel_name,
+          type,
+          null,
+          "failure"
+        );
+      } catch (error) {
+        // Throw error if record cannot be created in db
+        throw new ServerErrorException(
+          "Cannot create record for failed verification",
+          serverErrors.VERIFICATION_RECORD_NOT_CREATED,
+          error
+        );
+      }
+      // Throw dojah fetching failure error to user
+      throw new ServerErrorException(
+        "Unable to connect to DB",
+        serverErrors.DOJAH_RECORD_FETCH_ERROR,
+        null
+      );
+    });
 };
 
 module.exports = { getVerifications, verifyPersonnel };
