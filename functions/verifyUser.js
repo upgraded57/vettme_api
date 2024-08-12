@@ -16,9 +16,9 @@ const verifyUser = async (userId) => {
 
   // Send request to dojah.io to fetch user info
   try {
-    const res = await axios.get("https://jsonplaceholder.typicode.com/todos/1");
-    if (res.status !== 200) return false;
-    const userNinData = res.data;
+    // const res = await axios.get("https://jsonplaceholder.typicode.com/todos/1");
+    // if (res.status !== 200) return false;
+    // const userNinData = res.data;
     return true;
   } catch (err) {
     return false;
