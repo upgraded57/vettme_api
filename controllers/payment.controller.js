@@ -51,7 +51,7 @@ const createPayment = async (req, res) => {
       "https://api.paystack.co/transaction/initialize",
       {
         email: user.email,
-        amount: amount * 100, // Paystack uses kobo as the currency base, so multiply by 100
+        amount: parseInt(amount) * 100, // Paystack uses kobo as the currency base, so multiply by 100
       },
       {
         headers: {
@@ -113,6 +113,8 @@ const paymentStatus = async (req, res) => {
             balance: balance + parseInt(event.data.amount) / 100,
           },
         });
+
+        console.log("User amount has been updated");
       } catch (error) {
         return res.status(500).json({
           status: "success",
@@ -120,6 +122,8 @@ const paymentStatus = async (req, res) => {
           error,
         });
       }
+
+      //   Create a transaction record for user
 
       console.log("Payment successful:", event.data);
     }
@@ -154,6 +158,8 @@ const verifyPayment = async (req, res) => {
         },
       }
     );
+
+    console.log(response.data);
 
     return res.status(200).json({
       status: "success",
