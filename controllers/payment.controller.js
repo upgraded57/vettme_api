@@ -59,7 +59,7 @@ const createPayment = async (req, res) => {
       }
     );
 
-    res.status(200).json({
+    return res.status(200).json({
       status: "success",
       message: "Payment session initialized successfully",
       data: response.data.data,
@@ -68,7 +68,7 @@ const createPayment = async (req, res) => {
     throw new ServerErrorException(
       "Could not make payment",
       paymentErrors.PAYSTACK_FAILED_PAYMENT,
-      error
+      error.response.data.message
     );
   }
 };
@@ -97,7 +97,10 @@ const paymentStatus = async (req, res) => {
       event,
     });
   } else {
-    return res.status(400).send("Invalid signature");
+    return res.status(400).json({
+      status: "failure",
+      message: "Invalid signature",
+    });
   }
 };
 
@@ -119,18 +122,18 @@ const verifyPayment = async (req, res) => {
       }
     );
 
-    res.status(200).json({
-      status: true,
+    return res.status(200).json({
+      status: "success",
       message: "Payment verified successfully",
       data: response.data,
     });
   } catch (error) {
-    res.status(500).json({
-      status: false,
+    return res.status(500).json({
+      status: "failure",
       message: "Payment verification failed",
-      error: error.message,
+      error: error.response.data.message,
     });
   }
 };
 
-module.exports = { createPayment, paymentStatus };
+module.exports = { createPayment, paymentStatus, verifyPayment };

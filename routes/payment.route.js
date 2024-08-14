@@ -1,6 +1,7 @@
 const {
   createPayment,
   paymentStatus,
+  verifyPayment,
 } = require("../controllers/payment.controller");
 const { globalErrorCatcher } = require("../middlewares/errors");
 const validateAuth = require("../middlewares/validate-auth");
@@ -13,7 +14,11 @@ router.post("/topup", validateAuth, globalErrorCatcher(createPayment));
 router.post("/webhook", paymentStatus);
 
 // Verify payment
-router.get("/verify/:reference", validateAuth, globalErrorCatcher());
+router.get(
+  "/verify/:reference",
+  validateAuth,
+  globalErrorCatcher(verifyPayment)
+);
 
 // Fetch payment history
 
