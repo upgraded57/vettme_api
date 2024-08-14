@@ -55,6 +55,11 @@ const serverErrors = {
   UNKNOWN_ERROR: "SE-1005",
 };
 
+const paymentErrors = {
+  PAYSTACK_FAILED_PAYMENT: "PE-1000",
+  AMOUNT_NOT_PROVIDED: "PE-1001",
+};
+
 module.exports = {
   loginErrors,
   signupErrors,
@@ -63,4 +68,5 @@ module.exports = {
   authenticationErrors,
   notFoundErrors,
   serverErrors,
+  paymentErrors,
 };

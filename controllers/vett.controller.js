@@ -12,7 +12,6 @@ const {
 } = require("../exceptions/status-codes");
 const BadRequestException = require("../exceptions/bad-requests");
 const createVerificationRecord = require("../functions/createVerificationRecord");
-const { handleVerificationErrors } = require("../middlewares/errors");
 const prisma = new PrismaClient({
   log: ["warn", "error"],
 });

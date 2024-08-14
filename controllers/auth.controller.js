@@ -245,10 +245,12 @@ const resendOtp = async (req, res) => {
       otpErrors.USER_ALREADY_ACTIVE
     );
 
+  // Disable other otps associated with user
+
   const otp = await createOtp(userId);
 
   // Send OTP to new user email
-  await sendotp(
+  sendotp(
     user.email,
     "Complete your Vettme account creation",
     `Your OTP is ${otp}. It expires in 10 minutes.`
