@@ -89,6 +89,38 @@ const paymentStatus = async (req, res) => {
     if (event.event === "charge.success") {
       // Payment was successful
       // You can update your database here
+      // Extract user email address from event info
+      const userEmail = event.data.customer.email;
+
+      // Query database for user
+      const user = await prisma.user.findUnique({
+        where: {
+          email: userEmail,
+        },
+      });
+
+      if (!user)
+        return res.status(500).json({
+          status: "failure",
+          message: "Cannot find user with the specified email",
+        });
+
+      // Update user balance in databse
+      try {
+        await prisma.user.update({
+          where: { id: user.id },
+          data: {
+            balance: balance + parseInt(event.data.amount) / 100,
+          },
+        });
+      } catch (error) {
+        return res.status(500).json({
+          status: "success",
+          message: "Unable to update user balance",
+          error,
+        });
+      }
+
       console.log("Payment successful:", event.data);
     }
 
