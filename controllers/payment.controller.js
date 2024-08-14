@@ -1,6 +1,7 @@
 require("dotenv").config({
   path: "../.env",
 });
+const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
 const { PrismaClient } = require("@prisma/client");
 const axios = require("axios");
