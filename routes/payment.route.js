@@ -2,6 +2,7 @@ const {
   createPayment,
   paymentStatus,
   verifyPayment,
+  getPaymentHistory,
 } = require("../controllers/payment.controller");
 const { globalErrorCatcher } = require("../middlewares/errors");
 const validateAuth = require("../middlewares/validate-auth");
@@ -21,6 +22,7 @@ router.get(
 );
 
 // Fetch payment history
+router.get("/", validateAuth, globalErrorCatcher(getPaymentHistory));
 
 // Fetch single payment data
 

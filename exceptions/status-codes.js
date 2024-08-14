@@ -58,6 +58,7 @@ const serverErrors = {
 const paymentErrors = {
   PAYSTACK_FAILED_PAYMENT: "PE-1000",
   AMOUNT_NOT_PROVIDED: "PE-1001",
+  USER_ID_NOT_PROVIDED: "PE-1002",
 };
 
 module.exports = {

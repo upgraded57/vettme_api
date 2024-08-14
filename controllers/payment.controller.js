@@ -6,7 +6,11 @@ const jwt = require("jsonwebtoken");
 const { PrismaClient } = require("@prisma/client");
 const axios = require("axios");
 const ServerErrorException = require("../exceptions/server-error");
-const { paymentErrors, loginErrors } = require("../exceptions/status-codes");
+const {
+  paymentErrors,
+  loginErrors,
+  serverErrors,
+} = require("../exceptions/status-codes");
 const UnauthorizedRequestException = require("../exceptions/unauthorized");
 const BadRequestException = require("../exceptions/bad-requests");
 
@@ -89,42 +93,6 @@ const paymentStatus = async (req, res) => {
     if (event.event === "charge.success") {
       // Payment was successful
       // You can update your database here
-      // Extract user email address from event info
-      const userEmail = event.data.customer.email;
-
-      // Query database for user
-      const user = await prisma.user.findUnique({
-        where: {
-          email: userEmail,
-        },
-      });
-
-      if (!user)
-        return res.status(500).json({
-          status: "failure",
-          message: "Cannot find user with the specified email",
-        });
-
-      // Update user balance in databse
-      try {
-        await prisma.user.update({
-          where: { id: user.id },
-          data: {
-            balance: balance + parseInt(event.data.amount) / 100,
-          },
-        });
-
-        console.log("User amount has been updated");
-      } catch (error) {
-        return res.status(500).json({
-          status: "success",
-          message: "Unable to update user balance",
-          error,
-        });
-      }
-
-      //   Create a transaction record for user
-
       console.log("Payment successful:", event.data);
     }
 
@@ -159,20 +127,118 @@ const verifyPayment = async (req, res) => {
       }
     );
 
-    console.log(response.data);
+    const userEmail = response.data.data.customer.email;
+
+    // Query database for user
+    const user = await prisma.user.findUnique({
+      where: {
+        email: userEmail,
+      },
+    });
+
+    if (!user)
+      return res.status(500).json({
+        status: "failure",
+        message: "Cannot find user with the specified email",
+      });
+
+    // Update user balance in database
+    const topupAmount = parseInt(response.data.data.amount) / 100;
+    const previousBalance = parseInt(user.balance);
+    try {
+      // Update user balance
+      await prisma.user.update({
+        where: { id: user.id },
+        data: {
+          balance: previousBalance + topupAmount,
+        },
+      });
+
+      // Create a transaction record for user
+      await prisma.transaction.create({
+        data: {
+          userId: user.id,
+          type: "topup",
+          amount: topupAmount,
+          status: "success",
+        },
+      });
+    } catch (err) {
+      return res.status(500).json({
+        status: "error",
+        message: "Unable to update user balance",
+        error: err,
+      });
+    }
 
     return res.status(200).json({
       status: "success",
       message: "Payment verified successfully",
-      data: response.data,
     });
   } catch (error) {
+    // Create a transaction record for user
+    await prisma.transaction.create({
+      data: {
+        userId: user.id,
+        type: "topup",
+        amount: topupAmount,
+        status: "failure",
+      },
+    });
+
     return res.status(500).json({
       status: "failure",
       message: "Payment verification failed",
-      error: error.response.data.message,
+      error,
     });
   }
 };
 
-module.exports = { createPayment, paymentStatus, verifyPayment };
+const getPaymentHistory = async (req, res) => {
+  const { token } = req.headers;
+
+  //Get user id from request token
+  const tokenData = jwt.decode(token, process.env.JWT_KEY);
+  const { userId } = tokenData;
+
+  //Find user with token
+  const user = await prisma.user.findUnique({
+    where: {
+      id: userId,
+    },
+  });
+
+  if (!user) {
+    throw new UnauthorizedRequestException(
+      "User does not exist",
+      loginErrors.USER_DOES_NOT_EXIST
+    );
+  }
+
+  try {
+    const transactions = await prisma.transaction.findMany({
+      where: {
+        userId: user.id,
+      },
+    });
+
+    return res.status(200).json({
+      status: "success",
+      message: "Use transactions found successfully",
+      transactions,
+    });
+  } catch (err) {
+    throw new ServerErrorException(
+      "Unable to get user transactions",
+      serverErrors.UNKNOWN_ERROR,
+      err
+    );
+  }
+};
+
+module.exports = {
+  createPayment,
+  paymentStatus,
+  verifyPayment,
+  getPaymentHistory,
+};
