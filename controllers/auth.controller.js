@@ -52,7 +52,7 @@ const login = async (req, res) => {
 
   if (!user) {
     throw new BadRequestException(
-      "Incorrect login credentials",
+      "User does not exist",
       loginErrors.USER_DOES_NOT_EXIST
     );
   }
