@@ -48,6 +48,9 @@ const getVerifications = async (req, res) => {
 const verifyPersonnel = async (req, res) => {
   const { token } = req.headers;
 
+  // Const of verification. Will probably come from request object
+  const verificationCost = 300;
+
   const tokenData = jwt.decode(token, process.env.JWT_KEY);
   const { userId } = tokenData;
 
@@ -256,6 +259,18 @@ const verifyPersonnel = async (req, res) => {
           result.data,
           "success"
         );
+
+        // Remove cost of verification from user balance
+        await prisma.user.update({
+          where: {
+            id: userId,
+          },
+          data: {
+            balance: {
+              decrement: verificationCost,
+            },
+          },
+        });
 
         // Return a successful record data to user
         return res.status(200).json({
