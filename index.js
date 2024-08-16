@@ -20,26 +20,30 @@ const allowedOrigins = [
   "http://192.168.71.244:5173",
 ];
 
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      // Allow requests with no origin (like mobile apps or curl requests)
-      if (!origin) return callback(null, true);
+// Allow connection from only specify urls
+// app.use(
+//   cors({
+//     origin: function (origin, callback) {
+//       // Allow requests with no origin (like mobile apps or curl requests)
+//       if (!origin) return callback(null, true);
 
-      if (allowedOrigins.indexOf(origin) === -1) {
-        // If the origin is not in the allowedOrigins list, return an error
-        const msg = `The CORS policy for this site does not allow access from the specified origin: ${origin}`;
-        throw new UnauthorizedRequestException(
-          msg,
-          authenticationErrors.UNAUTHORIZED_CORS_ACCESS
-        );
-      }
+//       if (allowedOrigins.indexOf(origin) === -1) {
+//         // If the origin is not in the allowedOrigins list, return an error
+//         const msg = `The CORS policy for this site does not allow access from the specified origin: ${origin}`;
+//         throw new UnauthorizedRequestException(
+//           msg,
+//           authenticationErrors.UNAUTHORIZED_CORS_ACCESS
+//         );
+//       }
 
-      return callback(null, true);
-    },
-    credentials: true,
-  })
-);
+//       return callback(null, true);
+//     },
+//     credentials: true,
+//   })
+// );
+
+// Allow connection from anywhere (Will be removed in production)
+app.use(cors());
 
 // Allow application to parse request body
 app.use(express.json());
