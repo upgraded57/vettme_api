@@ -293,10 +293,20 @@ const verifyPersonnel = async (req, res) => {
         );
       }
       // Throw dojah fetching failure error to user
+      // Balance on dojah dashboard is low when err.response.status = 402
+      if (err.response.status === 402) {
+        throw new ServerErrorException(
+          "Unable to connect to DB",
+          serverErrors.DOJAH_RECORD_FETCH_ERROR,
+          null
+        );
+      }
+
+      // Throw response text from dojah for generic errors
       throw new ServerErrorException(
-        "Unable to connect to DB",
+        err.response.data.error,
         serverErrors.DOJAH_RECORD_FETCH_ERROR,
-        null
+        err.response.data
       );
     });
 };
