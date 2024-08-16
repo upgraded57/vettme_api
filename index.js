@@ -43,7 +43,12 @@ const allowedOrigins = [
 // );
 
 // Allow connection from anywhere (Will be removed in production)
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+    credentials: true,
+  })
+);
 
 // Allow application to parse request body
 app.use(express.json());
