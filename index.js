@@ -43,6 +43,7 @@ const allowedOrigins = [
 // );
 
 // Allow connection from anywhere (Will be removed in production)
+
 app.use(
   cors({
     origin: "*",

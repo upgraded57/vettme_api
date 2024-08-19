@@ -80,6 +80,7 @@ const deleteUser = async (req, res) => {
       notFoundErrors.USER_NOT_FOUND
     );
 
+  // Delete user account
   const deletedUser = await prisma.user.delete({
     where: {
       id: user_id,

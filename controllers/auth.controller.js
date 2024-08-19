@@ -203,11 +203,7 @@ const signup = async (req, res) => {
   const otp = await createOtp(newUser.id);
 
   // Send OTP to new user email
-  sendotp(
-    newUser.email,
-    "Complete your Vettme account creation",
-    `Your OTP is ${otp}. It expires in 10 minutes.`
-  );
+  sendotp(newUser.email, "Complete your Vettme account creation", otp);
 
   // return message to user
   const { password: newUserPassword, ...newUserData } = newUser;

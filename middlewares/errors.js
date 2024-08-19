@@ -6,7 +6,7 @@ const {
 } = require("../exceptions/status-codes");
 
 const ErrorHandler = (error, req, res, next) => {
-  return res.status(error.statusCode).json({
+  return res.status(error.statusCode || 500).json({
     message: error.message,
     errorCode: error.errorCode,
     errors: error.errors,
