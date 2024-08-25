@@ -82,7 +82,7 @@ const login = async (req, res) => {
   //     )
 
   // Generate token on login
-  var token = jwt.sign({ userId: user.id }, process.env.JWT_KEY, {
+  var token = jwt.sign({ user_id: user.id }, process.env.JWT_KEY, {
     expiresIn: 60 * 60 * 24,
   });
 
@@ -246,11 +246,7 @@ const resendOtp = async (req, res) => {
   const otp = await createOtp(userId);
 
   // Send OTP to new user email
-  sendotp(
-    user.email,
-    "Complete your Vettme account creation",
-    `Your OTP is ${otp}. It expires in 10 minutes.`
-  );
+  sendotp(user.email, "Complete your Vettme account creation", otp);
 
   return res.status(200).json({
     status: "success",
@@ -333,7 +329,7 @@ const verifyotp = async (req, res) => {
 
   return res.status(200).json({
     status: "success",
-    message: "Account activation successful",
+    message: "OTP verification successful",
   });
 };
 
@@ -391,10 +387,160 @@ const verifyUserData = async (req, res) => {
   });
 };
 
+// Get user with email
+const getUserWithEmail = async (req, res) => {
+  const { email } = req.params;
+
+  // query DB for user
+  const user = await prisma.user.findFirst({
+    where: {
+      email,
+    },
+
+    omit: {
+      password: true,
+    },
+  });
+
+  if (!user)
+    return res.status(404).json({
+      status: "failure",
+      message: "User not found",
+      user: null,
+    });
+
+  // Send otp to user for account recovery
+  // Create otp
+  const otp = await createOtp(user.id);
+
+  // Send OTP to new user email
+  sendotp(user.email, "Complete your Vettme account recovery", otp);
+
+  return res.status(200).json({
+    status: "success",
+    message: "Recovery OTP sent to email",
+    userId: user.id,
+  });
+};
+
+// Resend OTP
+const resendRecoveryOtp = async (req, res) => {
+  const { userId } = req.body;
+
+  if (!userId)
+    throw new BadRequestException(
+      "User id not provided",
+      otpErrors.USER_ID_NOT_PROVIDED
+    );
+
+  // Check user
+  const user = await prisma.user.findFirst({ where: { id: userId } });
+
+  if (!user)
+    throw new BadRequestException(
+      "User with supplied user_id not found",
+      loginErrors.USER_DOES_NOT_EXIST
+    );
+
+  const otp = await createOtp(userId);
+
+  // Send OTP to new user email
+  sendotp(user.email, "Complete your Vettme account recovery", otp);
+
+  return res.status(200).json({
+    status: "success",
+    message: "New OTP has been sent to user email",
+  });
+};
+
+// Reset Password
+const resetPassword = async (req, res) => {
+  // Verify token first
+  const { userId, otp, password } = req.body;
+
+  // Check if userId was provided by app
+  if (!userId)
+    throw new BadRequestException(
+      "User id not provided",
+      otpErrors.USER_ID_NOT_PROVIDED
+    );
+
+  // Check if otp was provided by app
+  if (!userId)
+    throw new BadRequestException(
+      "Otp not provided",
+      otpErrors.OTP_NOT_PROVIDED
+    );
+
+  // Check if user exists
+  const user = await prisma.user.findFirst({
+    where: { id: userId },
+  });
+
+  if (!user) {
+    throw new BadRequestException(
+      "User does not exist",
+      loginErrors.USER_DOES_NOT_EXIST
+    );
+  }
+
+  const otpExists = await prisma.otp.findFirst({
+    where: {
+      userId: userId,
+      otp: parseInt(otp),
+    },
+  });
+
+  if (!otpExists)
+    throw new BadRequestException(
+      "Invalid otp provided",
+      otpErrors.INVALID_OTP
+    );
+
+  // Check if OTP has not been used
+  if (otpExists.used)
+    throw new BadRequestException(
+      "Otp has been blacklisted",
+      otpErrors.OTP_BLACKLISTED
+    );
+
+  // Update user password
+  const encryptedPassword = bcrypt.hashSync(password, 10);
+  await prisma.user.update({
+    where: {
+      id: userId,
+    },
+    data: {
+      password: encryptedPassword,
+    },
+  });
+
+  // search db for otp
+  const foundOtp = await prisma.otp.findFirst({
+    where: { userId, otp: parseInt(otp) },
+  });
+
+  // Disable OTP for future usage
+  await prisma.otp.update({
+    where: { id: foundOtp.id },
+    data: {
+      used: true,
+    },
+  });
+
+  return res.status(200).json({
+    status: "success",
+    message: "Password updated successfully",
+  });
+};
+
 module.exports = {
   verifyotp,
   signup,
   login,
   resendOtp,
   verifyUserData,
+  getUserWithEmail,
+  resendRecoveryOtp,
+  resetPassword,
 };

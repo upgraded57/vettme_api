@@ -72,7 +72,7 @@ const sendotp = (recipient, subject, otp) => {
                       color: #1f1f1f;
                     "
                   >
-                    Complete your registration
+                    ${subject}
                   </h1>
                   <p
                     style="

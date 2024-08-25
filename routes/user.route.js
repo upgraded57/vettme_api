@@ -7,8 +7,8 @@ const { globalErrorCatcher } = require("../middlewares/errors");
 const validateAuth = require("../middlewares/validate-auth");
 
 const router = require("express").Router();
-// Fetch User data
 
+// Fetch User data
 router.get("/:user_id", validateAuth, globalErrorCatcher(getUser));
 
 // Update User data
