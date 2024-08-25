@@ -201,8 +201,6 @@ const getPaymentHistory = async (req, res) => {
   const tokenData = jwt.decode(token, process.env.JWT_KEY);
   const { user_id } = tokenData;
 
-  console.log(tokenData);
-
   //Find user with token
   const user = await prisma.user.findUnique({
     where: {
