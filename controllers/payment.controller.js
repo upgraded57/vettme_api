@@ -199,12 +199,14 @@ const getPaymentHistory = async (req, res) => {
 
   //Get user id from request token
   const tokenData = jwt.decode(token, process.env.JWT_KEY);
-  const { userId } = tokenData;
+  const { user_id } = tokenData;
+
+  console.log(tokenData);
 
   //Find user with token
   const user = await prisma.user.findUnique({
     where: {
-      id: userId,
+      id: user_id,
     },
   });
 
@@ -218,7 +220,7 @@ const getPaymentHistory = async (req, res) => {
   try {
     const transactions = await prisma.transaction.findMany({
       where: {
-        userId: user.id,
+        userId: user_id,
       },
     });
 
