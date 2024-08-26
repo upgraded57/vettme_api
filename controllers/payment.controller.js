@@ -89,6 +89,8 @@ const paymentStatus = async (req, res) => {
     // Retrieve the request's body
     const event = req.body;
 
+    console.log(event);
+
     // Handle the event
     if (event.event === "charge.success") {
       // Payment was successful
@@ -159,7 +161,7 @@ const verifyPayment = async (req, res) => {
         data: {
           user: {
             connect: {
-              id: userId,
+              id: user.id,
             },
           },
           type: "topup",
@@ -185,7 +187,7 @@ const verifyPayment = async (req, res) => {
       data: {
         user: {
           connect: {
-            id: userId,
+            id: user.id,
           },
         },
         type: "topup",
