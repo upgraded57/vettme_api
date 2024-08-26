@@ -148,20 +148,11 @@ const verifyPersonnel = async (req, res) => {
         });
       break;
 
-    case "drivers_licence":
+    case "drivers_license":
       // Throw error if licence number is not provided
-      if (!data.licence_number) {
+      if (!data.license_number) {
         throw new BadRequestException(
-          "Driver's licence number required",
-          verificationErrors.VERIFICATION_DATA_NOT_PROVIDED
-        );
-      }
-
-      // Check if licence number is valid
-      const licenceNumberPattern = /^[A-Z0-9]{11}$/;
-      if (!data.licence_number.match(licenceNumberPattern)) {
-        throw new BadRequestException(
-          "A valid licence number is required",
+          "Driver's license number required",
           verificationErrors.VERIFICATION_DATA_NOT_PROVIDED
         );
       }
@@ -179,15 +170,6 @@ const verifyPersonnel = async (req, res) => {
       if (!data.vin) {
         throw new BadRequestException(
           "Voters Id number required",
-          verificationErrors.VERIFICATION_DATA_NOT_PROVIDED
-        );
-      }
-
-      // Check if licence number is valid
-      const vinPattern = /^[A-Z0-9]{19}$/;
-      if (!data.vin.match(vinPattern)) {
-        throw new BadRequestException(
-          "A valid voter's identification number is required",
           verificationErrors.VERIFICATION_DATA_NOT_PROVIDED
         );
       }
@@ -210,23 +192,14 @@ const verifyPersonnel = async (req, res) => {
         );
       }
 
-      // Check if account number is valid
-      const accountNumberPattern = /^[0-9]{10}$/;
-      if (!data.account_number.match(accountNumberPattern)) {
-        throw new BadRequestException(
-          "A valid account number number is required",
-          verificationErrors.VERIFICATION_DATA_NOT_PROVIDED
-        );
-      }
-
       // Check if bank code is valid
-      const bankCodePattern = /^[0-9]+$/;
-      if (!data.bank_code.match(bankCodePattern)) {
-        throw new BadRequestException(
-          "A valid bank code is required",
-          verificationErrors.VERIFICATION_DATA_NOT_PROVIDED
-        );
-      }
+      // const bankCodePattern = /^[0-9]+$/;
+      // if (!data.bank_code.match(bankCodePattern)) {
+      //   throw new BadRequestException(
+      //     "A valid bank code is required",
+      //     verificationErrors.VERIFICATION_DATA_NOT_PROVIDED
+      //   );
+      // }
 
       requestConfig = async () =>
         await axiosInstance.get(endpoints.nuban, {
