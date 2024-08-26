@@ -56,7 +56,7 @@ const deleteUser = async (req, res) => {
   // Compare user id to id of cookie
   const userFromToken = jwt.decode(token, process.env.JWT_TOKEN);
 
-  if (user_id !== userFromToken.userId) {
+  if (user_id !== userFromToken.user_id) {
     throw new UnauthorizedRequestException(
       "You cannot delete another user",
       verificationErrors.UNAUTHORIZED_RESOURCE_ACCESS
@@ -113,7 +113,7 @@ const updateUser = async (req, res) => {
   // Compare user id to id of cookie
   const userFromToken = jwt.decode(token, process.env.JWT_TOKEN);
 
-  if (user_id !== userFromToken.userId) {
+  if (user_id !== userFromToken.user_id) {
     throw new UnauthorizedRequestException(
       "You cannot update this user information",
       verificationErrors.UNAUTHORIZED_RESOURCE_ACCESS

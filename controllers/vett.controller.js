@@ -21,12 +21,12 @@ const getVerifications = async (req, res) => {
   const { token } = req.headers;
 
   const tokenData = jwt.decode(token, process.env.JWT_KEY);
-  const { userId } = tokenData;
+  const { user_id } = tokenData;
 
   //   Query database for user verification history
   await prisma.verification
     .findMany({
-      where: { userId },
+      where: { user_id },
     })
     .then((results) => {
       res.status(200).json({
@@ -52,7 +52,7 @@ const verifyPersonnel = async (req, res) => {
   const verificationCost = 300;
 
   const tokenData = jwt.decode(token, process.env.JWT_KEY);
-  const { userId } = tokenData;
+  const { user_id } = tokenData;
 
   const { title, personnel_name, type, data } = req.body;
 
@@ -252,7 +252,7 @@ const verifyPersonnel = async (req, res) => {
       // If request succeed, create record with status "success" in db
       try {
         const record = await createVerificationRecord(
-          userId,
+          user_id,
           title,
           personnel_name,
           type,
@@ -263,7 +263,7 @@ const verifyPersonnel = async (req, res) => {
         // Remove cost of verification from user balance
         await prisma.user.update({
           where: {
-            id: userId,
+            id: user_id,
           },
           data: {
             balance: {
@@ -292,7 +292,7 @@ const verifyPersonnel = async (req, res) => {
       try {
         // Create new record in case of dojah.io failure
         await createVerificationRecord(
-          userId,
+          user_id,
           title,
           personnel_name,
           type,

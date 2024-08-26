@@ -217,16 +217,16 @@ const signup = async (req, res) => {
 
 // Resend OTP
 const resendOtp = async (req, res) => {
-  const { userId } = req.body;
+  const { user_id } = req.body;
 
-  if (!userId)
+  if (!user_id)
     throw new BadRequestException(
       "User id not provided",
       otpErrors.USER_ID_NOT_PROVIDED
     );
 
   // Check user
-  const user = await prisma.user.findFirst({ where: { id: userId } });
+  const user = await prisma.user.findFirst({ where: { id: user_id } });
 
   if (!user)
     throw new BadRequestException(
@@ -243,7 +243,7 @@ const resendOtp = async (req, res) => {
 
   // Disable other otps associated with user
 
-  const otp = await createOtp(userId);
+  const otp = await createOtp(user_id);
 
   // Send OTP to new user email
   sendotp(user.email, "Complete your Vettme account creation", otp);
@@ -256,17 +256,17 @@ const resendOtp = async (req, res) => {
 
 // Verify OTP
 const verifyotp = async (req, res) => {
-  const { userId, otp } = req.body;
+  const { user_id, otp } = req.body;
 
-  // Check if userId was provided by app
-  if (!userId)
+  // Check if user_id was provided by app
+  if (!user_id)
     throw new BadRequestException(
       "User id not provided",
       otpErrors.USER_ID_NOT_PROVIDED
     );
 
   // Check if otp was provided by app
-  if (!userId)
+  if (!user_id)
     throw new BadRequestException(
       "Otp not provided",
       otpErrors.OTP_NOT_PROVIDED
@@ -274,7 +274,7 @@ const verifyotp = async (req, res) => {
 
   // Check if user exists
   const user = await prisma.user.findFirst({
-    where: { id: userId },
+    where: { id: user_id },
   });
 
   if (!user) {
@@ -286,7 +286,7 @@ const verifyotp = async (req, res) => {
 
   const otpExists = await prisma.otp.findFirst({
     where: {
-      userId,
+      user_id,
       otp: parseInt(otp),
     },
   });
@@ -307,7 +307,7 @@ const verifyotp = async (req, res) => {
   // Activate user account
   await prisma.user.update({
     where: {
-      id: userId,
+      id: user_id,
     },
     data: {
       isActive: true,
@@ -316,7 +316,7 @@ const verifyotp = async (req, res) => {
 
   // search db for otp
   const foundOtp = await prisma.otp.findFirst({
-    where: { userId, otp: parseInt(otp) },
+    where: { user_id, otp: parseInt(otp) },
   });
 
   // Disable OTP for future usage
@@ -335,10 +335,10 @@ const verifyotp = async (req, res) => {
 
 // Verify user data
 const verifyUserData = async (req, res) => {
-  const { userId } = req.body;
+  const { user_id } = req.body;
 
-  // check if userId is provided
-  if (!userId)
+  // check if user_id is provided
+  if (!user_id)
     throw new BadRequestException(
       "User ID not provided",
       otpErrors.USER_ID_NOT_PROVIDED
@@ -346,7 +346,7 @@ const verifyUserData = async (req, res) => {
 
   // Checks if user with email already exist
   const user = await prisma.user.findFirst({
-    where: { id: userId },
+    where: { id: user_id },
   });
 
   if (!user) {
@@ -356,7 +356,7 @@ const verifyUserData = async (req, res) => {
     );
   }
 
-  const userDataMatch = await verifyUser(userId);
+  const userDataMatch = await verifyUser(user_id);
 
   // Verify user if supplied data matches NIN data
   if (!userDataMatch)
@@ -367,7 +367,7 @@ const verifyUserData = async (req, res) => {
 
   // Update user data if data matches
   const userVerified = await prisma.user.update({
-    where: { id: userId },
+    where: { id: user_id },
     data: {
       isVerified: true,
     },
@@ -419,22 +419,22 @@ const getUserWithEmail = async (req, res) => {
   return res.status(200).json({
     status: "success",
     message: "Recovery OTP sent to email",
-    userId: user.id,
+    user_id: user.id,
   });
 };
 
 // Resend OTP
 const resendRecoveryOtp = async (req, res) => {
-  const { userId } = req.body;
+  const { user_id } = req.body;
 
-  if (!userId)
+  if (!user_id)
     throw new BadRequestException(
       "User id not provided",
       otpErrors.USER_ID_NOT_PROVIDED
     );
 
   // Check user
-  const user = await prisma.user.findFirst({ where: { id: userId } });
+  const user = await prisma.user.findFirst({ where: { id: user_id } });
 
   if (!user)
     throw new BadRequestException(
@@ -442,7 +442,7 @@ const resendRecoveryOtp = async (req, res) => {
       loginErrors.USER_DOES_NOT_EXIST
     );
 
-  const otp = await createOtp(userId);
+  const otp = await createOtp(user_id);
 
   // Send OTP to new user email
   sendotp(user.email, "Complete your Vettme account recovery", otp);
@@ -456,17 +456,17 @@ const resendRecoveryOtp = async (req, res) => {
 // Reset Password
 const resetPassword = async (req, res) => {
   // Verify token first
-  const { userId, otp, password } = req.body;
+  const { user_id, otp, password } = req.body;
 
-  // Check if userId was provided by app
-  if (!userId)
+  // Check if user_id was provided by app
+  if (!user_id)
     throw new BadRequestException(
       "User id not provided",
       otpErrors.USER_ID_NOT_PROVIDED
     );
 
   // Check if otp was provided by app
-  if (!userId)
+  if (!user_id)
     throw new BadRequestException(
       "Otp not provided",
       otpErrors.OTP_NOT_PROVIDED
@@ -474,7 +474,7 @@ const resetPassword = async (req, res) => {
 
   // Check if user exists
   const user = await prisma.user.findFirst({
-    where: { id: userId },
+    where: { id: user_id },
   });
 
   if (!user) {
@@ -486,7 +486,7 @@ const resetPassword = async (req, res) => {
 
   const otpExists = await prisma.otp.findFirst({
     where: {
-      userId: userId,
+      user_id: user_id,
       otp: parseInt(otp),
     },
   });
@@ -508,7 +508,7 @@ const resetPassword = async (req, res) => {
   const encryptedPassword = bcrypt.hashSync(password, 10);
   await prisma.user.update({
     where: {
-      id: userId,
+      id: user_id,
     },
     data: {
       password: encryptedPassword,
@@ -517,7 +517,7 @@ const resetPassword = async (req, res) => {
 
   // search db for otp
   const foundOtp = await prisma.otp.findFirst({
-    where: { userId, otp: parseInt(otp) },
+    where: { user_id, otp: parseInt(otp) },
   });
 
   // Disable OTP for future usage

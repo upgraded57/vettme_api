@@ -37,8 +37,8 @@ model User {
 
 model Verification {
   id              String @id @default(uuid())
-  user            User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  userId          String
+  user            User @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  user_id          String
   title           String
   personnel_name  String
   verified_with   String
@@ -49,8 +49,8 @@ model Verification {
 
 model Transaction {
   id            String @id @default(uuid())
-  user          User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  userId        String
+  user          User @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  user_id        String
   type          String
   amount        Int
   status        String 
@@ -59,8 +59,8 @@ model Transaction {
 
 model otp {
   id          String @id @default(uuid())
-  user        User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  userId      String
+  user        User @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  user_id      String
   otp         Int
   used        Boolean @default(false)
   createdAt   DateTime @default(now())

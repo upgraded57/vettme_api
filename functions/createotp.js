@@ -4,14 +4,14 @@ const prisma = new PrismaClient({
 });
 
 // Create OTP
-const createOtp = async (userId) => {
+const createOtp = async (user_id) => {
   // Create six digits OTP
   const otp = Math.floor(100000 + Math.random() * 900000);
 
   // Blacklist all tokens associated to user
   await prisma.otp.updateMany({
     where: {
-      userId,
+      user_id,
       used: false, // Update only OTPs that are currently not used
     },
     data: {
@@ -22,7 +22,7 @@ const createOtp = async (userId) => {
   // Store OTP to DB
   const newOtp = await prisma.otp.create({
     data: {
-      userId,
+      user_id,
       otp,
     },
   });

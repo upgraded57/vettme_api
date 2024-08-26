@@ -24,12 +24,13 @@ const createPayment = async (req, res) => {
 
   //Get user id from request token
   const tokenData = jwt.decode(token, process.env.JWT_KEY);
-  const { userId } = tokenData;
+  console.log(tokenData);
+  const { user_id } = tokenData;
 
   //Find user with token
   const user = await prisma.user.findUnique({
     where: {
-      id: userId,
+      id: user_id,
     },
   });
 
@@ -157,7 +158,7 @@ const verifyPayment = async (req, res) => {
       // Create a transaction record for user
       await prisma.transaction.create({
         data: {
-          userId: user.id,
+          user_id: user.id,
           type: "topup",
           amount: topupAmount,
           status: "success",
@@ -179,7 +180,7 @@ const verifyPayment = async (req, res) => {
     // Create a transaction record for user
     await prisma.transaction.create({
       data: {
-        userId: user.id,
+        user_id: user.id,
         type: "topup",
         amount: topupAmount,
         status: "failure",
@@ -218,7 +219,7 @@ const getPaymentHistory = async (req, res) => {
   try {
     const transactions = await prisma.transaction.findMany({
       where: {
-        userId: user_id,
+        user_id: user_id,
       },
     });
 

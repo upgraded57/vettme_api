@@ -1,9 +1,9 @@
 const createVerificationRecord = require("./createVerificationRecord");
 
-const handleRecordResponse = (userId, title, personnel_name, type, result) => {
+const handleRecordResponse = (user_id, title, personnel_name, type, result) => {
   console.log("Record will be created");
   //   const record = await createVerificationRecord(
-  //     userId,
+  //     user_id,
   //     title,
   //     personnel_name,
   //     type,
