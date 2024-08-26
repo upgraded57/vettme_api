@@ -14,7 +14,11 @@ const createVerificationRecord = async (
 ) => {
   const record = await prisma.verification.create({
     data: {
-      user_id,
+      user: {
+        connect: {
+          id: user_id,
+        },
+      },
       title,
       personnel_name,
       info: data,

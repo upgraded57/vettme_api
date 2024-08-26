@@ -22,7 +22,11 @@ const createOtp = async (user_id) => {
   // Store OTP to DB
   const newOtp = await prisma.otp.create({
     data: {
-      user_id,
+      user: {
+        connect: {
+          id: user_id,
+        },
+      },
       otp,
     },
   });

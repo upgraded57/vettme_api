@@ -157,7 +157,11 @@ const verifyPayment = async (req, res) => {
       // Create a transaction record for user
       await prisma.transaction.create({
         data: {
-          user_id: user.id,
+          user: {
+            connect: {
+              id: user_id,
+            },
+          },
           type: "topup",
           amount: topupAmount,
           status: "success",
@@ -179,7 +183,11 @@ const verifyPayment = async (req, res) => {
     // Create a transaction record for user
     await prisma.transaction.create({
       data: {
-        user_id: user.id,
+        user: {
+          connect: {
+            id: user_id,
+          },
+        },
         type: "topup",
         amount: topupAmount,
         status: "failure",
