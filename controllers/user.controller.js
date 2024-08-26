@@ -20,12 +20,12 @@ const prisma = new PrismaClient({
 
 // Get a user
 const getUser = async (req, res) => {
-  const { user_id } = req.params;
+  const { userId } = req.params;
 
   // query DB for user
   const user = await prisma.user.findFirst({
     where: {
-      id: user_id,
+      id: userId,
     },
 
     omit: {
@@ -49,14 +49,14 @@ const getUser = async (req, res) => {
 
 // Delete a user
 const deleteUser = async (req, res) => {
-  const { user_id } = req.params;
+  const { userId } = req.params;
 
   const { token } = req.headers;
 
   // Compare user id to id of cookie
   const userFromToken = jwt.decode(token, process.env.JWT_TOKEN);
 
-  if (user_id !== userFromToken.user_id) {
+  if (userId !== userFromToken.userId) {
     throw new UnauthorizedRequestException(
       "You cannot delete another user",
       verificationErrors.UNAUTHORIZED_RESOURCE_ACCESS
@@ -66,7 +66,7 @@ const deleteUser = async (req, res) => {
   // query DB for user
   const foundUser = await prisma.user.findFirst({
     where: {
-      id: user_id,
+      id: userId,
     },
     omit: {
       password: true,
@@ -83,7 +83,7 @@ const deleteUser = async (req, res) => {
   // Delete user account
   const deletedUser = await prisma.user.delete({
     where: {
-      id: user_id,
+      id: userId,
     },
     omit: {
       password: true,
@@ -105,7 +105,7 @@ const deleteUser = async (req, res) => {
 };
 
 const updateUser = async (req, res) => {
-  const { user_id } = req.params;
+  const { userId } = req.params;
   const { token } = req.headers;
   const { full_name, email, phone_number, old_password, new_password } =
     req.body;
@@ -113,7 +113,7 @@ const updateUser = async (req, res) => {
   // Compare user id to id of cookie
   const userFromToken = jwt.decode(token, process.env.JWT_TOKEN);
 
-  if (user_id !== userFromToken.user_id) {
+  if (userId !== userFromToken.userId) {
     throw new UnauthorizedRequestException(
       "You cannot update this user information",
       verificationErrors.UNAUTHORIZED_RESOURCE_ACCESS
@@ -123,7 +123,7 @@ const updateUser = async (req, res) => {
   // query DB for user
   const foundUser = await prisma.user.findFirst({
     where: {
-      id: user_id,
+      id: userId,
     },
     omit: {
       password: true,
@@ -151,7 +151,7 @@ const updateUser = async (req, res) => {
     await prisma.user
       .update({
         where: {
-          id: user_id,
+          id: userId,
         },
         data: updateData,
       })
@@ -181,7 +181,7 @@ const updateUser = async (req, res) => {
   } else if (old_password && new_password) {
     // Fetch user from db
     const userToBeUpdated = await prisma.user.findFirst({
-      where: { id: user_id },
+      where: { id: userId },
     });
     // Compare old password to user password in db
     const oldPasswordIsCorrect = bcrypt.compareSync(
@@ -198,7 +198,7 @@ const updateUser = async (req, res) => {
     // Update user password
     await prisma.user
       .update({
-        where: { id: user_id },
+        where: { id: userId },
         data: {
           password: bcrypt.hashSync(new_password, 10),
         },

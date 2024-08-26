@@ -19,7 +19,7 @@ const signupErrors = {
 };
 
 const otpErrors = {
-  USER_ID_NOT_PROVIDED: "OTP-1000",
+  userId_NOT_PROVIDED: "OTP-1000",
   OTP_NOT_PROVIDED: "OTP-1001",
   INVALID_OTP: "OTP-1002",
   OTP_BLACKLISTED: "OTP-1003",
@@ -58,7 +58,7 @@ const serverErrors = {
 const paymentErrors = {
   PAYSTACK_FAILED_PAYMENT: "PE-1000",
   AMOUNT_NOT_PROVIDED: "PE-1001",
-  USER_ID_NOT_PROVIDED: "PE-1002",
+  userId_NOT_PROVIDED: "PE-1002",
 };
 
 module.exports = {

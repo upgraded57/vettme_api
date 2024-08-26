@@ -5,7 +5,7 @@ const prisma = new PrismaClient({
 });
 
 const createVerificationRecord = async (
-  user_id,
+  userId,
   title,
   personnel_name,
   type,
@@ -16,7 +16,7 @@ const createVerificationRecord = async (
     data: {
       user: {
         connect: {
-          id: user_id,
+          id: userId,
         },
       },
       title,

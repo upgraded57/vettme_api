@@ -9,8 +9,8 @@ const prisma = new PrismaClient({
   log: ["query", "info", "warn", "error"],
 });
 
-const verifyUser = async (user_id) => {
-  const user = await prisma.user.findUnique({ where: { id: user_id } });
+const verifyUser = async (userId) => {
+  const user = await prisma.user.findUnique({ where: { id: userId } });
 
   const userNin = user.nin;
 
