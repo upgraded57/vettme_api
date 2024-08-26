@@ -89,12 +89,24 @@ const paymentStatus = async (req, res) => {
     // Retrieve the request's body
     const event = req.body;
 
-    console.log(event);
-
     // Handle the event
     if (event.event === "charge.success") {
-      // Payment was successful
-      // You can update your database here
+      // Payment was successful. Update user balance
+      const userEmail = event.data.customer.email;
+      const topupAmount = parseInt(response.data.data.amount) / 100;
+      const previousBalance = parseInt(user.balance);
+
+      try {
+        // Update user balance
+        await prisma.user.update({
+          where: { email: userEmail },
+          data: {
+            balance: previousBalance + topupAmount,
+          },
+        });
+      } catch (error) {
+        console.log("Account topup", error?.response);
+      }
       console.log("Payment successful:", event.data);
     }
 
@@ -146,16 +158,7 @@ const verifyPayment = async (req, res) => {
 
     // Update user balance in database
     const topupAmount = parseInt(response.data.data.amount) / 100;
-    const previousBalance = parseInt(user.balance);
     try {
-      // Update user balance
-      await prisma.user.update({
-        where: { id: user.id },
-        data: {
-          balance: previousBalance + topupAmount,
-        },
-      });
-
       // Create a transaction record for user
       await prisma.transaction.create({
         data: {
