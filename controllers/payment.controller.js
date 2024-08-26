@@ -24,7 +24,6 @@ const createPayment = async (req, res) => {
 
   //Get user id from request token
   const tokenData = jwt.decode(token, process.env.JWT_KEY);
-  console.log(tokenData);
   const { user_id } = tokenData;
 
   //Find user with token

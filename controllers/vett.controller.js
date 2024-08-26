@@ -287,7 +287,6 @@ const verifyPersonnel = async (req, res) => {
       }
     })
     .catch(async (err) => {
-      console.log(err);
       // If djoah fetching fails
       try {
         // Create new record in case of dojah.io failure
