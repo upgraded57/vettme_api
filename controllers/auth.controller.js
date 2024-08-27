@@ -194,7 +194,15 @@ const verifyOtp = async (req, res) => {
   const { userId, otp } = req.body;
   verifyUserId(userId);
 
-  await findUser({ id: userId });
+  const user = await prisma.user.findUnique({
+    where: { id: userId },
+  });
+
+  if (!user)
+    throw new UnauthorizedRequestException(
+      "User does not exist",
+      loginErrors.USER_DOES_NOT_EXIST
+    );
 
   const otpExists = await prisma.otp.findFirst({
     where: {

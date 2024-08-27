@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const {
-  verifyotp,
   signup,
   login,
   resendOtp,
@@ -8,6 +7,7 @@ const {
   resetPassword,
   getUserWithEmail,
   resendRecoveryOtp,
+  verifyOtp,
 } = require("../controllers/auth.controller.js");
 const { globalErrorCatcher } = require("../middlewares/errors.js");
 
@@ -21,7 +21,7 @@ router.post("/login", globalErrorCatcher(login));
 router.post("/resendotp", globalErrorCatcher(resendOtp));
 
 // Validate OTP on signup
-router.post("/verifyotp", globalErrorCatcher(verifyotp));
+router.post("/verifyotp", globalErrorCatcher(verifyOtp));
 
 // Verify User
 router.post("/verifyuser", globalErrorCatcher(verifyUserData));
