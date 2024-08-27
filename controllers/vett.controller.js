@@ -153,7 +153,7 @@ const verifyPersonnel = async (req, res) => {
       verificationErrors.INVALID_VERIFICATION_DATA
     );
   }
-  const verificationCost = 10000;
+  const verificationCost = 300;
 
   const user = await findUser({ id: userId });
 
