@@ -224,7 +224,9 @@ const verifyOtp = async (req, res) => {
   });
 
   await prisma.otp.update({
-    where: { userId },
+    where: {
+      id: otpExists.id,
+    },
     data: { used: true },
   });
 
