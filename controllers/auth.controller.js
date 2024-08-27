@@ -122,7 +122,9 @@ const signup = async (req, res) => {
     );
   }
 
-  const userWithEmailExists = await findUser({ email });
+  const userWithEmailExists = await prisma.user.findUnique({
+    where: { email },
+  });
 
   if (userWithEmailExists) {
     throw new BadRequestException(
@@ -131,7 +133,9 @@ const signup = async (req, res) => {
     );
   }
 
-  const userWithPhoneNumberExists = await findUser({ phone_number });
+  const userWithPhoneNumberExists = await prisma.user.findUnique({
+    where: { phone_number },
+  });
   if (userWithPhoneNumberExists) {
     throw new BadRequestException(
       "User with phone number already exists",
