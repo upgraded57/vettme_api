@@ -10,6 +10,7 @@ const {
 } = require("../exceptions/status-codes");
 const BadRequestException = require("../exceptions/bad-requests");
 const createVerificationRecord = require("../functions/createVerificationRecord");
+const findUser = require("../functions/findUser");
 
 const prisma = new PrismaClient({ log: ["warn", "error"] });
 
@@ -152,8 +153,19 @@ const verifyPersonnel = async (req, res) => {
       verificationErrors.INVALID_VERIFICATION_DATA
     );
   }
+  const verificationCost = 300;
 
   try {
+    const user = await findUser({ id: userId });
+
+    // Check if user does not have enough balance
+    if (user.balance < verificationCost)
+      throw new BadRequestException(
+        "Not enough balance",
+        verificationErrors.NOT_ENOUGH_CREDIT
+      );
+
+    // Attempt verification
     const result = await axiosInstance.get(requestConfig.endpoint, {
       params: requestConfig.params,
     });
@@ -171,7 +183,7 @@ const verifyPersonnel = async (req, res) => {
     // Deduct verification cost
     await prisma.user.update({
       where: { id: userId },
-      data: { balance: { decrement: 300 } },
+      data: { balance: { decrement: verificationCost } },
     });
 
     return res.status(200).json({

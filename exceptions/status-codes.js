@@ -33,6 +33,7 @@ const verificationErrors = {
   UNAUTHORIZED_RESOURCE_ACCESS: "VE-1003",
   VERIFICATION_DATA_NOT_PROVIDED: "VE-1004",
   INVALID_VERIFICATION_DATA: "VE-1005",
+  NOT_ENOUGH_CREDIT: "VE-1006",
 };
 
 const authenticationErrors = {
