@@ -1,96 +1,84 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-require("dotenv").config({
-  path: "../.env",
-});
+require("dotenv").config({ path: "../.env" });
 const { PrismaClient } = require("@prisma/client");
 const sendotp = require("../functions/sendotp");
+const createOtp = require("../functions/createotp");
+const verifyUser = require("../functions/verifyUser");
+const findUser = require("../functions/findUser");
 const BadRequestException = require("../exceptions/bad-requests");
+const UnauthorizedRequestException = require("../exceptions/unauthorized");
+const ServerErrorException = require("../exceptions/server-error");
 const {
   loginErrors,
   signupErrors,
   otpErrors,
   verificationErrors,
 } = require("../exceptions/status-codes");
-const createOtp = require("../functions/createotp");
-const UnauthorizedRequestException = require("../exceptions/unauthorized");
-const verifyUser = require("../functions/verifyUser");
-const ServerErrorException = require("../exceptions/server-error");
+const verifyUserId = require("../functions/verifyUserId");
 
-const prisma = new PrismaClient({
-  log: ["warn", "error"],
-});
+const prisma = new PrismaClient({ log: ["warn", "error"] });
 
-// Login
-const login = async (req, res) => {
-  const { email, password } = req.body;
-
-  // Validate email
+// Utility function to validate email format
+const validateEmail = (email) => {
   const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
   if (!email.match(emailPattern)) {
     throw new BadRequestException(
       "Invalid email address provided",
       signupErrors.INVALID_EMAIL_PATTERN
     );
   }
+};
 
-  // check if login info were provided
-  const emptyRequests = [];
-  if (!email) emptyRequests.push("Email");
-  if (!password) emptyRequests.push("Password");
-  if (!email || !password)
+// Utility function to validate required fields
+const validateRequiredFields = (fields) => {
+  const emptyFields = fields
+    .filter((field) => !field.value)
+    .map((field) => field.name);
+  if (emptyFields.length) {
     throw new BadRequestException(
-      `${emptyRequests.join(",")} fields required`,
+      `${emptyFields.join(", ")} fields required`,
       loginErrors.INCOMPLETE_LOGIN_CREDENTIALS
     );
-
-  // Checks if user with email already exist
-  const user = await prisma.user.findFirst({
-    where: { email },
-  });
-
-  if (!user) {
-    throw new BadRequestException(
-      "User does not exist",
-      loginErrors.USER_DOES_NOT_EXIST
-    );
   }
+};
 
-  // Check if password is correct
-  const userPasswordIsCorrect = bcrypt.compareSync(password, user.password);
+// Login
+const login = async (req, res) => {
+  const { email, password } = req.body;
 
-  if (!userPasswordIsCorrect) {
+  validateRequiredFields([
+    { name: "Email", value: email },
+    { name: "Password", value: password },
+  ]);
+
+  validateEmail(email);
+
+  const user = await findUser({ email });
+
+  // Compare passwords
+  if (!bcrypt.compareSync(password, user.password)) {
     throw new BadRequestException(
       "Incorrect login credentials",
       loginErrors.INCORRECT_PASSWORD
     );
   }
 
-  // Check if user is active
-  if (!user.isActive)
-    new UnauthorizedRequestException(
+  if (!user.isActive) {
+    throw new UnauthorizedRequestException(
       "User account not activated. Activate account with OTP",
       loginErrors.USER_INACTIVE
     );
+  }
 
-  // Check if user is verified
-  // if (!user.isVerified)
-  //     new UnauthorizedRequestException(
-  //       "User account not verified.",
-  //       loginErrors.USER_UNVERIFIED
-  //     )
-
-  // Generate token on login
-  var token = jwt.sign({ userId: user.id }, process.env.JWT_KEY, {
-    expiresIn: 60 * 60 * 24,
+  const token = jwt.sign({ userId: user.id }, process.env.JWT_KEY, {
+    expiresIn: "24h",
   });
-
-  // send user data to app
   const { password: userPassword, ...userData } = user;
+
   return res.status(200).json({
     status: "success",
-    message: "User login succesfully",
+    message: "User logged in successfully",
     user: userData,
     token,
   });
@@ -100,24 +88,15 @@ const login = async (req, res) => {
 const signup = async (req, res) => {
   const { full_name, email, phone_number, password, nin } = req.body;
 
-  // Check if all fields are provided
-  const emptyRequests = [];
-  if (!full_name) emptyRequests.push("Full Name");
-  if (!email) emptyRequests.push("Email");
-  if (!phone_number) emptyRequests.push("Phone Number");
-  if (!password) emptyRequests.push("Password");
-  if (!nin) emptyRequests.push("NIN");
+  validateRequiredFields([
+    { name: "Full Name", value: full_name },
+    { name: "Email", value: email },
+    { name: "Phone Number", value: phone_number },
+    { name: "Password", value: password },
+    { name: "NIN", value: nin },
+  ]);
 
-  if (!full_name || !email || !password || !phone_number || !nin) {
-    throw new BadRequestException(
-      `${emptyRequests.join(",")} field required`,
-      signupErrors.INCOMPLETE_SIGNUP_CREDENTIALS
-    );
-  }
-
-  // Validate Full Name
   const fullNamePattern = /^[A-Za-z]+(?:\s[A-Za-z]+)*$/;
-
   if (!full_name.match(fullNamePattern)) {
     throw new BadRequestException(
       "Only letters are allowed for full name input",
@@ -125,36 +104,25 @@ const signup = async (req, res) => {
     );
   }
 
-  // Validate email
-  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  validateEmail(email);
 
-  if (!email.match(emailPattern)) {
-    throw new BadRequestException(
-      "Invalid email address provided",
-      signupErrors.INVALID_EMAIL_PATTERN
-    );
-  }
-
-  // Validate NIN
   const ninPattern = /^\d{11}$/;
-  if (!nin.match(ninPattern))
+  if (!nin.match(ninPattern)) {
     throw new BadRequestException(
       "Invalid NIN provided",
       signupErrors.INVALID_NIN_PATTERN
     );
+  }
 
-  // Validate Phone number
-  const PhoneNumberPattern = /^\d{11}$/;
-  if (!phone_number.match(PhoneNumberPattern))
+  const phoneNumberPattern = /^\d{11}$/;
+  if (!phone_number.match(phoneNumberPattern)) {
     throw new BadRequestException(
       "A valid 11 digits phone number is required",
       signupErrors.INVALID_PHONE_NUMBER_PATTERN
     );
+  }
 
-  // Checks if user with same email already exist
-  const userWithEmailExists = await prisma.user.findFirst({
-    where: { email },
-  });
+  const userWithEmailExists = await findUser({ email });
 
   if (userWithEmailExists) {
     throw new BadRequestException(
@@ -163,32 +131,16 @@ const signup = async (req, res) => {
     );
   }
 
-  // Checks if user with same phone number already exist
-  const userWithPhoneNumberExists = await prisma.user.findFirst({
-    where: { phone_number },
-  });
-
-  if (userWithPhoneNumberExists)
+  const userWithPhoneNumberExists = await findUser({ phone_number });
+  if (userWithPhoneNumberExists) {
     throw new BadRequestException(
       "User with phone number already exists",
       signupErrors.USER_WITH_PHONE_NUMBER_ALREADY_EXISTS
     );
+  }
 
-  // Checks if user with same nin already exist
-  // const userWithNinExists = await prisma.user.findFirst({
-  //   where: { nin: nin },
-  // });
-
-  // if (userWithNinExists)
-  //   throw new BadRequestException(
-  //     "User with nin already exists",
-  //     signupErrors.USER_WITH_NIN_ALREADY_EXISTS
-  //   );
-
-  // encrypt password
   const encryptedPassword = bcrypt.hashSync(password, 10);
 
-  // Create User Object in DB
   const newUser = await prisma.user.create({
     data: {
       name: full_name,
@@ -199,15 +151,10 @@ const signup = async (req, res) => {
     },
   });
 
-  // Create otp
   const otp = await createOtp(newUser.id);
-
-  // Send OTP to new user email
   sendotp(newUser.email, "Complete your Vettme account creation", otp);
 
-  // return message to user
   const { password: newUserPassword, ...newUserData } = newUser;
-
   return res.status(201).json({
     status: "success",
     message: "Account created successfully",
@@ -218,34 +165,18 @@ const signup = async (req, res) => {
 // Resend OTP
 const resendOtp = async (req, res) => {
   const { userId } = req.body;
+  verifyUserId(userId);
 
-  if (!userId)
-    throw new BadRequestException(
-      "User id not provided",
-      otpErrors.userId_NOT_PROVIDED
-    );
+  const user = await findUser({ id: userId });
 
-  // Check user
-  const user = await prisma.user.findFirst({ where: { id: userId } });
-
-  if (!user)
-    throw new BadRequestException(
-      "User with supplied userId not found",
-      loginErrors.USER_DOES_NOT_EXIST
-    );
-
-  // Check if user is already active
-  if (user.isActive)
+  if (user.isActive) {
     throw new BadRequestException(
       "User is already active",
       otpErrors.USER_ALREADY_ACTIVE
     );
-
-  // Disable other otps associated with user
+  }
 
   const otp = await createOtp(userId);
-
-  // Send OTP to new user email
   sendotp(user.email, "Complete your Vettme account creation", otp);
 
   return res.status(200).json({
@@ -255,34 +186,11 @@ const resendOtp = async (req, res) => {
 };
 
 // Verify OTP
-const verifyotp = async (req, res) => {
+const verifyOtp = async (req, res) => {
   const { userId, otp } = req.body;
+  verifyUserId(userId);
 
-  // Check if userId was provided by app
-  if (!userId)
-    throw new BadRequestException(
-      "User id not provided",
-      otpErrors.userId_NOT_PROVIDED
-    );
-
-  // Check if otp was provided by app
-  if (!userId)
-    throw new BadRequestException(
-      "Otp not provided",
-      otpErrors.OTP_NOT_PROVIDED
-    );
-
-  // Check if user exists
-  const user = await prisma.user.findFirst({
-    where: { id: userId },
-  });
-
-  if (!user) {
-    throw new BadRequestException(
-      "User does not exist",
-      loginErrors.USER_DOES_NOT_EXIST
-    );
-  }
+  await findUser({ id: userId });
 
   const otpExists = await prisma.otp.findFirst({
     where: {
@@ -291,40 +199,21 @@ const verifyotp = async (req, res) => {
     },
   });
 
-  if (!otpExists)
+  if (!otpExists || otpExists.used) {
     throw new BadRequestException(
-      "Invalid otp provided",
+      "Invalid or used otp provided",
       otpErrors.INVALID_OTP
     );
+  }
 
-  // Check if OTP has not been used
-  if (otpExists.used)
-    throw new BadRequestException(
-      "Otp has been blacklisted",
-      otpErrors.OTP_BLACKLISTED
-    );
-
-  // Activate user account
   await prisma.user.update({
-    where: {
-      id: userId,
-    },
-    data: {
-      isActive: true,
-    },
+    where: { id: userId },
+    data: { isActive: true },
   });
 
-  // search db for otp
-  const foundOtp = await prisma.otp.findFirst({
-    where: { userId, otp: parseInt(otp) },
-  });
-
-  // Disable OTP for future usage
   await prisma.otp.update({
-    where: { id: foundOtp.id },
-    data: {
-      used: true,
-    },
+    where: { userId },
+    data: { used: true },
   });
 
   return res.status(200).json({
@@ -336,50 +225,30 @@ const verifyotp = async (req, res) => {
 // Verify user data
 const verifyUserData = async (req, res) => {
   const { userId } = req.body;
+  verifyUserId(userId);
 
-  // check if userId is provided
-  if (!userId)
-    throw new BadRequestException(
-      "User ID not provided",
-      otpErrors.userId_NOT_PROVIDED
-    );
-
-  // Checks if user with email already exist
-  const user = await prisma.user.findFirst({
-    where: { id: userId },
-  });
-
-  if (!user) {
-    throw new BadRequestException(
-      "User does not exist",
-      loginErrors.USER_DOES_NOT_EXIST
-    );
-  }
-
+  const user = await findUser({ id: userId });
   const userDataMatch = await verifyUser(userId);
 
-  // Verify user if supplied data matches NIN data
-  if (!userDataMatch)
+  if (!userDataMatch) {
     throw new UnauthorizedRequestException(
       "User data does not match NIN data",
       verificationErrors.USER_DATA_MISMATCH
     );
+  }
 
-  // Update user data if data matches
   const userVerified = await prisma.user.update({
-    where: { id: userId },
-    data: {
-      isVerified: true,
-    },
+    where: { id: user.id },
+    data: { isVerified: true },
   });
 
-  // Throw new error if server fails to verify user
-  if (!userVerified)
+  if (!userVerified) {
     throw new ServerErrorException(
       "User cannot be verified. Please retry",
       verificationErrors.DATABASE_VERIFICATION_ERROR,
       null
     );
+  }
 
   return res.status(200).json({
     status: "success",
@@ -391,29 +260,18 @@ const verifyUserData = async (req, res) => {
 const getUserWithEmail = async (req, res) => {
   const { email } = req.params;
 
-  // query DB for user
   const user = await prisma.user.findFirst({
-    where: {
-      email,
-    },
-
-    omit: {
-      password: true,
-    },
+    where: { email },
+    select: { id: true, email: true }, // Exclude password
   });
 
   if (!user)
-    return res.status(404).json({
-      status: "failure",
-      message: "User not found",
-      user: null,
-    });
+    throw new UnauthorizedRequestException(
+      "User does not exist",
+      loginErrors.USER_DOES_NOT_EXIST
+    );
 
-  // Send otp to user for account recovery
-  // Create otp
   const otp = await createOtp(user.id);
-
-  // Send OTP to new user email
   sendotp(user.email, "Complete your Vettme account recovery", otp);
 
   return res.status(200).json({
@@ -423,28 +281,15 @@ const getUserWithEmail = async (req, res) => {
   });
 };
 
-// Resend OTP
+// Resend Recovery OTP
 const resendRecoveryOtp = async (req, res) => {
   const { userId } = req.body;
+  verifyUserId(userId);
 
-  if (!userId)
-    throw new BadRequestException(
-      "User id not provided",
-      otpErrors.userId_NOT_PROVIDED
-    );
-
-  // Check user
-  const user = await prisma.user.findFirst({ where: { id: userId } });
-
-  if (!user)
-    throw new BadRequestException(
-      "User with supplied userId not found",
-      loginErrors.USER_DOES_NOT_EXIST
-    );
+  const user = await findUser({ id: userId });
 
   const otp = await createOtp(userId);
 
-  // Send OTP to new user email
   sendotp(user.email, "Complete your Vettme account recovery", otp);
 
   return res.status(200).json({
@@ -455,34 +300,10 @@ const resendRecoveryOtp = async (req, res) => {
 
 // Reset Password
 const resetPassword = async (req, res) => {
-  // Verify token first
   const { userId, otp, password } = req.body;
+  verifyUserId(userId);
 
-  // Check if userId was provided by app
-  if (!userId)
-    throw new BadRequestException(
-      "User id not provided",
-      otpErrors.userId_NOT_PROVIDED
-    );
-
-  // Check if otp was provided by app
-  if (!userId)
-    throw new BadRequestException(
-      "Otp not provided",
-      otpErrors.OTP_NOT_PROVIDED
-    );
-
-  // Check if user exists
-  const user = await prisma.user.findFirst({
-    where: { id: userId },
-  });
-
-  if (!user) {
-    throw new BadRequestException(
-      "User does not exist",
-      loginErrors.USER_DOES_NOT_EXIST
-    );
-  }
+  await findUser({ id: userId });
 
   const otpExists = await prisma.otp.findFirst({
     where: {
@@ -491,41 +312,23 @@ const resetPassword = async (req, res) => {
     },
   });
 
-  if (!otpExists)
+  if (!otpExists || otpExists.used) {
     throw new BadRequestException(
-      "Invalid otp provided",
+      "Invalid or used otp provided",
       otpErrors.INVALID_OTP
     );
+  }
 
-  // Check if OTP has not been used
-  if (otpExists.used)
-    throw new BadRequestException(
-      "Otp has been blacklisted",
-      otpErrors.OTP_BLACKLISTED
-    );
-
-  // Update user password
   const encryptedPassword = bcrypt.hashSync(password, 10);
+
   await prisma.user.update({
-    where: {
-      id: userId,
-    },
-    data: {
-      password: encryptedPassword,
-    },
+    where: { id: userId },
+    data: { password: encryptedPassword },
   });
 
-  // search db for otp
-  const foundOtp = await prisma.otp.findFirst({
-    where: { userId, otp: parseInt(otp) },
-  });
-
-  // Disable OTP for future usage
   await prisma.otp.update({
-    where: { id: foundOtp.id },
-    data: {
-      used: true,
-    },
+    where: { id: otpExists.id },
+    data: { used: true },
   });
 
   return res.status(200).json({
@@ -535,7 +338,7 @@ const resetPassword = async (req, res) => {
 };
 
 module.exports = {
-  verifyotp,
+  verifyOtp,
   signup,
   login,
   resendOtp,

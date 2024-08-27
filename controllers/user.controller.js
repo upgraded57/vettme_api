@@ -13,6 +13,7 @@ const bcrypt = require("bcrypt");
 const BadRequestException = require("../exceptions/bad-requests");
 const jwt = require("jsonwebtoken");
 const UnauthorizedRequestException = require("../exceptions/unauthorized");
+const findUser = require("../functions/findUser");
 
 const prisma = new PrismaClient({
   log: ["warn", "error"],
@@ -23,22 +24,7 @@ const getUser = async (req, res) => {
   const { userId } = req.params;
 
   // query DB for user
-  const user = await prisma.user.findFirst({
-    where: {
-      id: userId,
-    },
-
-    omit: {
-      password: true,
-    },
-  });
-
-  if (!user)
-    return res.status(404).json({
-      status: "success",
-      message: "User not found",
-      user: null,
-    });
+  const user = await findUser({ id: userId });
 
   return res.status(200).json({
     status: "success",

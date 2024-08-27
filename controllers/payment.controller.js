@@ -1,62 +1,27 @@
-require("dotenv").config({
-  path: "../.env",
-});
+require("dotenv").config({ path: "../.env" });
 const crypto = require("crypto");
-const jwt = require("jsonwebtoken");
 const { PrismaClient } = require("@prisma/client");
 const axios = require("axios");
-const ServerErrorException = require("../exceptions/server-error");
-const {
-  paymentErrors,
-  loginErrors,
-  serverErrors,
-} = require("../exceptions/status-codes");
-const UnauthorizedRequestException = require("../exceptions/unauthorized");
 const BadRequestException = require("../exceptions/bad-requests");
+const ServerErrorException = require("../exceptions/server-error");
+const { paymentErrors, serverErrors } = require("../exceptions/status-codes");
+const findUser = require("../functions/findUser");
 
-const prisma = new PrismaClient({
-  log: ["warn", "error"],
-});
+const prisma = new PrismaClient({ log: ["warn", "error"] });
 
 const createPayment = async (req, res) => {
   const { amount } = req.body;
-  const { token } = req.headers;
-
-  //Get user id from request token
-  const tokenData = jwt.decode(token, process.env.JWT_KEY);
-  const { userId } = tokenData;
-
-  //Find user with token
-  const user = await prisma.user.findUnique({
-    where: {
-      id: userId,
-    },
-  });
-
-  if (!user) {
-    throw new UnauthorizedRequestException(
-      "User does not exist",
-      loginErrors.USER_DOES_NOT_EXIST
-    );
-  }
-
-  //Attempt to make payment
-  if (!amount) {
+  if (!amount)
     throw new BadRequestException(
       "Amount not provided",
       paymentErrors.AMOUNT_NOT_PROVIDED
     );
-  }
 
-  //Parse amount
-
+  const user = await findUser({ token: req.headers.token });
   try {
     const response = await axios.post(
       "https://api.paystack.co/transaction/initialize",
-      {
-        email: user.email,
-        amount: parseInt(amount) * 100, // Paystack uses kobo as the currency base, so multiply by 100
-      },
+      { email: user.email, amount: parseInt(amount) * 100 },
       {
         headers: {
           Authorization: `Bearer ${process.env.PAYSTACK_TEST_SECRET_KEY}`,
@@ -64,7 +29,7 @@ const createPayment = async (req, res) => {
       }
     );
 
-    return res.status(200).json({
+    res.status(200).json({
       status: "success",
       message: "Payment session initialized successfully",
       data: response.data.data,
@@ -73,7 +38,7 @@ const createPayment = async (req, res) => {
     throw new ServerErrorException(
       "Could not make payment",
       paymentErrors.PAYSTACK_FAILED_PAYMENT,
-      error.response.data.message
+      error.response?.data?.message
     );
   }
 };
@@ -85,51 +50,39 @@ const paymentStatus = async (req, res) => {
     .update(JSON.stringify(req.body))
     .digest("hex");
 
-  if (hash === req.headers["x-paystack-signature"]) {
-    // Retrieve the request's body
-    const event = req.body;
-
-    // Handle the event
-    if (event.event === "charge.success") {
-      // Payment was successful. Update user balance
-      const userEmail = event.data.customer.email;
-      const topupAmount = parseInt(response.data.data.amount) / 100;
-      const previousBalance = parseInt(user.balance);
-
-      try {
-        // Update user balance
-        await prisma.user.update({
-          where: { email: userEmail },
-          data: {
-            balance: previousBalance + topupAmount,
-          },
-        });
-      } catch (error) {
-        console.log("Account topup", error?.response);
-      }
-      console.log("Payment successful:", event.data);
-    }
-
-    return res.status(200).json({
-      status: "success",
-      message: "payment successful",
-      event,
-    });
-  } else {
-    return res.status(400).json({
-      status: "failure",
-      message: "Invalid signature",
-    });
+  if (hash !== req.headers["x-paystack-signature"]) {
+    return res
+      .status(400)
+      .json({ status: "failure", message: "Invalid signature" });
   }
+
+  const event = req.body;
+  if (event.event === "charge.success") {
+    try {
+      const user = await prisma.user.findUnique({
+        where: { email: event.data.customer.email },
+      });
+      await prisma.user.update({
+        where: { email: user.email },
+        data: { balance: user.balance + event.data.amount / 100 },
+      });
+      console.log("Payment successful:", event.data);
+    } catch (error) {
+      console.log("Account topup error", error);
+    }
+  }
+
+  res
+    .status(200)
+    .json({ status: "success", message: "Payment successful", event });
 };
 
 const verifyPayment = async (req, res) => {
   const { reference } = req.params;
   if (!reference)
-    return res.status(400).json({
-      status: "error",
-      message: "Reference code not provided",
-    });
+    return res
+      .status(400)
+      .json({ status: "error", message: "Reference code not provided" });
 
   try {
     const response = await axios.get(
@@ -141,65 +94,29 @@ const verifyPayment = async (req, res) => {
       }
     );
 
-    const userEmail = response.data.data.customer.email;
-
-    // Query database for user
     const user = await prisma.user.findUnique({
-      where: {
-        email: userEmail,
-      },
+      where: { email: response.data.data.customer.email },
     });
-
     if (!user)
       return res.status(500).json({
         status: "failure",
         message: "Cannot find user with the specified email",
       });
 
-    // Update user balance in database
-    const topupAmount = parseInt(response.data.data.amount) / 100;
-    try {
-      // Create a transaction record for user
-      await prisma.transaction.create({
-        data: {
-          user: {
-            connect: {
-              id: user.id,
-            },
-          },
-          type: "topup",
-          amount: topupAmount,
-          status: "success",
-        },
-      });
-    } catch (err) {
-      return res.status(500).json({
-        status: "error",
-        message: "Unable to update user balance",
-        error: err,
-      });
-    }
-
-    return res.status(200).json({
-      status: "success",
-      message: "Payment verified successfully",
-    });
-  } catch (error) {
-    // Create a transaction record for user
     await prisma.transaction.create({
       data: {
-        user: {
-          connect: {
-            id: user.id,
-          },
-        },
+        userId: user.id,
         type: "topup",
-        amount: topupAmount,
-        status: "failure",
+        amount: response.data.data.amount / 100,
+        status: "success",
       },
     });
 
-    return res.status(500).json({
+    res
+      .status(200)
+      .json({ status: "success", message: "Payment verified successfully" });
+  } catch (error) {
+    res.status(500).json({
       status: "failure",
       message: "Payment verification failed",
       error,
@@ -208,36 +125,14 @@ const verifyPayment = async (req, res) => {
 };
 
 const getPaymentHistory = async (req, res) => {
-  const { token } = req.headers;
-
-  //Get user id from request token
-  const tokenData = jwt.decode(token, process.env.JWT_KEY);
-  const { userId } = tokenData;
-
-  //Find user with token
-  const user = await prisma.user.findUnique({
-    where: {
-      id: userId,
-    },
-  });
-
-  if (!user) {
-    throw new UnauthorizedRequestException(
-      "User does not exist",
-      loginErrors.USER_DOES_NOT_EXIST
-    );
-  }
-
+  const user = await findUser({ token: req.headers.token });
   try {
     const transactions = await prisma.transaction.findMany({
-      where: {
-        userId: userId,
-      },
+      where: { userId: user.id },
     });
-
-    return res.status(200).json({
+    res.status(200).json({
       status: "success",
-      message: "Use transactions found successfully",
+      message: "User transactions found successfully",
       transactions,
     });
   } catch (err) {
