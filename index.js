@@ -5,8 +5,6 @@ require("dotenv").config({
 const cors = require("cors");
 const rootRouter = require("./routes/index.js");
 const { ErrorHandler } = require("./middlewares/errors.js");
-const UnauthorizedRequestException = require("./exceptions/unauthorized.js");
-const { authenticationErrors } = require("./exceptions/status-codes.js");
 
 // Initialize Application
 const app = express();

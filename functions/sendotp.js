@@ -93,7 +93,7 @@ const sendotp = (recipient, subject, otp) => {
                     "
                   >
                     Thank you for choosing Vettme as your personnel verification
-                    partner. Use the following OTP to complete the your registration.
+                    partner. Use the following OTP to complete your registration.
                     OTP is valid for
                     <span style="font-weight: 600; color: #1f1f1f">10 minutes</span>.
                     Do not share this code with others
