@@ -8,6 +8,7 @@ const {
   serverErrors,
   verificationErrors,
   loginErrors,
+  signupErrors,
 } = require("../exceptions/status-codes");
 const ServerErrorException = require("../exceptions/server-error");
 const bcrypt = require("bcrypt");
@@ -122,6 +123,16 @@ const updateUser = async (req, res) => {
     email,
     phone_number,
   });
+
+  if (updateData.phone_number) {
+    const phoneNumberPattern = /^\d{11}$/;
+    if (!updateData.phone_number.match(phoneNumberPattern)) {
+      throw new BadRequestException(
+        "Invalid phone number provided",
+        signupErrors.INVALID_PHONE_NUMBER_PATTERN
+      );
+    }
+  }
 
   // update user data without password
   if (!old_password && !new_password) {
