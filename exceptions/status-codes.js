@@ -5,6 +5,7 @@ const loginErrors = {
   USER_DOES_NOT_EXIST: "LG-1003",
   USER_INACTIVE: "LG-1004",
   USER_UNVERIFIED: "LG-1005",
+  PASSWORD_MISMATCH: "LG-1006",
 };
 
 const signupErrors = {

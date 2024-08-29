@@ -16,6 +16,7 @@ const {
   verificationErrors,
 } = require("../exceptions/status-codes");
 const verifyUserId = require("../functions/verifyUserId");
+const validatePassword = require("../functions/validatePassword");
 
 const prisma = new PrismaClient({ log: ["warn", "error"] });
 
@@ -143,6 +144,15 @@ const signup = async (req, res) => {
     );
   }
 
+  // Match password requirement
+  const passwordRequirementMatched = validatePassword(password);
+
+  if (!passwordRequirementMatched) {
+    throw new BadRequestException(
+      "Password must contain at least one uppercase letter, lowercase letter, number and special character.",
+      loginErrors.PASSWORD_MISMATCH
+    );
+  }
   const encryptedPassword = bcrypt.hashSync(password, 10);
 
   const newUser = await prisma.user.create({
