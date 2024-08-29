@@ -282,18 +282,9 @@ const verifyUserData = async (req, res) => {
 
 // Get user with email
 const getUserWithEmail = async (req, res) => {
-  const { email } = req.params;
+  const { email } = req.body;
 
-  const user = await prisma.user.findFirst({
-    where: { email },
-    select: { id: true, email: true }, // Exclude password
-  });
-
-  if (!user)
-    throw new UnauthorizedRequestException(
-      "User does not exist",
-      loginErrors.USER_DOES_NOT_EXIST
-    );
+  const user = await findUser({ email });
 
   const otp = await createOtp(user.id);
   sendotp(user.email, "Complete your Vettme account recovery", otp);

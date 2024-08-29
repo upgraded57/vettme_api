@@ -16,6 +16,7 @@ const jwt = require("jsonwebtoken");
 const UnauthorizedRequestException = require("../exceptions/unauthorized");
 const findUser = require("../functions/findUser");
 const validatePassword = require("../functions/validatePassword");
+const sendSupportMail = require("../functions/sendSupportMail");
 
 const prisma = new PrismaClient({
   log: ["warn", "error"],
@@ -202,4 +203,26 @@ const updateUser = async (req, res) => {
   }
 };
 
-module.exports = { getUser, deleteUser, updateUser };
+const reportProblem = async (req, res) => {
+  const { token } = req.headers;
+  const { statement, description } = req.body;
+  const images = req.files;
+
+  // Prepare the attachments array
+  const attachments = images.map((image) => ({
+    filename: image.originalname,
+    content: image.buffer,
+    contentType: image.mimetype,
+  }));
+
+  const user = await findUser({ token });
+
+  sendSupportMail(user.email, statement, description, attachments);
+
+  return res.status(200).json({
+    status: "success",
+    message: "Problem reported successfully.",
+  });
+};
+
+module.exports = { getUser, deleteUser, updateUser, reportProblem };
