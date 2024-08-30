@@ -4,6 +4,7 @@ require("dotenv").config({
 });
 const cors = require("cors");
 const rootRouter = require("./routes/index.js");
+const adminRouter = require("./admin/routes/index.js");
 const { ErrorHandler } = require("./middlewares/errors.js");
 
 // Initialize Application
@@ -54,6 +55,9 @@ app.use(express.json());
 
 // Hook root router
 app.use("/api/basic", rootRouter);
+
+// Hook admin route router
+app.use("/api/basic/admin", adminRouter);
 
 // Global error handler
 app.use(ErrorHandler);

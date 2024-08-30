@@ -100,6 +100,7 @@ const deleteUser = async (req, res) => {
   });
 };
 
+// Update user
 const updateUser = async (req, res) => {
   const { userId } = req.params;
   const { token } = req.headers;
@@ -236,4 +237,9 @@ const reportProblem = async (req, res) => {
   });
 };
 
-module.exports = { getUser, deleteUser, updateUser, reportProblem };
+module.exports = {
+  getUser,
+  deleteUser,
+  updateUser,
+  reportProblem,
+};
