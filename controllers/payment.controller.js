@@ -24,7 +24,7 @@ const createPayment = async (req, res) => {
       { email: user.email, amount: parseInt(amount) * 100 },
       {
         headers: {
-          Authorization: `Bearer ${process.env.PAYSTACK_TEST_SECRET_KEY}`,
+          Authorization: `Bearer ${process.env.PAYSTACK_LIVE_SECRET_KEY}`,
         },
       }
     );
@@ -89,7 +89,7 @@ const verifyPayment = async (req, res) => {
       `https://api.paystack.co/transaction/verify/${reference}`,
       {
         headers: {
-          Authorization: `Bearer ${process.env.PAYSTACK_TEST_SECRET_KEY}`,
+          Authorization: `Bearer ${process.env.PAYSTACK_LIVE_SECRET_KEY}`,
         },
       }
     );
