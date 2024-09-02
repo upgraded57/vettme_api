@@ -1,0 +1,255 @@
+GET /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4 304 779.184 ms - -
+Body: {}
+
+GET /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4 304 105.864 ms - -
+Body: {}
+
+GET /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4 304 102.426 ms - -
+Body: {}
+
+GET /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4 304 113.594 ms - -
+Body: {}
+
+GET /api/basic/vett 304 612.748 ms - -
+Body: {}
+
+GET /api/basic/notifications 304 1211.525 ms - -
+Body: {}
+
+GET /api/basic/vett 200 103.281 ms - 75
+Body: {}
+
+GET /api/basic/notifications 200 212.612 ms - 86
+Body: {}
+
+GET /api/basic/vett 200 104.173 ms - 75
+Body: {}
+
+GET /api/basic/notifications 200 212.804 ms - 86
+Body: {}
+
+GET /api/basic/vett 200 106.223 ms - 75
+Body: {}
+
+GET /api/basic/notifications 200 212.301 ms - 86
+Body: {}
+
+GET /api/basic/vett 200 813.649 ms - 75
+Body: {}
+
+GET /api/basic/notifications 200 1802.793 ms - 86
+Body: {}
+
+Date - 2024-09-02T14:13:46.995Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - 200 
+Response Time - 2322.280 ms - 86
+Headers: {"host":"localhost:8800","connection":"keep-alive","pragma":"no-cache","cache-control":"no-cache","accept":"application/json, text/plain, */*","user-agent":"Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1 Edg/128.0.0.0","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI5OTU0ODkxOS0xYThmLTQ5NzUtOGNmMy0wYzJmMzVmMDNhZTQiLCJpYXQiOjE3MjUyODYxNTIsImV4cCI6MTcyNTMwMDU1Mn0.9vc18FoWa12h5yNSr6DzhM3oVtq4QypzN8zgh-eKOS0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9"}
+Body: {}
+
+Date - 2024-09-02T14:13:47.147Z, 
+Method - GET 
+URL - /api/basic/vett 
+Response Status - 200 
+Response Time - 1003.918 ms - 75
+Headers: {"host":"localhost:8800","connection":"keep-alive","pragma":"no-cache","cache-control":"no-cache","accept":"application/json, text/plain, */*","user-agent":"Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1 Edg/128.0.0.0","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI5OTU0ODkxOS0xYThmLTQ5NzUtOGNmMy0wYzJmMzVmMDNhZTQiLCJpYXQiOjE3MjUyODYxNTIsImV4cCI6MTcyNTMwMDU1Mn0.9vc18FoWa12h5yNSr6DzhM3oVtq4QypzN8zgh-eKOS0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9"}
+Body: {}
+
+Date - 2024-09-02T14:13:49.867Z, 
+Method - GET 
+URL - /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4 
+Response Status - 200 
+Response Time - 243.210 ms - 421
+Headers: {"host":"localhost:8800","connection":"keep-alive","pragma":"no-cache","cache-control":"no-cache","accept":"application/json, text/plain, */*","user-agent":"Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1 Edg/128.0.0.0","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI5OTU0ODkxOS0xYThmLTQ5NzUtOGNmMy0wYzJmMzVmMDNhZTQiLCJpYXQiOjE3MjUyODYxNTIsImV4cCI6MTcyNTMwMDU1Mn0.9vc18FoWa12h5yNSr6DzhM3oVtq4QypzN8zgh-eKOS0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9"}
+Body: {}
+
+Date - 2024-09-02T14:13:50.120Z, 
+Method - GET 
+URL - /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4 
+Response Status - 200 
+Response Time - 212.986 ms - 421
+Headers: {"host":"localhost:8800","connection":"keep-alive","pragma":"no-cache","cache-control":"no-cache","accept":"application/json, text/plain, */*","user-agent":"Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1 Edg/128.0.0.0","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI5OTU0ODkxOS0xYThmLTQ5NzUtOGNmMy0wYzJmMzVmMDNhZTQiLCJpYXQiOjE3MjUyODYxNTIsImV4cCI6MTcyNTMwMDU1Mn0.9vc18FoWa12h5yNSr6DzhM3oVtq4QypzN8zgh-eKOS0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9"}
+Body: {}
+
+Date - 2024-09-02T14:13:50.458Z, 
+Method - GET 
+URL - /api/basic/vett 
+Response Status - 200 
+Response Time - 181.188 ms - 75
+Headers: {"host":"localhost:8800","connection":"keep-alive","pragma":"no-cache","cache-control":"no-cache","accept":"application/json, text/plain, */*","user-agent":"Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1 Edg/128.0.0.0","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI5OTU0ODkxOS0xYThmLTQ5NzUtOGNmMy0wYzJmMzVmMDNhZTQiLCJpYXQiOjE3MjUyODYxNTIsImV4cCI6MTcyNTMwMDU1Mn0.9vc18FoWa12h5yNSr6DzhM3oVtq4QypzN8zgh-eKOS0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9"}
+Body: {}
+
+Date - 2024-09-02T14:13:50.586Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - 200 
+Response Time - 311.132 ms - 86
+Headers: {"host":"localhost:8800","connection":"keep-alive","pragma":"no-cache","cache-control":"no-cache","accept":"application/json, text/plain, */*","user-agent":"Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1 Edg/128.0.0.0","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI5OTU0ODkxOS0xYThmLTQ5NzUtOGNmMy0wYzJmMzVmMDNhZTQiLCJpYXQiOjE3MjUyODYxNTIsImV4cCI6MTcyNTMwMDU1Mn0.9vc18FoWa12h5yNSr6DzhM3oVtq4QypzN8zgh-eKOS0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9"}
+Body: {}
+
+Date - 2024-09-02T14:13:50.588Z, 
+Method - GET 
+URL - /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4 
+Response Status - 200 
+Response Time - 959.006 ms - 421
+Headers: {"host":"localhost:8800","connection":"keep-alive","pragma":"no-cache","cache-control":"no-cache","accept":"application/json, text/plain, */*","user-agent":"Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1 Edg/128.0.0.0","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI5OTU0ODkxOS0xYThmLTQ5NzUtOGNmMy0wYzJmMzVmMDNhZTQiLCJpYXQiOjE3MjUyODYxNTIsImV4cCI6MTcyNTMwMDU1Mn0.9vc18FoWa12h5yNSr6DzhM3oVtq4QypzN8zgh-eKOS0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9"}
+Body: {}
+
+Date - 2024-09-02T14:13:50.821Z, 
+Method - GET 
+URL - /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4 
+Response Status - 200 
+Response Time - 912.573 ms - 421
+Headers: {"host":"localhost:8800","connection":"keep-alive","pragma":"no-cache","cache-control":"no-cache","accept":"application/json, text/plain, */*","user-agent":"Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1 Edg/128.0.0.0","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI5OTU0ODkxOS0xYThmLTQ5NzUtOGNmMy0wYzJmMzVmMDNhZTQiLCJpYXQiOjE3MjUyODYxNTIsImV4cCI6MTcyNTMwMDU1Mn0.9vc18FoWa12h5yNSr6DzhM3oVtq4QypzN8zgh-eKOS0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9"}
+Body: {}
+
+Date - 2024-09-02T14:13:51.562Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - 200 
+Response Time - 206.913 ms - 86
+Headers: {"host":"localhost:8800","connection":"keep-alive","pragma":"no-cache","cache-control":"no-cache","accept":"application/json, text/plain, */*","user-agent":"Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1 Edg/128.0.0.0","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI5OTU0ODkxOS0xYThmLTQ5NzUtOGNmMy0wYzJmMzVmMDNhZTQiLCJpYXQiOjE3MjUyODYxNTIsImV4cCI6MTcyNTMwMDU1Mn0.9vc18FoWa12h5yNSr6DzhM3oVtq4QypzN8zgh-eKOS0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9"}
+Body: {}
+
+Date - 2024-09-02T14:14:19.755Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - 200 
+Response Time - 1700.595 ms - 86
+Headers: {"host":"localhost:8800","connection":"keep-alive","pragma":"no-cache","cache-control":"no-cache","accept":"application/json, text/plain, */*","user-agent":"Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1 Edg/128.0.0.0","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI5OTU0ODkxOS0xYThmLTQ5NzUtOGNmMy0wYzJmMzVmMDNhZTQiLCJpYXQiOjE3MjUyODYxNTIsImV4cCI6MTcyNTMwMDU1Mn0.9vc18FoWa12h5yNSr6DzhM3oVtq4QypzN8zgh-eKOS0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9"}
+Body: {}
+
+Date - 2024-09-02T14:14:31.502Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - 200 
+Response Time - 208.099 ms - 86
+Headers: {"host":"localhost:8800","connection":"keep-alive","pragma":"no-cache","cache-control":"no-cache","accept":"application/json, text/plain, */*","user-agent":"Mozilla/5.0 (iPhone; CPU iPhone OS 16_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/16.6 Mobile/15E148 Safari/604.1 Edg/128.0.0.0","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI5OTU0ODkxOS0xYThmLTQ5NzUtOGNmMy0wYzJmMzVmMDNhZTQiLCJpYXQiOjE3MjUyODYxNTIsImV4cCI6MTcyNTMwMDU1Mn0.9vc18FoWa12h5yNSr6DzhM3oVtq4QypzN8zgh-eKOS0","origin":"http://localhost:5173","sec-fetch-site":"same-site","sec-fetch-mode":"cors","sec-fetch-dest":"empty","referer":"http://localhost:5173/","accept-encoding":"gzip, deflate, br, zstd","accept-language":"en-US,en;q=0.9"}
+Body: {}
+
+Date - 2024-09-02T14:16:36.467Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - 200 
+Response Time - 1430.851 ms - 86
+Request Body: {}
+Response Body - -
+Date - 2024-09-02T14:16:43.142Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - 200 
+Response Time - 288.271 ms - 86
+Request Body: {}
+Response Body - -
+Date - 2024-09-02T14:16:47.000Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - 200 
+Response Time - 221.747 ms - 86
+Request Body: {}
+Response Body - -
+Date - 2024-09-02T14:16:48.736Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - 200 
+Response Time - 259.897 ms - 86
+Request Body: {}
+Response Body - -
+Date - 2024-09-02T14:16:49.177Z, 
+Method - GET 
+URL - /api/basic/vett 
+Response Status - 200 
+Response Time - 698.521 ms - 75
+Request Body: {}
+Response Body - -
+Date - 2024-09-02T14:16:52.628Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - 200 
+Response Time - 529.024 ms - 86
+Request Body: {}
+Response Body - -
+Date - 2024-09-02T14:16:56.254Z, 
+Method - GET 
+URL - /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4 
+Response Status - 200 
+Response Time - 123.206 ms - 421
+Request Body: {}
+Response Body - -
+Date - 2024-09-02T14:16:56.404Z, 
+Method - GET 
+URL - /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4 
+Response Status - 200 
+Response Time - 119.292 ms - 421
+Request Body: {}
+Response Body - -
+Date - 2024-09-02T14:16:56.728Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - 200 
+Response Time - 228.554 ms - 86
+Request Body: {}
+Response Body - -
+Date - 2024-09-02T14:16:56.950Z, 
+Method - GET 
+URL - /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4 
+Response Status - 200 
+Response Time - 662.714 ms - 421
+Request Body: {}
+Response Body - -
+Date - 2024-09-02T14:16:57.234Z, 
+Method - GET 
+URL - /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4 
+Response Status - 200 
+Response Time - 1099.435 ms - 421
+Request Body: {}
+Response Body - -
+Date - 2024-09-02T14:17:17.232Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - - 
+Response Time - - ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-02T14:17:18.945Z, 
+Method - GET 
+URL - /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4 
+Response Status - 200 
+Response Time - 110.862 ms - 421
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-02T14:17:19.082Z, 
+Method - GET 
+URL - /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4 
+Response Status - 200 
+Response Time - 110.542 ms - 421
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-02T14:17:19.477Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - 200 
+Response Time - 291.426 ms - 86
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-02T14:17:20.000Z, 
+Method - GET 
+URL - /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4 
+Response Status - 200 
+Response Time - 1025.912 ms - 421
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-02T14:17:20.407Z, 
+Method - GET 
+URL - /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4 
+Response Status - 200 
+Response Time - 1573.268 ms - 421
+Request Body: {}
+Response Body - -
+

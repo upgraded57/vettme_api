@@ -6,6 +6,9 @@ const cors = require("cors");
 const rootRouter = require("./routes/index.js");
 const adminRouter = require("./admin/routes/index.js");
 const { ErrorHandler } = require("./middlewares/errors.js");
+const fs = require("fs");
+const path = require("path");
+const morgan = require("morgan");
 
 // Initialize Application
 const app = express();
@@ -52,6 +55,35 @@ app.use(
 
 // Allow application to parse request body
 app.use(express.json());
+
+// Ensure the logs directory exists
+const logDirectory = path.join(__dirname, "logs");
+fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
+
+// Create a write stream in append mode
+const logStream = fs.createWriteStream(path.join(__dirname, "log.txt"), {
+  flags: "a",
+});
+
+// Create a write stream (in append mode) for the log file
+const accessLogStream = fs.createWriteStream(
+  path.join(logDirectory, "log.txt"),
+  { flags: "a" }
+);
+
+// Define custom morgan tokens
+morgan.token("req-headers", (req) => JSON.stringify(req.headers));
+morgan.token("req-body", (req) => JSON.stringify(req.body));
+morgan.token("res-body", (req, res) => JSON.stringify(res.body)); // Optional, complex to implement
+morgan.token("date", () => {
+  return new Date().toISOString();
+});
+
+// Define custom morgan format including timestamp
+const customFormat = `Date - :date, \nMethod - :method \nURL - :url \nResponse Status - :status \nResponse Time - :response-time ms - :res[content-length]\nRequest Body: :req-body\nResponse Body - :res-body\n`;
+
+// Use morgan middleware with the custom format
+app.use(morgan(customFormat, { stream: accessLogStream }));
 
 // Hook root router
 app.use("/api/basic", rootRouter);

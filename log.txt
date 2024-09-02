@@ -1,0 +1,506 @@
+Endpoint - /api/basic/auth/login, 
+      
+ Time - function getDateToken (req, res, format) {
+  var date = new Date()
+
+  switch (format || 'web') {
+    case 'clf':
+      return clfdate(date)
+    case 'iso':
+      return date.toISOString()
+    case 'web':
+      return date.toUTCString()
+  }
+}
+      
+ Method - POST, 
+      
+ Time - 734.582, 
+      
+ Body - {"email":"shokunbiupgraded@gmail.com","password":"Payboi.10"} 
+      
+ Response - undefined
+Endpoint - /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4, 
+      
+ Time - function getDateToken (req, res, format) {
+  var date = new Date()
+
+  switch (format || 'web') {
+    case 'clf':
+      return clfdate(date)
+    case 'iso':
+      return date.toISOString()
+    case 'web':
+      return date.toUTCString()
+  }
+}
+      
+ Method - GET, 
+      
+ Time - 223.671, 
+      
+ Body - {} 
+      
+ Response - undefined
+Endpoint - /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4, 
+      
+ Time - function getDateToken (req, res, format) {
+  var date = new Date()
+
+  switch (format || 'web') {
+    case 'clf':
+      return clfdate(date)
+    case 'iso':
+      return date.toISOString()
+    case 'web':
+      return date.toUTCString()
+  }
+}
+      
+ Method - GET, 
+      
+ Time - 103.543, 
+      
+ Body - {} 
+      
+ Response - undefined
+Endpoint - /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4, 
+      
+ Time - function getDateToken (req, res, format) {
+  var date = new Date()
+
+  switch (format || 'web') {
+    case 'clf':
+      return clfdate(date)
+    case 'iso':
+      return date.toISOString()
+    case 'web':
+      return date.toUTCString()
+  }
+}
+      
+ Method - GET, 
+      
+ Time - 615.670, 
+      
+ Body - {} 
+      
+ Response - undefined
+Endpoint - /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4, 
+      
+ Time - function getDateToken (req, res, format) {
+  var date = new Date()
+
+  switch (format || 'web') {
+    case 'clf':
+      return clfdate(date)
+    case 'iso':
+      return date.toISOString()
+    case 'web':
+      return date.toUTCString()
+  }
+}
+      
+ Method - GET, 
+      
+ Time - 634.038, 
+      
+ Body - {} 
+      
+ Response - undefined
+Endpoint - /api/basic/vett, 
+      
+ Time - function getDateToken (req, res, format) {
+  var date = new Date()
+
+  switch (format || 'web') {
+    case 'clf':
+      return clfdate(date)
+    case 'iso':
+      return date.toISOString()
+    case 'web':
+      return date.toUTCString()
+  }
+}
+      
+ Method - GET, 
+      
+ Time - 626.162, 
+      
+ Body - {} 
+      
+ Response - undefined
+Endpoint - /api/basic/notifications, 
+      
+ Time - function getDateToken (req, res, format) {
+  var date = new Date()
+
+  switch (format || 'web') {
+    case 'clf':
+      return clfdate(date)
+    case 'iso':
+      return date.toISOString()
+    case 'web':
+      return date.toUTCString()
+  }
+}
+      
+ Method - GET, 
+      
+ Time - 719.781, 
+      
+ Body - {} 
+      
+ Response - undefined
+Endpoint - /api/basic/vett, 
+      
+ Time - function getDateToken (req, res, format) {
+  var date = new Date()
+
+  switch (format || 'web') {
+    case 'clf':
+      return clfdate(date)
+    case 'iso':
+      return date.toISOString()
+    case 'web':
+      return date.toUTCString()
+  }
+}
+      
+ Method - GET, 
+      
+ Time - 132.594, 
+      
+ Body - {} 
+      
+ Response - undefined
+Endpoint - /api/basic/notifications, 
+      
+ Time - function getDateToken (req, res, format) {
+  var date = new Date()
+
+  switch (format || 'web') {
+    case 'clf':
+      return clfdate(date)
+    case 'iso':
+      return date.toISOString()
+    case 'web':
+      return date.toUTCString()
+  }
+}
+      
+ Method - GET, 
+      
+ Time - 265.888, 
+      
+ Body - {} 
+      
+ Response - undefined
+Endpoint - /api/basic/vett, 
+      
+ Time - function getDateToken (req, res, format) {
+  var date = new Date()
+
+  switch (format || 'web') {
+    case 'clf':
+      return clfdate(date)
+    case 'iso':
+      return date.toISOString()
+    case 'web':
+      return date.toUTCString()
+  }
+}
+      
+ Method - GET, 
+      
+ Time - undefined, 
+      
+ Body - {} 
+      
+ Response - undefined
+Endpoint - /api/basic/notifications, 
+      
+ Time - function getDateToken (req, res, format) {
+  var date = new Date()
+
+  switch (format || 'web') {
+    case 'clf':
+      return clfdate(date)
+    case 'iso':
+      return date.toISOString()
+    case 'web':
+      return date.toUTCString()
+  }
+}
+      
+ Method - GET, 
+      
+ Time - undefined, 
+      
+ Body - {} 
+      
+ Response - undefined
+Endpoint - /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4, 
+      
+ Time - function getDateToken (req, res, format) {
+  var date = new Date()
+
+  switch (format || 'web') {
+    case 'clf':
+      return clfdate(date)
+    case 'iso':
+      return date.toISOString()
+    case 'web':
+      return date.toUTCString()
+  }
+}
+      
+ Method - GET, 
+      
+ Time - 126.753, 
+      
+ Body - {} 
+      
+ Response - undefined
+Endpoint - /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4, 
+      
+ Time - function getDateToken (req, res, format) {
+  var date = new Date()
+
+  switch (format || 'web') {
+    case 'clf':
+      return clfdate(date)
+    case 'iso':
+      return date.toISOString()
+    case 'web':
+      return date.toUTCString()
+  }
+}
+      
+ Method - GET, 
+      
+ Time - 126.661, 
+      
+ Body - {} 
+      
+ Response - undefined
+Endpoint - /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4, 
+      
+ Time - function getDateToken (req, res, format) {
+  var date = new Date()
+
+  switch (format || 'web') {
+    case 'clf':
+      return clfdate(date)
+    case 'iso':
+      return date.toISOString()
+    case 'web':
+      return date.toUTCString()
+  }
+}
+      
+ Method - GET, 
+      
+ Time - 119.059, 
+      
+ Body - {} 
+      
+ Response - undefined
+Endpoint - /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4, 
+      
+ Time - function getDateToken (req, res, format) {
+  var date = new Date()
+
+  switch (format || 'web') {
+    case 'clf':
+      return clfdate(date)
+    case 'iso':
+      return date.toISOString()
+    case 'web':
+      return date.toUTCString()
+  }
+}
+      
+ Method - GET, 
+      
+ Time - 118.463, 
+      
+ Body - {} 
+      
+ Response - undefined
+Endpoint - /api/basic/vett, 
+      
+ Time - function getDateToken (req, res, format) {
+  var date = new Date()
+
+  switch (format || 'web') {
+    case 'clf':
+      return clfdate(date)
+    case 'iso':
+      return date.toISOString()
+    case 'web':
+      return date.toUTCString()
+  }
+}
+      
+ Method - GET, 
+      
+ Time - 119.721, 
+      
+ Body - {} 
+      
+ Response - undefined
+Endpoint - /api/basic/notifications, 
+      
+ Time - function getDateToken (req, res, format) {
+  var date = new Date()
+
+  switch (format || 'web') {
+    case 'clf':
+      return clfdate(date)
+    case 'iso':
+      return date.toISOString()
+    case 'web':
+      return date.toUTCString()
+  }
+}
+      
+ Method - GET, 
+      
+ Time - 233.770, 
+      
+ Body - {} 
+      
+ Response - undefined
+Endpoint - /api/basic/vett, 
+      
+ Time - function getDateToken (req, res, format) {
+  var date = new Date()
+
+  switch (format || 'web') {
+    case 'clf':
+      return clfdate(date)
+    case 'iso':
+      return date.toISOString()
+    case 'web':
+      return date.toUTCString()
+  }
+}
+      
+ Method - GET, 
+      
+ Time - 223.758, 
+      
+ Body - {} 
+      
+ Response - undefined
+Endpoint - /api/basic/notifications, 
+      
+ Time - function getDateToken (req, res, format) {
+  var date = new Date()
+
+  switch (format || 'web') {
+    case 'clf':
+      return clfdate(date)
+    case 'iso':
+      return date.toISOString()
+    case 'web':
+      return date.toUTCString()
+  }
+}
+      
+ Method - GET, 
+      
+ Time - 445.625, 
+      
+ Body - {} 
+      
+ Response - undefined
+Endpoint - /api/basic/vett, 
+      
+ Time - function getDateToken (req, res, format) {
+  var date = new Date()
+
+  switch (format || 'web') {
+    case 'clf':
+      return clfdate(date)
+    case 'iso':
+      return date.toISOString()
+    case 'web':
+      return date.toUTCString()
+  }
+}
+      
+ Method - GET, 
+      
+ Time - 115.293, 
+      
+ Body - {} 
+      
+ Response - undefined
+Endpoint - /api/basic/notifications, 
+      
+ Time - function getDateToken (req, res, format) {
+  var date = new Date()
+
+  switch (format || 'web') {
+    case 'clf':
+      return clfdate(date)
+    case 'iso':
+      return date.toISOString()
+    case 'web':
+      return date.toUTCString()
+  }
+}
+      
+ Method - GET, 
+      
+ Time - 221.319, 
+      
+ Body - {} 
+      
+ Response - undefined
+Endpoint - /api/basic/notifications, 
+      
+ Time - function getDateToken (req, res, format) {
+  var date = new Date()
+
+  switch (format || 'web') {
+    case 'clf':
+      return clfdate(date)
+    case 'iso':
+      return date.toISOString()
+    case 'web':
+      return date.toUTCString()
+  }
+}
+      
+ Method - GET, 
+      
+ Time - 226.427, 
+      
+ Body - {} 
+      
+ Response - undefined
+Endpoint - /api/basic/notifications, 
+      
+ Time - function getDateToken (req, res, format) {
+  var date = new Date()
+
+  switch (format || 'web') {
+    case 'clf':
+      return clfdate(date)
+    case 'iso':
+      return date.toISOString()
+    case 'web':
+      return date.toUTCString()
+  }
+}
+      
+ Method - GET, 
+      
+ Time - 217.735, 
+      
+ Body - {} 
+      
+ Response - undefined
