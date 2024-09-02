@@ -3,9 +3,9 @@ require("dotenv").config({
   path: "../.env",
 });
 
-const baseUrl = process.env.DOJAH_SANDBOX_URL;
+const baseUrl = process.env.DOJAH_PROD_URL;
 const AppId = process.env.DOJAH_APP_ID;
-const APIKey = process.env.DOJAH_TEST_KEY;
+const APIKey = process.env.DOJAH_PROD_KEY;
 
 const axiosInstance = axios.create({
   baseURL: baseUrl,

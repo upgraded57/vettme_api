@@ -44,7 +44,7 @@ const createPayment = async (req, res) => {
 };
 
 const paymentStatus = async (req, res) => {
-  const secret = process.env.PAYSTACK_TEST_SECRET_KEY;
+  const secret = process.env.PAYSTACK_LIVE_SECRET_KEY;
   const hash = crypto
     .createHmac("sha512", secret)
     .update(JSON.stringify(req.body))
@@ -62,9 +62,10 @@ const paymentStatus = async (req, res) => {
       const user = await prisma.user.findUnique({
         where: { email: event.data.customer.email },
       });
+      const verificationCost = (event.data.amount / 100) * 300;
       await prisma.user.update({
         where: { email: user.email },
-        data: { balance: user.balance + event.data.amount / 100 },
+        data: { balance: user.balance + verificationCost },
       });
     } catch (error) {
       console.log("Account topup error", error);
