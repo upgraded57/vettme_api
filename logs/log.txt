@@ -253,3 +253,443 @@ Response Time - 1573.268 ms - 421
 Request Body: {}
 Response Body - -
 
+Date - 2024-09-04T08:58:36.003Z, 
+Method - POST 
+URL - /api/basic/auth/login 
+Response Status - 200 
+Response Time - 821.937 ms - 567
+Request Body: {"email":"shokunbiupgraded@gmail.com","password":"Payboi.10"}
+Response Body - -
+
+Date - 2024-09-04T08:58:36.293Z, 
+Method - GET 
+URL - /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4 
+Response Status - 200 
+Response Time - 213.984 ms - 421
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T08:58:36.424Z, 
+Method - GET 
+URL - /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4 
+Response Status - 200 
+Response Time - 119.170 ms - 421
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T08:58:36.698Z, 
+Method - GET 
+URL - /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4 
+Response Status - 200 
+Response Time - 622.403 ms - 421
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T08:58:36.925Z, 
+Method - GET 
+URL - /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4 
+Response Status - 200 
+Response Time - 616.717 ms - 421
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T08:58:37.130Z, 
+Method - GET 
+URL - /api/basic/vett 
+Response Status - 200 
+Response Time - 611.574 ms - 75
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T08:58:37.218Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - 200 
+Response Time - 716.077 ms - 86
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T08:58:56.885Z, 
+Method - GET 
+URL - /api/basic/vett 
+Response Status - 200 
+Response Time - 278.591 ms - 75
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T08:58:57.085Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - 200 
+Response Time - 470.357 ms - 86
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T08:58:58.714Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - 200 
+Response Time - 206.075 ms - 86
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T08:58:59.662Z, 
+Method - GET 
+URL - /api/basic/vett 
+Response Status - 200 
+Response Time - 102.034 ms - 75
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T08:58:59.764Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - 200 
+Response Time - 210.975 ms - 86
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T08:59:57.121Z, 
+Method - GET 
+URL - /api/basic/vett 
+Response Status - 200 
+Response Time - 314.519 ms - 75
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T08:59:57.416Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - 200 
+Response Time - 608.452 ms - 86
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T09:01:09.615Z, 
+Method - GET 
+URL - /api/basic/vett 
+Response Status - 200 
+Response Time - 219.018 ms - 75
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T09:01:09.840Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - 200 
+Response Time - 445.314 ms - 86
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T09:01:11.169Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - 200 
+Response Time - 214.622 ms - 86
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T09:01:19.330Z, 
+Method - GET 
+URL - /api/basic/vett 
+Response Status - 200 
+Response Time - 100.543 ms - 75
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T09:01:19.443Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - 200 
+Response Time - 211.869 ms - 86
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T09:01:21.187Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - 200 
+Response Time - 224.654 ms - 86
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T09:01:22.483Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - 200 
+Response Time - 225.029 ms - 86
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T09:01:23.455Z, 
+Method - GET 
+URL - /api/basic/payment 
+Response Status - 200 
+Response Time - 1198.492 ms - 87
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T09:01:24.275Z, 
+Method - GET 
+URL - /api/basic/vett 
+Response Status - 200 
+Response Time - 110.114 ms - 75
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T09:01:24.387Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - 200 
+Response Time - 224.299 ms - 86
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T09:01:26.702Z, 
+Method - GET 
+URL - /api/basic/vett 
+Response Status - 200 
+Response Time - 219.781 ms - 75
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T09:01:26.810Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - 200 
+Response Time - 330.033 ms - 86
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T09:01:31.960Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - 200 
+Response Time - 206.449 ms - 86
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T09:01:32.101Z, 
+Method - GET 
+URL - /api/basic/payment 
+Response Status - 200 
+Response Time - 342.569 ms - 87
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T09:02:04.369Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - 200 
+Response Time - 433.535 ms - 86
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T09:02:04.372Z, 
+Method - GET 
+URL - /api/basic/payment 
+Response Status - 200 
+Response Time - 435.296 ms - 87
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T09:04:10.637Z, 
+Method - POST 
+URL - /api/basic/payment/topup 
+Response Status - 400 
+Response Time - 26.192 ms - 69
+Request Body: {"amount":null}
+Response Body - -
+
+Date - 2024-09-04T09:05:07.095Z, 
+Method - POST 
+URL - /api/basic/payment/topup 
+Response Status - 400 
+Response Time - 7.020 ms - 69
+Request Body: {"amount":null}
+Response Body - -
+
+Date - 2024-09-04T09:05:09.640Z, 
+Method - POST 
+URL - /api/basic/payment/topup 
+Response Status - 400 
+Response Time - 13.364 ms - 69
+Request Body: {"amount":null}
+Response Body - -
+
+Date - 2024-09-04T09:09:29.448Z, 
+Method - POST 
+URL - /api/basic/payment/topup 
+Response Status - 200 
+Response Time - 2146.441 ms - 207
+Request Body: {"amount":214}
+Response Body - -
+
+Date - 2024-09-04T09:09:38.534Z, 
+Method - GET 
+URL - /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4 
+Response Status - 200 
+Response Time - 120.301 ms - 421
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T09:09:38.728Z, 
+Method - GET 
+URL - /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4 
+Response Status - 200 
+Response Time - 150.207 ms - 421
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T09:09:39.152Z, 
+Method - GET 
+URL - /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4 
+Response Status - 200 
+Response Time - 735.601 ms - 421
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T09:09:39.253Z, 
+Method - GET 
+URL - /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4 
+Response Status - 200 
+Response Time - 671.733 ms - 421
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T09:09:44.165Z, 
+Method - GET 
+URL - /api/basic/payment 
+Response Status - 200 
+Response Time - 713.364 ms - 87
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T09:09:44.167Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - 200 
+Response Time - 722.064 ms - 86
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T09:10:44.349Z, 
+Method - GET 
+URL - /api/basic/payment 
+Response Status - 200 
+Response Time - 574.164 ms - 87
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T09:10:44.352Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - 200 
+Response Time - 579.697 ms - 86
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T09:10:45.274Z, 
+Method - GET 
+URL - /api/basic/vett 
+Response Status - 200 
+Response Time - 1391.443 ms - 75
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T09:10:59.091Z, 
+Method - GET 
+URL - /api/basic/vett 
+Response Status - 200 
+Response Time - 125.055 ms - 75
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T09:10:59.432Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - 200 
+Response Time - 467.072 ms - 86
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T09:11:32.545Z, 
+Method - GET 
+URL - /api/basic/vett 
+Response Status - 200 
+Response Time - 207.590 ms - 75
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T09:11:32.768Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - 200 
+Response Time - 430.186 ms - 86
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T09:11:56.304Z, 
+Method - GET 
+URL - /api/basic/vett 
+Response Status - 200 
+Response Time - 448.647 ms - 75
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T09:11:56.847Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - 200 
+Response Time - 989.392 ms - 86
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T09:12:29.114Z, 
+Method - GET 
+URL - /api/basic/vett 
+Response Status - 200 
+Response Time - 224.620 ms - 75
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T09:12:29.333Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - 200 
+Response Time - 445.174 ms - 86
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T09:42:13.232Z, 
+Method - GET 
+URL - /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4 
+Response Status - 200 
+Response Time - 663.819 ms - 421
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T09:42:13.666Z, 
+Method - GET 
+URL - /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4 
+Response Status - 200 
+Response Time - 357.131 ms - 421
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T09:42:13.667Z, 
+Method - GET 
+URL - /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4 
+Response Status - 200 
+Response Time - 1102.482 ms - 421
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-04T09:42:14.690Z, 
+Method - GET 
+URL - /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4 
+Response Status - 200 
+Response Time - 1404.949 ms - 421
+Request Body: {}
+Response Body - -
+
