@@ -62,7 +62,7 @@ const paymentStatus = async (req, res) => {
       const user = await prisma.user.findUnique({
         where: { email: event.data.customer.email },
       });
-      const verificationCost = (event.data.amount / 100) * 300;
+      const verificationCost = event.data.amount / 100;
       await prisma.user.update({
         where: { email: user.email },
         data: { balance: user.balance + verificationCost },

@@ -693,3 +693,91 @@ Response Time - 1404.949 ms - 421
 Request Body: {}
 Response Body - -
 
+Date - 2024-09-05T12:29:31.439Z, 
+Method - POST 
+URL - /api/basic/auth/login 
+Response Status - 200 
+Response Time - 1655.435 ms - 569
+Request Body: {"email":"shokunbiupgraded@gmail.com","password":"Payboi.10"}
+Response Body - -
+
+Date - 2024-09-05T12:29:32.155Z, 
+Method - GET 
+URL - /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4 
+Response Status - 200 
+Response Time - 619.541 ms - 423
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-05T12:29:32.408Z, 
+Method - GET 
+URL - /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4 
+Response Status - 200 
+Response Time - 235.540 ms - 423
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-05T12:29:33.111Z, 
+Method - GET 
+URL - /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4 
+Response Status - 200 
+Response Time - 1591.745 ms - 423
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-05T12:29:33.853Z, 
+Method - GET 
+URL - /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4 
+Response Status - 200 
+Response Time - 1672.988 ms - 423
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-05T12:29:34.324Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - 200 
+Response Time - 1705.299 ms - 86
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-05T12:29:34.656Z, 
+Method - GET 
+URL - /api/basic/vett 
+Response Status - 200 
+Response Time - 2026.466 ms - 44075
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-05T12:29:38.337Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - 200 
+Response Time - 453.000 ms - 86
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-05T12:30:14.690Z, 
+Method - PATCH 
+URL - /api/basic/user/99548919-1a8f-4975-8cf3-0c2f35f03ae4 
+Response Status - 200 
+Response Time - 3291.461 ms - 369
+Request Body: {"email":"shokunbiupgraded@gmail.com","phone":"09027538937"}
+Response Body - -
+
+Date - 2024-09-05T12:30:15.569Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - 200 
+Response Time - 800.770 ms - 86
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-05T12:30:21.868Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - 200 
+Response Time - 491.207 ms - 86
+Request Body: {}
+Response Body - -
+
