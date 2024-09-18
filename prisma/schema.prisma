@@ -13,7 +13,7 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -70,7 +70,7 @@ model otp {
 model Notification {
   id           String     @id @default(uuid())
   subject      String
-  description  String     @db.LongText
+  description  String
   status       String     @default("unread")  // "unread" or "read"
   isGeneral    Boolean    @default(false)     // To distinguish between general and targeted notifications
   createdAt    DateTime   @default(now())
