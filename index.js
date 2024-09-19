@@ -85,6 +85,11 @@ const customFormat = `Date - :date, \nMethod - :method \nURL - :url \nResponse S
 // Use morgan middleware with the custom format
 app.use(morgan(customFormat, { stream: accessLogStream }));
 
+// Base route
+app.get("/", (req, res) => {
+  res.status(200).send("App is running correctly");
+});
+
 // Hook root router
 app.use("/api/basic", rootRouter);
 
