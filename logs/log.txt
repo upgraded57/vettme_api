@@ -781,3 +781,19 @@ Response Time - 491.207 ms - 86
 Request Body: {}
 Response Body - -
 
+Date - 2024-09-20T11:03:51.817Z, 
+Method - GET 
+URL - /test 
+Response Status - 200 
+Response Time - 23.504 ms - 8
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-20T11:06:44.303Z, 
+Method - GET 
+URL - /test 
+Response Status - 200 
+Response Time - 17.637 ms - 8
+Request Body: {}
+Response Body - -
+
