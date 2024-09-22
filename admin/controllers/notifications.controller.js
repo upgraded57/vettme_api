@@ -10,6 +10,25 @@ const prisma = new PrismaClient({
   log: ["warn", "error"],
 });
 
+// Get all notifications
+const getNotifications = async (req, res) => {
+  try {
+    const notifications = await prisma.notification.findMany();
+
+    return res.status(200).json({
+      status: "success",
+      message: "Notifications fetched successfully",
+      notifications,
+    });
+  } catch (error) {
+    throw new ServerErrorException(
+      "Unable to fetch notifications",
+      null,
+      error
+    );
+  }
+};
+
 // Create General Notification
 const createGeneralNotification = async (req, res) => {
   const { subject, description } = req.body;
@@ -29,7 +48,7 @@ const createGeneralNotification = async (req, res) => {
       },
     });
 
-    res.status(201).json({
+    return res.status(201).json({
       status: "success",
       message: "General notification created successfully",
       notification: createdNotification,
@@ -83,4 +102,31 @@ const createTargetedNotification = async (req, res) => {
   }
 };
 
-module.exports = { createGeneralNotification, createTargetedNotification };
+// Delete Notification
+const deleteNotification = async (req, res) => {
+  const { notificationId } = req.params;
+
+  if (!notificationId) {
+    throw new BadRequestException("Notification Id not provided", null);
+  }
+
+  try {
+    await prisma.notification.findUnique({
+      where: { id: notificationId },
+    });
+
+    return res.status(200).json({
+      status: "success",
+      message: "Notification deleted succeesfully",
+    });
+  } catch (err) {
+    throw new ServerErrorException("Unable to delete notification", null, err);
+  }
+};
+
+module.exports = {
+  createGeneralNotification,
+  createTargetedNotification,
+  getNotifications,
+  deleteNotification,
+};

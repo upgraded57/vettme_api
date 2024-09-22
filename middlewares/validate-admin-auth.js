@@ -21,7 +21,6 @@ const validateAdminAuth = async (req, res, next) => {
 
   // Check if user auth token is expired.
   if (Date.now() >= tokenData.exp * 1000) {
-    // Issue a new token
     return next(
       new UnauthorizedRequestException(
         "Session expired. Please login again",
@@ -31,7 +30,7 @@ const validateAdminAuth = async (req, res, next) => {
   }
 
   // Check if user is an admin.
-  if (!tokenData.role !== "admin") {
+  if (tokenData.role !== "admin") {
     // Issue a new token
     return next(
       new UnauthorizedRequestException(

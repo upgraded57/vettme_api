@@ -797,3 +797,283 @@ Response Time - 17.637 ms - 8
 Request Body: {}
 Response Body - -
 
+Date - 2024-09-22T16:18:13.452Z, 
+Method - GET 
+URL - /api/basicadmin/users 
+Response Status - 404 
+Response Time - 4.165 ms - 159
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-22T16:18:19.996Z, 
+Method - GET 
+URL - /api/basic/admin/users 
+Response Status - 200 
+Response Time - 1466.654 ms - 811
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-22T16:19:05.600Z, 
+Method - GET 
+URL - /api/basic/admin/notifications 
+Response Status - 200 
+Response Time - 1.363 ms - 11
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-22T16:21:23.565Z, 
+Method - GET 
+URL - /api/basic/admin/notifications 
+Response Status - 200 
+Response Time - 2.993 ms - 11
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-22T16:21:25.055Z, 
+Method - GET 
+URL - /api/basic/admin/notifications 
+Response Status - 200 
+Response Time - 1.225 ms - 11
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-22T16:22:10.770Z, 
+Method - GET 
+URL - /api/basic/admin/notifications 
+Response Status - 200 
+Response Time - 1458.676 ms - 86
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-22T16:45:58.427Z, 
+Method - GET 
+URL - /api/basic/admin/verifications 
+Response Status - 200 
+Response Time - 1419.462 ms - 811
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-22T16:46:58.246Z, 
+Method - GET 
+URL - /api/basic/admin/verifications 
+Response Status - 200 
+Response Time - 1668.615 ms - 40347
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-22T16:50:29.079Z, 
+Method - GET 
+URL - /api/basic/admin/users 
+Response Status - 403 
+Response Time - 7.935 ms - 89
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-22T16:54:44.472Z, 
+Method - GET 
+URL - /api/basic/admin/auth/login 
+Response Status - 404 
+Response Time - 3.648 ms - 165
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-22T16:54:50.125Z, 
+Method - POST 
+URL - /api/basic/admin/auth/login 
+Response Status - 200 
+Response Time - 2.977 ms - 10
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-22T17:00:08.580Z, 
+Method - POST 
+URL - /api/basic/admin/auth/login 
+Response Status - 200 
+Response Time - 3.745 ms - 10
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-22T17:00:09.482Z, 
+Method - POST 
+URL - /api/basic/admin/auth/login 
+Response Status - 200 
+Response Time - 4.078 ms - 10
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-22T17:00:10.119Z, 
+Method - POST 
+URL - /api/basic/admin/auth/login 
+Response Status - 200 
+Response Time - 0.389 ms - 10
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-22T17:00:21.331Z, 
+Method - POST 
+URL - /api/basic/admin/auth/login 
+Response Status - 400 
+Response Time - 57.880 ms - 77
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-22T17:00:44.977Z, 
+Method - POST 
+URL - /api/basic/admin/auth/login 
+Response Status - 400 
+Response Time - 4.974 ms - 72
+Request Body: {"email":"support@vettme.ng","password":"support@vettme2024"}
+Response Body - -
+
+Date - 2024-09-22T17:00:47.903Z, 
+Method - POST 
+URL - /api/basic/admin/auth/login 
+Response Status - 400 
+Response Time - 5.971 ms - 72
+Request Body: {"email":"support@vettme.ng","password":"dev@vettme2024"}
+Response Body - -
+
+Date - 2024-09-22T17:00:52.029Z, 
+Method - POST 
+URL - /api/basic/admin/auth/login 
+Response Status - 400 
+Response Time - 5.489 ms - 72
+Request Body: {"email":"support@vettme.ng","password":"dev@vettme2024"}
+Response Body - -
+
+Date - 2024-09-22T17:01:23.561Z, 
+Method - POST 
+URL - /api/basic/admin/auth/login 
+Response Status - 400 
+Response Time - 22.926 ms - 72
+Request Body: {"email":"support@vettme.ng","password":"dev@vettme2024"}
+Response Body - -
+
+Date - 2024-09-22T17:01:58.989Z, 
+Method - POST 
+URL - /api/basic/admin/auth/login 
+Response Status - 200 
+Response Time - 7.220 ms - 57
+Request Body: {"email":"support@vettme.ng","password":"dev@vettme2024"}
+Response Body - -
+
+Date - 2024-09-22T17:02:03.628Z, 
+Method - POST 
+URL - /api/basic/admin/auth/login 
+Response Status - 200 
+Response Time - 5.278 ms - 57
+Request Body: {"email":"support@vettme.ng","password":"dev@vettme2024"}
+Response Body - -
+
+Date - 2024-09-22T17:03:21.858Z, 
+Method - POST 
+URL - /api/basic/admin/auth/login 
+Response Status - 200 
+Response Time - 88.416 ms - 103
+Request Body: {"email":"support@vettme.ng","password":"dev@vettme2024"}
+Response Body - -
+
+Date - 2024-09-22T17:03:59.280Z, 
+Method - POST 
+URL - /api/basic/admin/auth/login 
+Response Status - 400 
+Response Time - 20.573 ms - 72
+Request Body: {"email":"support@vettme.ng","password":"dev@vettme2024"}
+Response Body - -
+
+Date - 2024-09-22T17:04:17.226Z, 
+Method - POST 
+URL - /api/basic/admin/auth/login 
+Response Status - 400 
+Response Time - 23.925 ms - 72
+Request Body: {"email":"support@vettme.ng","password":"dev@vettme2024"}
+Response Body - -
+
+Date - 2024-09-22T17:05:28.533Z, 
+Method - POST 
+URL - /api/basic/admin/auth/login 
+Response Status - 400 
+Response Time - 55.029 ms - 72
+Request Body: {"email":"support@vettme.ng","password":"dev@vettme2024"}
+Response Body - -
+
+Date - 2024-09-22T17:05:29.564Z, 
+Method - POST 
+URL - /api/basic/admin/auth/login 
+Response Status - 400 
+Response Time - 8.864 ms - 72
+Request Body: {"email":"support@vettme.ng","password":"dev@vettme2024"}
+Response Body - -
+
+Date - 2024-09-22T17:05:30.898Z, 
+Method - POST 
+URL - /api/basic/admin/auth/login 
+Response Status - 400 
+Response Time - 32.989 ms - 72
+Request Body: {"email":"support@vettme.ng","password":"dev@vettme2024"}
+Response Body - -
+
+Date - 2024-09-22T17:05:56.029Z, 
+Method - POST 
+URL - /api/basic/admin/auth/login 
+Response Status - 200 
+Response Time - 123.164 ms - 214
+Request Body: {"email":"support@vettme.ng","password":"dev@vettme2024"}
+Response Body - -
+
+Date - 2024-09-22T17:05:58.793Z, 
+Method - POST 
+URL - /api/basic/admin/auth/login 
+Response Status - 200 
+Response Time - 151.581 ms - 214
+Request Body: {"email":"support@vettme.ng","password":"dev@vettme2024"}
+Response Body - -
+
+Date - 2024-09-22T17:06:10.355Z, 
+Method - POST 
+URL - /api/basic/admin/auth/login 
+Response Status - 200 
+Response Time - 132.876 ms - 214
+Request Body: {"email":"support@vettme.ng","password":"dev@vettme2024"}
+Response Body - -
+
+Date - 2024-09-22T17:06:22.731Z, 
+Method - POST 
+URL - /api/basic/admin/auth/login 
+Response Status - 200 
+Response Time - 117.757 ms - 214
+Request Body: {"email":"support@vettme.ng","password":"dev@vettme2024"}
+Response Body - -
+
+Date - 2024-09-22T17:06:45.240Z, 
+Method - GET 
+URL - /api/basic/admin/users 
+Response Status - 403 
+Response Time - 4.784 ms - 89
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-22T17:06:49.450Z, 
+Method - GET 
+URL - /api/basic/admin/users 
+Response Status - 403 
+Response Time - 1.588 ms - 107
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-22T17:06:52.186Z, 
+Method - GET 
+URL - /api/basic/admin/users 
+Response Status - 403 
+Response Time - 1.122 ms - 107
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-22T17:07:24.722Z, 
+Method - GET 
+URL - /api/basic/admin/users 
+Response Status - 403 
+Response Time - 39.271 ms - 107
+Request Body: {}
+Response Body - -
+

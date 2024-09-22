@@ -3,23 +3,22 @@ const validateAdminAuth = require("../../middlewares/validate-admin-auth");
 const {
   createGeneralNotification,
   createTargetedNotification,
+  getNotifications,
 } = require("../controllers/notifications.controller");
 
 const router = require("express").Router();
 
-router.get("/", (req, res) => {
-  res.send("API working");
-});
+router.get("/", validateAdminAuth, globalErrorCatcher(getNotifications));
 
 router.post(
   "/general",
-  // validateAdminAuth,
+  validateAdminAuth,
   globalErrorCatcher(createGeneralNotification)
 );
 
-router.post(
-  "/user/:userId",
-  // validateAdminAuth,
+router.delete(
+  "/:notificationId",
+  validateAdminAuth,
   globalErrorCatcher(createTargetedNotification)
 );
 
