@@ -6,11 +6,19 @@ const prisma = new PrismaClient({ log: ["warn", "error"] });
 // Get verifications history
 const getVerifications = async (req, res) => {
   try {
-    const results = await prisma.verification.findMany();
+    const results = await prisma.verification.findMany({
+      include: {
+        user: {
+          select: {
+            name: true,
+          },
+        },
+      },
+    });
     return res.status(200).json({
       status: "success",
       message: "User verifications history found",
-      data: results,
+      verifications: results,
     });
   } catch (err) {
     throw new ServerErrorException("Cannot get verifications", null, err);

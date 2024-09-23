@@ -13,7 +13,16 @@ const prisma = new PrismaClient({
 // Get all notifications
 const getNotifications = async (req, res) => {
   try {
-    const notifications = await prisma.notification.findMany();
+    const notifications = await prisma.notification.findMany({
+      include: {
+        user: {
+          select: {
+            name: true,
+            email: true,
+          },
+        },
+      },
+    });
 
     return res.status(200).json({
       status: "success",
@@ -64,8 +73,7 @@ const createGeneralNotification = async (req, res) => {
 
 // Create Target Notification
 const createTargetedNotification = async (req, res) => {
-  const { subject, description } = req.body;
-  const { userId } = req.params;
+  const { subject, description, userId } = req.body;
 
   if (!subject || !description || !userId)
     throw new BadRequestException(
@@ -105,13 +113,14 @@ const createTargetedNotification = async (req, res) => {
 // Delete Notification
 const deleteNotification = async (req, res) => {
   const { notificationId } = req.params;
+  console.log(notificationId);
 
   if (!notificationId) {
     throw new BadRequestException("Notification Id not provided", null);
   }
 
   try {
-    await prisma.notification.findUnique({
+    await prisma.notification.delete({
       where: { id: notificationId },
     });
 

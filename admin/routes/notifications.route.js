@@ -4,6 +4,7 @@ const {
   createGeneralNotification,
   createTargetedNotification,
   getNotifications,
+  deleteNotification,
 } = require("../controllers/notifications.controller");
 
 const router = require("express").Router();
@@ -16,10 +17,16 @@ router.post(
   globalErrorCatcher(createGeneralNotification)
 );
 
+router.post(
+  "/target",
+  validateAdminAuth,
+  globalErrorCatcher(createTargetedNotification)
+);
+
 router.delete(
   "/:notificationId",
   validateAdminAuth,
-  globalErrorCatcher(createTargetedNotification)
+  globalErrorCatcher(deleteNotification)
 );
 
 module.exports = router;
