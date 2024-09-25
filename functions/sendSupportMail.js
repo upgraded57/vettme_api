@@ -5,7 +5,7 @@ require("dotenv").config({
 
 const sendSupportMail = (userEmail, statement, description, attachments) => {
   const transporter = nodemailer.createTransport({
-    host: "mail.vettme.ng",
+    host: "wghp3.wghservers.com",
     port: 465,
     secure: true,
     requireTLS: true,

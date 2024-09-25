@@ -5,7 +5,7 @@ require("dotenv").config({
 
 const sendotp = (recipient, subject, otp) => {
   const transporter = nodemailer.createTransport({
-    host: "mail.vettme.ng",
+    host: "wghp3.wghservers.com",
     port: 465,
     secure: true,
     requireTLS: true,
