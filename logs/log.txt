@@ -4933,3 +4933,115 @@ Response Time - 45.574 ms - 89
 Request Body: {}
 Response Body - -
 
+Date - 2024-09-27T09:42:00.761Z, 
+Method - POST 
+URL - /api/basic/auth/login 
+Response Status - 403 
+Response Time - 1826.292 ms - 69
+Request Body: {"email":"Shokunbiupgraded@gmail.com","password":"Payboi.10"}
+Response Body - -
+
+Date - 2024-09-27T09:42:27.205Z, 
+Method - POST 
+URL - /api/basic/auth/signup 
+Response Status - 400 
+Response Time - 1702.486 ms - 80
+Request Body: {"full_name":"Shokunbi Micheal","nin":"13141451661","email":"shokunbiupgraded@gmail.com","phone_number":"09027538937","password":"Payboi.10","confirm_password":"Payboi.10"}
+Response Body - -
+
+Date - 2024-09-27T09:42:37.956Z, 
+Method - POST 
+URL - /api/basic/auth/login 
+Response Status - 403 
+Response Time - 486.896 ms - 69
+Request Body: {"email":"Shokunbiupgraded@gmail.com","password":"Payboi.10"}
+Response Body - -
+
+Date - 2024-09-27T09:42:40.571Z, 
+Method - POST 
+URL - /api/basic/auth/login 
+Response Status - 200 
+Response Time - 603.989 ms - 567
+Request Body: {"email":"shokunbiupgraded@gmail.com","password":"Payboi.10"}
+Response Body - -
+
+Date - 2024-09-27T09:42:41.078Z, 
+Method - GET 
+URL - /api/basic/user/5e2a5381-e522-4867-9ffd-fa9200c0f33e 
+Response Status - 200 
+Response Time - 422.464 ms - 421
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-27T09:42:41.424Z, 
+Method - GET 
+URL - /api/basic/user/5e2a5381-e522-4867-9ffd-fa9200c0f33e 
+Response Status - 304 
+Response Time - 327.019 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-27T09:42:41.673Z, 
+Method - GET 
+URL - /api/basic/user/5e2a5381-e522-4867-9ffd-fa9200c0f33e 
+Response Status - 304 
+Response Time - 232.286 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-27T09:42:41.924Z, 
+Method - GET 
+URL - /api/basic/user/5e2a5381-e522-4867-9ffd-fa9200c0f33e 
+Response Status - 304 
+Response Time - 237.472 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-27T09:42:43.472Z, 
+Method - GET 
+URL - /api/basic/vett 
+Response Status - 200 
+Response Time - 1680.748 ms - 75
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-27T09:42:44.992Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - 200 
+Response Time - 3203.050 ms - 933
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-27T09:42:47.354Z, 
+Method - GET 
+URL - /api/basic/vett 
+Response Status - 304 
+Response Time - 263.769 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-27T09:42:47.677Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - 304 
+Response Time - 576.404 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-27T10:03:36.758Z, 
+Method - GET 
+URL - /api/basic/vett 
+Response Status - - 
+Response Time - - ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-09-27T10:03:36.759Z, 
+Method - GET 
+URL - /api/basic/notifications 
+Response Status - - 
+Response Time - - ms - -
+Request Body: {}
+Response Body - -
+

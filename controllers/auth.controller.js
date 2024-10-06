@@ -91,7 +91,7 @@ const signup = async (req, res) => {
 
   validateRequiredFields([
     { name: "Full Name", value: full_name },
-    { name: "Email", value: email },
+    { name: "Email", value: email.toLowerCase() },
     { name: "Phone Number", value: phone_number },
     { name: "Password", value: password },
     { name: "NIN", value: nin },
@@ -158,7 +158,7 @@ const signup = async (req, res) => {
   const newUser = await prisma.user.create({
     data: {
       name: full_name,
-      email,
+      email: email.toLowerCase(),
       phone_number,
       nin,
       password: encryptedPassword,

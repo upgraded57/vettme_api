@@ -27,7 +27,7 @@ const findUser = async ({ token, email, id, phone_number }) => {
   // Find user by email
   if (email) {
     user = await prisma.user.findUnique({
-      where: { email },
+      where: { email: email.toLowerCase() },
     });
   }
 
