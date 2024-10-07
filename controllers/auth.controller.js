@@ -153,14 +153,14 @@ const signup = async (req, res) => {
       loginErrors.PASSWORD_MISMATCH
     );
   }
-  const encryptedPassword = bcrypt.hashSync(password, 10);
+  const encryptedPassword = bcrypt.hashSync(password.trim(), 10);
 
   const newUser = await prisma.user.create({
     data: {
-      name: full_name,
-      email: email.toLowerCase(),
-      phone_number,
-      nin,
+      name: full_name.trim(),
+      email: email.toLowerCase().trim(),
+      phone_number: phone_number.trim(),
+      nin: nin.trim(),
       password: encryptedPassword,
     },
   });
