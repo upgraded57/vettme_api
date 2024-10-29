@@ -1,7 +1,7 @@
 require("dotenv").config({
   path: "../.env",
 });
-const { PrismaClient } = require("@prisma/client");
+const { PrismaClient } = require("../prisma/generated/app-client");
 
 const prisma = new PrismaClient({
   log: ["warn", "error"],

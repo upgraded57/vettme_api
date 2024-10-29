@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const axiosInstance = require("./../utils/axiosConfig");
 const endpoints = require("./../utils/VettEndpoints");
 require("dotenv").config({ path: "../.env" });
-const { PrismaClient } = require("@prisma/client");
+const { PrismaClient } = require("../prisma/generated/app-client");
 const ServerErrorException = require("../exceptions/server-error");
 const {
   serverErrors,

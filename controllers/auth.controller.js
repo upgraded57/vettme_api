@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 require("dotenv").config({ path: "../.env" });
-const { PrismaClient } = require("@prisma/client");
+const { PrismaClient } = require("../prisma/generated/app-client");
 const sendotp = require("../functions/sendotp");
 const createOtp = require("../functions/createotp");
 const verifyUser = require("../functions/verifyUser");

@@ -4,7 +4,7 @@
 // If equivalent, user will be verified, else user will be unverified
 
 const axios = require("axios");
-const { PrismaClient } = require("@prisma/client");
+const { PrismaClient } = require("../prisma/generated/app-client");
 const prisma = new PrismaClient({
   log: ["query", "info", "warn", "error"],
 });

@@ -5045,3 +5045,43 @@ Response Time - - ms - -
 Request Body: {}
 Response Body - -
 
+Date - 2024-10-29T10:42:47.079Z, 
+Method - POST 
+URL - /api/basic/auth/login 
+Response Status - 200 
+Response Time - 1275.062 ms - 569
+Request Body: {"email":"shokunbiupgraded@gmail.com","password":"Payboi.10"}
+Response Body - -
+
+Date - 2024-10-29T10:43:32.289Z, 
+Method - GET 
+URL - /api/basic/vett/ 
+Response Status - 403 
+Response Time - 1.762 ms - 89
+Request Body: {}
+Response Body - -
+
+Date - 2024-10-29T10:44:16.522Z, 
+Method - GET 
+URL - /api/basic/vett/ 
+Response Status - 200 
+Response Time - 1356.751 ms - 81744
+Request Body: {}
+Response Body - -
+
+Date - 2024-10-29T10:45:30.507Z, 
+Method - GET 
+URL - /api/basic/vett/ 
+Response Status - 200 
+Response Time - 1390.473 ms - 81744
+Request Body: {}
+Response Body - -
+
+Date - 2024-10-29T10:45:35.963Z, 
+Method - POST 
+URL - /api/basic/auth/login 
+Response Status - 200 
+Response Time - 1282.718 ms - 569
+Request Body: {"email":"shokunbiupgraded@gmail.com","password":"Payboi.10"}
+Response Body - -
+

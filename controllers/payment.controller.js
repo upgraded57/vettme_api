@@ -1,6 +1,6 @@
 require("dotenv").config({ path: "../.env" });
 const crypto = require("crypto");
-const { PrismaClient } = require("@prisma/client");
+const { PrismaClient } = require("../prisma/generated/app-client");
 const axios = require("axios");
 const BadRequestException = require("../exceptions/bad-requests");
 const ServerErrorException = require("../exceptions/server-error");
