@@ -5,6 +5,7 @@ require("dotenv").config({
 const cors = require("cors");
 const rootRouter = require("./routes/index.js");
 const adminRouter = require("./admin/routes/index.js");
+const apiRouter = require("./api/routes/index.js");
 const { ErrorHandler } = require("./middlewares/errors.js");
 const fs = require("fs");
 const path = require("path");
@@ -20,35 +21,35 @@ const allowedOrigins = [
 ];
 
 // Allow connection from only specify urls
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      // Allow requests with no origin (like mobile apps or curl requests)
-      if (!origin) return callback(null, true);
-
-      if (allowedOrigins.indexOf(origin) === -1) {
-        // If the origin is not in the allowedOrigins list, return an error
-        const msg = `The CORS policy for this site does not allow access from the specified origin: ${origin}`;
-        throw new UnauthorizedRequestException(
-          msg,
-          authenticationErrors.UNAUTHORIZED_CORS_ACCESS
-        );
-      }
-
-      return callback(null, true);
-    },
-    credentials: true,
-  })
-);
-
-// Allow connection from anywhere (Will be removed in production)
-
 // app.use(
 //   cors({
-//     origin: "*",
+//     origin: function (origin, callback) {
+//       // Allow requests with no origin (like mobile apps or curl requests)
+//       if (!origin) return callback(null, true);
+
+//       if (allowedOrigins.indexOf(origin) === -1) {
+//         // If the origin is not in the allowedOrigins list, return an error
+//         const msg = `The CORS policy for this site does not allow access from the specified origin: ${origin}`;
+//         throw new UnauthorizedRequestException(
+//           msg,
+//           authenticationErrors.UNAUTHORIZED_CORS_ACCESS
+//         );
+//       }
+
+//       return callback(null, true);
+//     },
 //     credentials: true,
 //   })
 // );
+
+// Allow connection from anywhere (Will be removed in production)
+
+app.use(
+  cors({
+    origin: "*",
+    credentials: true,
+  })
+);
 
 // Allow application to parse request body
 app.use(express.json());
@@ -56,11 +57,6 @@ app.use(express.json());
 // Ensure the logs directory exists
 const logDirectory = path.join(__dirname, "logs");
 fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
-
-// Create a write stream in append mode
-const logStream = fs.createWriteStream(path.join(__dirname, "log.txt"), {
-  flags: "a",
-});
 
 // Create a write stream (in append mode) for the log file
 const accessLogStream = fs.createWriteStream(
@@ -90,8 +86,11 @@ app.get("/", (req, res) => {
 // Hook root router
 app.use("/api/basic", rootRouter);
 
-// Hook admin route router
+// Hook admin root router
 app.use("/api/basic/admin", adminRouter);
+
+// Hook api root router
+app.use("/api/v1", apiRouter);
 
 // Global error handler
 app.use(ErrorHandler);

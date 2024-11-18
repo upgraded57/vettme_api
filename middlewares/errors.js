@@ -26,7 +26,6 @@ const globalErrorCatcher = (fn) => {
           err
         );
       }
-      console.log(err);
       next(exception);
     });
   };

@@ -17,6 +17,7 @@ const signupErrors = {
   USER_WITH_EMAIL_ALREADY_EXISTS: "RG-1005",
   USER_WITH_PHONE_NUMBER_ALREADY_EXISTS: "RG-1006",
   USER_WITH_NIN_ALREADY_EXISTS: "RG-1007",
+  COMPANY_ALEADY_EXISTS: "RG-1008",
 };
 
 const otpErrors = {
@@ -65,6 +66,18 @@ const paymentErrors = {
   userId_NOT_PROVIDED: "PE-1002",
 };
 
+const apiErrors = {
+  DATA_NOT_PROVIDED: "API-1000",
+  APP_ID_NOT_PROVIDED: "API-1001",
+  APP_DOES_NOT_EXIST: "API-1002",
+  API_KEY_NOT_PROVIDED: "API-1003",
+  INVALID_API_KEY: "API-1004",
+  INCORRECT_API_KEY: "API-1005",
+  INCORRECT_VETT_DATA: "API-1006",
+  UPDATE_DATA_NOT_PROVIDED: "API-1007",
+  INSUFFICIENT_WALLET_AMOUNT: "API-1008",
+};
+
 module.exports = {
   loginErrors,
   signupErrors,
@@ -74,4 +87,5 @@ module.exports = {
   notFoundErrors,
   serverErrors,
   paymentErrors,
+  apiErrors,
 };
