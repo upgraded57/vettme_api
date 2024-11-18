@@ -12677,3 +12677,219 @@ Response Time - 0.827 ms - 85
 Request Body: {}
 Response Body - -
 
+Date - 2024-11-18T11:05:50.991Z, 
+Method - POST 
+URL - /api/v1/auth/login 
+Response Status - 200 
+Response Time - 201.681 ms - 553
+Request Body: {"email":"shokunbiupgraded@gmail.com","password":"payboi10"}
+Response Body - -
+
+Date - 2024-11-18T11:05:51.134Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 200 
+Response Time - 94.775 ms - 372
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-18T11:05:51.539Z, 
+Method - GET 
+URL - /api/v1/user/application/recent 
+Response Status - 200 
+Response Time - 109.964 ms - 2342
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-18T11:05:52.684Z, 
+Method - GET 
+URL - /api/v1/payment 
+Response Status - 304 
+Response Time - 98.622 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-18T11:08:13.905Z, 
+Method - GET 
+URL - /api/v1/payment 
+Response Status - 304 
+Response Time - 23.183 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-18T11:58:47.074Z, 
+Method - POST 
+URL - /api/v1/auth/login 
+Response Status - 200 
+Response Time - 233.068 ms - 553
+Request Body: {"email":"shokunbiupgraded@gmail.com","password":"payboi10"}
+Response Body - -
+
+Date - 2024-11-18T11:58:47.281Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 200 
+Response Time - 151.024 ms - 372
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-18T11:58:49.897Z, 
+Method - GET 
+URL - /api/v1/user/application/recent 
+Response Status - 200 
+Response Time - 116.683 ms - 2342
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-18T11:58:58.052Z, 
+Method - GET 
+URL - /api/v1/payment 
+Response Status - 200 
+Response Time - 140.887 ms - 82
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-18T12:07:06.770Z, 
+Method - GET 
+URL - /api/v1/payment 
+Response Status - 304 
+Response Time - 342.894 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-18T12:13:39.361Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 304 
+Response Time - 240.055 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-18T12:13:39.477Z, 
+Method - GET 
+URL - /api/v1/payment 
+Response Status - 304 
+Response Time - 351.450 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-18T14:39:09.630Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 304 
+Response Time - 1544.707 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-18T14:39:10.065Z, 
+Method - GET 
+URL - /api/v1/payment 
+Response Status - 304 
+Response Time - 1981.412 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-18T15:19:47.015Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 304 
+Response Time - 128.536 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-18T15:19:47.086Z, 
+Method - GET 
+URL - /api/v1/payment 
+Response Status - 304 
+Response Time - 192.973 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-18T15:19:53.740Z, 
+Method - GET 
+URL - /api/v1/user/application/recent 
+Response Status - 304 
+Response Time - 132.085 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-18T15:22:18.905Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 304 
+Response Time - 12.026 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-18T15:22:19.355Z, 
+Method - GET 
+URL - /api/v1/payment 
+Response Status - 304 
+Response Time - 20.353 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-18T15:22:23.529Z, 
+Method - GET 
+URL - /api/v1/payment 
+Response Status - 304 
+Response Time - 7.154 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-18T15:22:30.615Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 304 
+Response Time - 3.157 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-18T15:22:30.929Z, 
+Method - GET 
+URL - /api/v1/user/application/recent 
+Response Status - 304 
+Response Time - 20.399 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-18T15:22:34.807Z, 
+Method - GET 
+URL - /api/v1/payment 
+Response Status - 304 
+Response Time - 7.397 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-18T15:25:52.402Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 304 
+Response Time - 3.405 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-18T15:25:53.335Z, 
+Method - GET 
+URL - /api/v1/payment 
+Response Status - 304 
+Response Time - 6.329 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-18T15:25:58.129Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 304 
+Response Time - 7.256 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-18T15:25:58.561Z, 
+Method - GET 
+URL - /api/v1/payment 
+Response Status - 304 
+Response Time - 4.961 ms - -
+Request Body: {}
+Response Body - -
+

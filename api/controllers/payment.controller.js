@@ -70,6 +70,8 @@ const paymentStatus = async (req, res) => {
         where: { email: company.email },
         data: { balance: company.balance + verificationCost },
       });
+
+      console.log("Payment successful", event);
     } catch (error) {
       console.log("Account topup error", error);
     }
