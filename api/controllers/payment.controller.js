@@ -47,6 +47,7 @@ const createPayment = async (req, res) => {
 };
 
 const paymentStatus = async (req, res) => {
+  console.log("Payment webhook reached");
   const secret = process.env.PAYSTACK_API_TEST_SECRET_KEY;
   const hash = crypto
     .createHmac("sha512", secret)

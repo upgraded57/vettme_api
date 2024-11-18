@@ -12893,3 +12893,107 @@ Response Time - 4.961 ms - -
 Request Body: {}
 Response Body - -
 
+Date - 2024-11-18T15:27:33.114Z, 
+Method - GET 
+URL - /api/v1/payment 
+Response Status - 304 
+Response Time - 272.525 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-18T15:32:24.291Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 304 
+Response Time - 15.782 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-18T15:32:24.664Z, 
+Method - GET 
+URL - /api/v1/payment 
+Response Status - 304 
+Response Time - 4.125 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-18T15:33:34.150Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 304 
+Response Time - 5.317 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-18T15:33:34.379Z, 
+Method - GET 
+URL - /api/v1/payment 
+Response Status - 304 
+Response Time - 7.757 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-18T15:35:20.554Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 304 
+Response Time - 6.183 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-18T15:35:22.178Z, 
+Method - GET 
+URL - /api/v1/payment 
+Response Status - 304 
+Response Time - 5.507 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-18T15:35:56.261Z, 
+Method - GET 
+URL - /api/v1/payment 
+Response Status - 304 
+Response Time - 9.067 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-18T15:36:08.858Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 304 
+Response Time - 5.069 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-18T15:36:09.474Z, 
+Method - GET 
+URL - /api/v1/payment 
+Response Status - 304 
+Response Time - 5.224 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-18T15:38:25.851Z, 
+Method - GET 
+URL - /api/v1/payment 
+Response Status - 304 
+Response Time - 5.194 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-18T15:38:26.849Z, 
+Method - GET 
+URL - /api/v1/payment 
+Response Status - 304 
+Response Time - 11.418 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-18T15:38:26.934Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 304 
+Response Time - 89.245 ms - -
+Request Body: {}
+Response Body - -
+
