@@ -11,7 +11,7 @@ const validateApiAuth = require("../functions/validateApiAuth");
 
 router.get("/", validateApiAuth, globalErrorCatcher(getPaymentHistory));
 router.post("/create", validateApiAuth, globalErrorCatcher(createPayment));
-router.post("/webhook", validateApiAuth, globalErrorCatcher(paymentStatus));
+router.post("/webhook", globalErrorCatcher(paymentStatus));
 router.get(
   "/verify/:reference",
   validateApiAuth,
