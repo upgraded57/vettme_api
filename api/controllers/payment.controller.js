@@ -83,7 +83,7 @@ const paymentStatus = async (req, res) => {
             },
           },
           type: "topup",
-          amount: response.data.data.amount / 100,
+          amount: verificationCost,
           status: "success",
         },
       });
