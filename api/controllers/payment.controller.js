@@ -66,32 +66,31 @@ const paymentStatus = async (req, res) => {
         where: { email: event.data.customer.email },
       });
       const verificationCost = event.data.amount / 100;
-      const updatedCompany = await prisma.company.update({
+      await prisma.company.update({
         where: {
           id: company.id,
         },
         data: { balance: company.balance + verificationCost },
       });
-      console.log("Account topup successful", updatedCompany);
+
+      await prisma.transaction.create({
+        data: {
+          company: {
+            connect: {
+              company: {
+                id: company.id,
+              },
+            },
+          },
+          type: "topup",
+          amount: response.data.data.amount / 100,
+          status: "success",
+        },
+      });
     } catch (error) {
       console.log("Account topup error", error);
     }
   }
-
-  await prisma.transaction.create({
-    data: {
-      company: {
-        connect: {
-          company: {
-            id: company.id,
-          },
-        },
-      },
-      type: "topup",
-      amount: response.data.data.amount / 100,
-      status: "success",
-    },
-  });
 
   res
     .status(200)
@@ -128,7 +127,9 @@ const getPaymentHistory = async (req, res) => {
   const company = req.company;
   try {
     const transactions = await prisma.transaction.findMany({
-      where: { companyId: company.id },
+      where: {
+        companyId: company.id,
+      },
     });
     res.status(200).json({
       status: "success",
