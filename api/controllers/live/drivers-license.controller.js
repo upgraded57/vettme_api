@@ -6,6 +6,8 @@ const endpoints = require("../../../utils/VettEndpoints");
 const ServerErrorException = require("../../../exceptions/server-error");
 const UnauthorizedRequestException = require("../../../exceptions/unauthorized");
 const NotFoundErrorException = require("../../../exceptions/not-found");
+const CreateRecentActivity = require("../../functions/CreateRecentActivity");
+const CreateLog = require("../../functions/CreateLog");
 
 const prisma = new PrismaClient({ log: ["warn", "error"] });
 
@@ -29,6 +31,10 @@ const liveDriversLicense = async (req, res) => {
     );
   }
 
+  let requestSuccessful;
+  let requestError = null;
+  let requestResult = null;
+
   // Make dojah request here
   try {
     const result = await axiosInstance.get(endpoints.drivers_licence, {
@@ -45,67 +51,50 @@ const liveDriversLicense = async (req, res) => {
       },
     });
 
-    // Create API log for request
-    await prisma.log.create({
-      data: {
-        application: {
-          connect: {
-            id: app.id,
-          },
-        },
-        service: "Driver's License",
-        statusCode: "200",
-        environment: "live",
-      },
-    });
-
-    // Create recent activity log for request
-    await prisma.recentActivities.create({
-      data: {
-        application: {
-          connect: {
-            id: app.id,
-          },
-        },
-        company: {
-          connect: {
-            id: company.id,
-          },
-        },
-        environment: "live",
-        service: "Driver's License",
-        cost: "0",
-        status: "200",
-      },
-    });
-
-    // Return dummy data
-    res.status(200).json({
-      status: "success",
-      message: "Driver's License data fetched successfully",
-      data: result.data.entity,
-    });
+    requestSuccessful = true;
+    requestResult = result.data.entity;
   } catch (error) {
-    // Create error log
-    await prisma.log.create({
-      data: {
-        application: {
-          connect: {
-            id: app.id,
-          },
-        },
-        service: "Driver's License",
-        statusCode: error.response.status.toString(),
-        environment: "live",
-      },
-    });
+    requestSuccessful = false;
+    requestError = error;
+  }
 
+  const statusCode = requestSuccessful
+    ? "200"
+    : requestError.response.status.toString();
+  const service = "Driver's License";
+  const environment = "live";
+  const cost = requestSuccessful ? "300" : "0";
+
+  // Create Logs
+  await CreateLog({
+    appId: app.id,
+    service,
+    statusCode,
+    environment,
+  });
+
+  await CreateRecentActivity({
+    appId: app.id,
+    companyId: company.id,
+    service,
+    cost,
+    status: statusCode,
+    environment,
+  });
+
+  if (!requestSuccessful) {
     throw new NotFoundErrorException(
-      error.response.data.error,
+      requestError.response.data.error,
       null,
-      error.response.data
+      requestError.response.data
     );
   }
+
+  res.status(200).json({
+    status: "success",
+    message: "Driver's License data fetched successfully",
+    data: requestResult,
+  });
 };
 
 module.exports = liveDriversLicense;

@@ -1,10 +1,9 @@
 const BadRequestException = require("../../../exceptions/bad-requests");
 const NotFoundErrorException = require("../../../exceptions/not-found");
 const { apiErrors } = require("../../../exceptions/status-codes");
-const { PrismaClient } = require("../../../prisma/generated/api-client");
 const { ninData } = require("../../data/sandboxData");
-
-const prisma = new PrismaClient({ log: ["warn", "error"] });
+const CreateLog = require("../../functions/CreateLog");
+const CreateRecentActivity = require("../../functions/CreateRecentActivity");
 
 const sandboxNin = async (req, res) => {
   const { nin } = req.query;
@@ -18,80 +17,34 @@ const sandboxNin = async (req, res) => {
     );
   }
 
-  // Check if nin is correct
-  if (nin !== "70123456789") {
-    // Create API log for request
-    await prisma.log.create({
-      data: {
-        application: {
-          connect: {
-            id: app.id,
-          },
-        },
-        service: "Nin",
-        statusCode: "404",
-        environment: "sandbox",
-      },
-    });
+  const isValidNin = nin === "70123456789";
+  const statusCode = isValidNin ? "200" : "404";
+  const service = "nin";
+  const environment = "sandbox";
 
-    // Create recent activity log for request
-    await prisma.recentActivities.create({
-      data: {
-        application: {
-          connect: {
-            id: app.id,
-          },
-        },
-        company: {
-          connect: {
-            id: company.id,
-          },
-        },
-        environment: "sandbox",
-        service: "nin",
-        cost: "0",
-        status: "404",
-      },
-    });
+  // Create Logs
+  await CreateLog({
+    appId: app.id,
+    service,
+    statusCode,
+    environment,
+  });
+
+  await CreateRecentActivity({
+    appId: app.id,
+    companyId: company.id,
+    service,
+    cost: "0",
+    environment,
+    status: statusCode,
+  });
+
+  if (!isValidNin) {
     throw new NotFoundErrorException(
       "Nin not found",
       apiErrors.INCORRECT_VETT_DATA
     );
   }
-
-  // Create API log for request
-  await prisma.log.create({
-    data: {
-      application: {
-        connect: {
-          id: app.id,
-        },
-      },
-      service: "Nin",
-      statusCode: "200",
-      environment: "sandbox",
-    },
-  });
-
-  // Create recent activity log for request
-  await prisma.recentActivities.create({
-    data: {
-      application: {
-        connect: {
-          id: app.id,
-        },
-      },
-      company: {
-        connect: {
-          id: company.id,
-        },
-      },
-      environment: "sandbox",
-      service: "nin",
-      cost: "0",
-      status: "200",
-    },
-  });
 
   // Return dummy data
   res.status(200).json({

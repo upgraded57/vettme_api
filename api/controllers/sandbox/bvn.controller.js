@@ -1,10 +1,9 @@
 const BadRequestException = require("../../../exceptions/bad-requests");
 const NotFoundErrorException = require("../../../exceptions/not-found");
 const { apiErrors } = require("../../../exceptions/status-codes");
-const { PrismaClient } = require("../../../prisma/generated/api-client");
 const { bvnData } = require("../../data/sandboxData");
-
-const prisma = new PrismaClient({ log: ["warn", "error"] });
+const CreateLog = require("../../functions/CreateLog");
+const CreateRecentActivity = require("../../functions/CreateRecentActivity");
 
 const sandboxBvn = async (req, res) => {
   const { bvn } = req.query;
@@ -18,81 +17,37 @@ const sandboxBvn = async (req, res) => {
     );
   }
 
-  // Check if bvn is correct
-  if (bvn !== "22222222222") {
-    // Create API log for request
-    await prisma.log.create({
-      data: {
-        application: {
-          connect: {
-            id: app.id,
-          },
-        },
-        service: "Bvn",
-        statusCode: "404",
-        environment: "sandbox",
-      },
-    });
+  const service = "Bvn";
+  const environment = "sandbox";
 
-    // Create recent activity log for request
-    await prisma.recentActivities.create({
-      data: {
-        application: {
-          connect: {
-            id: app.id,
-          },
-        },
-        company: {
-          connect: {
-            id: company.id,
-          },
-        },
-        environment: "sandbox",
-        service: "bvn",
-        cost: "0",
-        status: "404",
-      },
-    });
+  // BVN validation
+  const isValidBvn = bvn === "22222222222";
 
+  // Log API request
+  const statusCode = isValidBvn ? "200" : "404";
+  await CreateLog({
+    appId: app.id,
+    service,
+    statusCode,
+    environment,
+  });
+
+  // Log recent activity
+  await CreateRecentActivity({
+    appId: app.id,
+    companyId: company.id,
+    service: service.toLowerCase(),
+    cost: 0,
+    status: statusCode,
+    environment,
+  });
+
+  if (!isValidBvn) {
     throw new NotFoundErrorException(
       "BVN not found",
       apiErrors.INCORRECT_VETT_DATA
     );
   }
-
-  // Create API log for request
-  await prisma.log.create({
-    data: {
-      application: {
-        connect: {
-          id: app.id,
-        },
-      },
-      service: "Bvn",
-      statusCode: "200",
-      environment: "sandbox",
-    },
-  });
-
-  // Create recent activity log for request
-  await prisma.recentActivities.create({
-    data: {
-      application: {
-        connect: {
-          id: app.id,
-        },
-      },
-      company: {
-        connect: {
-          id: company.id,
-        },
-      },
-      environment: "sandbox",
-      service: "bvn",
-      cost: "0",
-      status: "200",
-    },
-  });
 
   // Return dummy data
   res.status(200).json({

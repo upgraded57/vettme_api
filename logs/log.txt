@@ -14797,3 +14797,955 @@ Response Time - 8.233 ms - -
 Request Body: {}
 Response Body - -
 
+Date - 2024-11-21T15:26:39.491Z, 
+Method - GET 
+URL - /api/v1/sandbox/bvn?bvn=222222222222 
+Response Status - 400 
+Response Time - 256.877 ms - 77
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:29:08.385Z, 
+Method - GET 
+URL - /api/v1/sandbox/bvn?bvn=222222222222 
+Response Status - 400 
+Response Time - 52.800 ms - 83
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:29:16.940Z, 
+Method - GET 
+URL - /api/v1/sandbox/bvn?bvn=222222222222 
+Response Status - 500 
+Response Time - 349.729 ms - 129
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:31:31.805Z, 
+Method - GET 
+URL - /api/v1/sandbox/bvn?bvn=222222222222 
+Response Status - 404 
+Response Time - 571.496 ms - 64
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:31:35.286Z, 
+Method - GET 
+URL - /api/v1/sandbox/bvn?bvn=22222222222 
+Response Status - 200 
+Response Time - 18.118 ms - 579919
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:31:56.242Z, 
+Method - GET 
+URL - /api/v1/sandbox/nin?nin=22222222222 
+Response Status - 400 
+Response Time - 8.612 ms - 83
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:32:06.882Z, 
+Method - GET 
+URL - /api/v1/sandbox/nin?nin=22222222222 
+Response Status - 404 
+Response Time - 10.769 ms - 64
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:32:24.933Z, 
+Method - GET 
+URL - /api/v1/sandbox/nin?nin=70123456789 
+Response Status - 200 
+Response Time - 21.819 ms - 579863
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:34:13.672Z, 
+Method - POST 
+URL - /api/v1/auth/login 
+Response Status - 200 
+Response Time - 204.849 ms - 553
+Request Body: {"email":"shokunbiupgraded@gmail.com","password":"payboi10"}
+Response Body - -
+
+Date - 2024-11-21T15:34:13.821Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 200 
+Response Time - 82.062 ms - 372
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:34:15.032Z, 
+Method - GET 
+URL - /api/v1/user/application/recent 
+Response Status - 200 
+Response Time - 370.282 ms - 3086
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:36:59.733Z, 
+Method - GET 
+URL - /api/v1/sandbox/vin?vin=FKJ494A2133 
+Response Status - 500 
+Response Time - 165.741 ms - 68
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:37:03.376Z, 
+Method - GET 
+URL - /api/v1/sandbox/vin?vin=FKJ494A2133 
+Response Status - 500 
+Response Time - 6.675 ms - 68
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:37:16.342Z, 
+Method - GET 
+URL - /api/v1/sandbox/vin?vin=FKJ494A21334 
+Response Status - 500 
+Response Time - 10.825 ms - 68
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:37:18.270Z, 
+Method - GET 
+URL - /api/v1/sandbox/vin?vin=FKJ494A2133 
+Response Status - 500 
+Response Time - 4.715 ms - 68
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:37:45.402Z, 
+Method - GET 
+URL - /api/v1/sandbox/vin 
+Response Status - 400 
+Response Time - 4.061 ms - 66
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:38:07.743Z, 
+Method - GET 
+URL - /api/v1/sandbox/vin?vin=FKJ494A2133 
+Response Status - 200 
+Response Time - 277.141 ms - 411
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:38:12.552Z, 
+Method - GET 
+URL - /api/v1/sandbox/vin 
+Response Status - 400 
+Response Time - 10.184 ms - 66
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:38:15.897Z, 
+Method - GET 
+URL - /api/v1/sandbox/vin?vin=FKJ494A211 
+Response Status - 404 
+Response Time - 14.171 ms - 64
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:38:23.712Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 304 
+Response Time - 144.453 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:38:24.293Z, 
+Method - GET 
+URL - /api/v1/user/application/recent 
+Response Status - 200 
+Response Time - 99.256 ms - 3472
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:38:33.732Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 304 
+Response Time - 8.717 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:38:34.152Z, 
+Method - GET 
+URL - /api/v1/user/application/recent 
+Response Status - 304 
+Response Time - 6.099 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:39:01.901Z, 
+Method - GET 
+URL - /api/v1/sandbox/account_number?vin=FKJ494A2133 
+Response Status - 404 
+Response Time - 3.359 ms - 168
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:39:07.327Z, 
+Method - GET 
+URL - /api/v1/sandbox/account-number?vin=FKJ494A2133 
+Response Status - 400 
+Response Time - 9.265 ms - 92
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:39:23.011Z, 
+Method - GET 
+URL - /api/v1/sandbox/account-number?account_number=FKJ494A2133 
+Response Status - 400 
+Response Time - 4.891 ms - 92
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:39:27.104Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 304 
+Response Time - 8.224 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:39:27.532Z, 
+Method - GET 
+URL - /api/v1/user/application/recent 
+Response Status - 304 
+Response Time - 6.189 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:39:50.430Z, 
+Method - GET 
+URL - /api/v1/sandbox/account-number?account_number=FKJ494A2133&bank_code=058 
+Response Status - 500 
+Response Time - 24.359 ms - 367
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:40:33.541Z, 
+Method - GET 
+URL - /api/v1/sandbox/account-number?account_number=FKJ494A2133&bank_code=058 
+Response Status - 404 
+Response Time - 250.227 ms - 88
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:40:42.014Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 304 
+Response Time - 131.369 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:40:42.458Z, 
+Method - GET 
+URL - /api/v1/user/application/recent 
+Response Status - 200 
+Response Time - 98.990 ms - 3669
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:40:52.562Z, 
+Method - GET 
+URL - /api/v1/sandbox/account-number?account_number=1234567890&bank_code=058 
+Response Status - 200 
+Response Time - 13.933 ms - 332
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:40:57.233Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 200 
+Response Time - 7.241 ms - 372
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:40:57.631Z, 
+Method - GET 
+URL - /api/v1/user/application/recent 
+Response Status - 200 
+Response Time - 11.206 ms - 3866
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:41:27.668Z, 
+Method - GET 
+URL - /api/v1/sandbox/drivers-license?vin=FKJ494A2133 
+Response Status - 400 
+Response Time - 8.853 ms - 77
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:41:33.927Z, 
+Method - GET 
+URL - /api/v1/sandbox/drivers-license?license_number=FKJ494A2133 
+Response Status - 200 
+Response Time - 15.824 ms - 579960
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:41:38.044Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 200 
+Response Time - 9.650 ms - 372
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:41:38.475Z, 
+Method - GET 
+URL - /api/v1/user/application/recent 
+Response Status - 200 
+Response Time - 8.111 ms - 4065
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:41:45.552Z, 
+Method - GET 
+URL - /api/v1/sandbox/drivers-license?license_number=FKJ494A2131 
+Response Status - 404 
+Response Time - 18.253 ms - 75
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:41:46.592Z, 
+Method - GET 
+URL - /api/v1/sandbox/drivers-license?license_number=FKJ494A2131 
+Response Status - 404 
+Response Time - 15.366 ms - 75
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:41:47.421Z, 
+Method - GET 
+URL - /api/v1/sandbox/drivers-license?license_number=FKJ494A2131 
+Response Status - 404 
+Response Time - 11.846 ms - 75
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:41:48.135Z, 
+Method - GET 
+URL - /api/v1/sandbox/drivers-license?license_number=FKJ494A2131 
+Response Status - 404 
+Response Time - 23.457 ms - 75
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:41:51.363Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 200 
+Response Time - 8.239 ms - 372
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:41:51.701Z, 
+Method - GET 
+URL - /api/v1/user/application/recent 
+Response Status - 200 
+Response Time - 5.897 ms - 4861
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:42:33.024Z, 
+Method - GET 
+URL - /api/v1/sandbox/phone-number?license_number=FKJ494A2131 
+Response Status - 400 
+Response Time - 6.573 ms - 75
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:42:38.757Z, 
+Method - GET 
+URL - /api/v1/sandbox/phone-number?phone_number=FKJ494A2131 
+Response Status - 500 
+Response Time - 4.857 ms - 68
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:42:55.207Z, 
+Method - GET 
+URL - /api/v1/sandbox/phone-number?phone_number=FKJ494A2131 
+Response Status - 500 
+Response Time - 87.640 ms - 68
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:42:58.440Z, 
+Method - GET 
+URL - /api/v1/sandbox/phone-number?phone_number=FKJ494A2131 
+Response Status - 500 
+Response Time - 5.708 ms - 68
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:43:24.977Z, 
+Method - GET 
+URL - /api/v1/sandbox/phone-number?phone_number=FKJ494A2131 
+Response Status - 404 
+Response Time - 315.604 ms - 73
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:43:27.915Z, 
+Method - GET 
+URL - /api/v1/sandbox/phone-number?phone_number=FKJ494A2131 
+Response Status - 404 
+Response Time - 30.112 ms - 73
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:43:29.848Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 200 
+Response Time - 128.829 ms - 372
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:43:30.249Z, 
+Method - GET 
+URL - /api/v1/user/application/recent 
+Response Status - 200 
+Response Time - 101.038 ms - 5251
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:43:44.273Z, 
+Method - GET 
+URL - /api/v1/sandbox/phone-number?phone_number=09011111111 
+Response Status - 200 
+Response Time - 15.122 ms - 579881
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:43:47.499Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 200 
+Response Time - 13.720 ms - 372
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:43:47.903Z, 
+Method - GET 
+URL - /api/v1/user/application/recent 
+Response Status - 200 
+Response Time - 7.409 ms - 5446
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:44:18.752Z, 
+Method - GET 
+URL - /api/v1/sandbox/email?phone_number=09011111111 
+Response Status - 400 
+Response Time - 5.680 ms - 77
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:44:30.009Z, 
+Method - GET 
+URL - /api/v1/sandbox/email?phone_number=09011111111 
+Response Status - 400 
+Response Time - 81.173 ms - 68
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:44:34.861Z, 
+Method - GET 
+URL - /api/v1/sandbox/email?email=09011111111 
+Response Status - 404 
+Response Time - 208.235 ms - 74
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:44:45.652Z, 
+Method - GET 
+URL - /api/v1/sandbox/email?email=sample@email.com 
+Response Status - 500 
+Response Time - 14.074 ms - 68
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:45:03.069Z, 
+Method - GET 
+URL - /api/v1/sandbox/email?email=sample@email.com 
+Response Status - 500 
+Response Time - 336.597 ms - 68
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:46:04.360Z, 
+Method - GET 
+URL - /api/v1/sandbox/email?email=sample@email.com 
+Response Status - 500 
+Response Time - 19.705 ms - 68
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:46:14.527Z, 
+Method - GET 
+URL - /api/v1/sandbox/email?email=sample@email.com 
+Response Status - 500 
+Response Time - 14.457 ms - 68
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:46:40.624Z, 
+Method - GET 
+URL - /api/v1/sandbox/email?email=sample@email.com 
+Response Status - 500 
+Response Time - 318.266 ms - 68
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:47:04.893Z, 
+Method - GET 
+URL - /api/v1/sandbox/email?email=sample@email.com 
+Response Status - 200 
+Response Time - 245.176 ms - 579921
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:47:12.045Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 304 
+Response Time - 115.944 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:47:12.510Z, 
+Method - GET 
+URL - /api/v1/user/application/recent 
+Response Status - 200 
+Response Time - 101.447 ms - 6762
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:47:18.726Z, 
+Method - GET 
+URL - /api/v1/user/application 
+Response Status - 200 
+Response Time - 56.552 ms - 12930
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:47:52.589Z, 
+Method - GET 
+URL - /api/v1/live/bvn?bvn=22394226174 
+Response Status - 400 
+Response Time - 6.661 ms - 84
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:47:56.238Z, 
+Method - GET 
+URL - /api/v1/user/application/8a0ea900-b003-4537-a97d-a037f3924e60 
+Response Status - 200 
+Response Time - 21.067 ms - 11989
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:48:07.304Z, 
+Method - GET 
+URL - /api/v1/live/bvn?bvn=22394226174 
+Response Status - 200 
+Response Time - 3903.842 ms - 21440
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:48:10.666Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 200 
+Response Time - 10.224 ms - 372
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:48:11.149Z, 
+Method - GET 
+URL - /api/v1/user/application/8a0ea900-b003-4537-a97d-a037f3924e60 
+Response Status - 200 
+Response Time - 17.233 ms - 12214
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:48:14.096Z, 
+Method - GET 
+URL - /api/v1/user/application/recent 
+Response Status - 200 
+Response Time - 10.968 ms - 6947
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:48:35.961Z, 
+Method - GET 
+URL - /api/v1/sandbox/nin?nin=22222222222 
+Response Status - 400 
+Response Time - 4.570 ms - 115
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:48:44.721Z, 
+Method - GET 
+URL - /api/v1/live/nin?nin=22222222222 
+Response Status - 404 
+Response Time - 1100.140 ms - 79
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:48:47.655Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 304 
+Response Time - 5.755 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:48:48.113Z, 
+Method - GET 
+URL - /api/v1/user/application/recent 
+Response Status - 200 
+Response Time - 11.889 ms - 7130
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:49:01.485Z, 
+Method - GET 
+URL - /api/v1/live/nin?nin=22222222222 
+Response Status - 404 
+Response Time - 1036.739 ms - 79
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:49:04.079Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 304 
+Response Time - 10.572 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:49:04.495Z, 
+Method - GET 
+URL - /api/v1/user/application/recent 
+Response Status - 200 
+Response Time - 8.877 ms - 7313
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:49:13.296Z, 
+Method - GET 
+URL - /api/v1/live/bvn?bvn=22394226174 
+Response Status - 200 
+Response Time - 4160.026 ms - 21440
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:49:15.595Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 200 
+Response Time - 5.402 ms - 371
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:49:16.030Z, 
+Method - GET 
+URL - /api/v1/user/application/recent 
+Response Status - 200 
+Response Time - 6.700 ms - 7498
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:50:21.492Z, 
+Method - GET 
+URL - /api/v1/live/account-number?account_number=22222222222 
+Response Status - 400 
+Response Time - 5.850 ms - 92
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:50:33.942Z, 
+Method - GET 
+URL - /api/v1/live/account-number?account_number=22222222222&bank_code=058 
+Response Status - 404 
+Response Time - 1224.793 ms - 151
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:50:39.112Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 304 
+Response Time - 5.149 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:50:39.591Z, 
+Method - GET 
+URL - /api/v1/user/application/recent 
+Response Status - 200 
+Response Time - 7.054 ms - 7692
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:51:58.378Z, 
+Method - GET 
+URL - /api/v1/live/account-number?account_number=3843461017&bank_code=214 
+Response Status - 200 
+Response Time - 3404.270 ms - 564
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:52:07.216Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 200 
+Response Time - 3.530 ms - 371
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:52:07.669Z, 
+Method - GET 
+URL - /api/v1/user/application/recent 
+Response Status - 200 
+Response Time - 6.589 ms - 7888
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:52:41.103Z, 
+Method - GET 
+URL - /api/v1/live/phone-number?account_number=3843461017&bank_code=058 
+Response Status - 400 
+Response Time - 7.630 ms - 75
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:52:45.207Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 200 
+Response Time - 4.758 ms - 371
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:52:45.629Z, 
+Method - GET 
+URL - /api/v1/user/application/recent 
+Response Status - 304 
+Response Time - 7.660 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:52:48.897Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 304 
+Response Time - 19.668 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:52:49.286Z, 
+Method - GET 
+URL - /api/v1/user/application/recent 
+Response Status - 304 
+Response Time - 6.511 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:53:58.722Z, 
+Method - GET 
+URL - /api/v1/live/phone-number?phone_number=09027538937 
+Response Status - 200 
+Response Time - 47575.813 ms - 20863
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:54:20.298Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 200 
+Response Time - 15.708 ms - 371
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:54:20.719Z, 
+Method - GET 
+URL - /api/v1/user/application/recent 
+Response Status - 200 
+Response Time - 6.525 ms - 8082
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:55:16.004Z, 
+Method - GET 
+URL - /api/v1/live/vin?vin=09027538937 
+Response Status - 404 
+Response Time - 26128.404 ms - 99
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:55:22.493Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 304 
+Response Time - 4.248 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:55:22.922Z, 
+Method - GET 
+URL - /api/v1/user/application/recent 
+Response Status - 200 
+Response Time - 7.188 ms - 8272
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:55:56.870Z, 
+Method - GET 
+URL - /api/v1/live/vin?vin=09027538937 
+Response Status - 404 
+Response Time - 27031.685 ms - 99
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:56:06.504Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 304 
+Response Time - 10.669 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:56:06.986Z, 
+Method - GET 
+URL - /api/v1/user/application/recent 
+Response Status - 200 
+Response Time - 8.124 ms - 8462
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:56:37.413Z, 
+Method - GET 
+URL - /api/v1/live/vin?vin=09027538937 
+Response Status - 404 
+Response Time - 25885.383 ms - 99
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:57:18.826Z, 
+Method - GET 
+URL - /api/v1/live/drivers-license?license_number=FKJ494A2133 
+Response Status - 404 
+Response Time - 1041.149 ms - 95
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:57:23.903Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 304 
+Response Time - 17.165 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:57:24.325Z, 
+Method - GET 
+URL - /api/v1/user/application/recent 
+Response Status - 200 
+Response Time - 7.223 ms - 8848
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:57:30.999Z, 
+Method - GET 
+URL - /api/v1/live/drivers-license?license_number=FKJ494A2133 
+Response Status - 404 
+Response Time - 2108.781 ms - 95
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:57:33.640Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 304 
+Response Time - 12.066 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:57:34.066Z, 
+Method - GET 
+URL - /api/v1/user/application/recent 
+Response Status - 200 
+Response Time - 7.093 ms - 9044
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:57:43.414Z, 
+Method - GET 
+URL - /api/v1/live/phone-number?phone_number=09027538937 
+Response Status - 200 
+Response Time - 996.268 ms - 20863
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:57:46.617Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 200 
+Response Time - 11.675 ms - 369
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:57:46.961Z, 
+Method - GET 
+URL - /api/v1/user/application/recent 
+Response Status - 200 
+Response Time - 7.283 ms - 9238
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:57:52.107Z, 
+Method - GET 
+URL - /api/v1/live/phone-number?phone_number=09027538937 
+Response Status - 403 
+Response Time - 5.329 ms - 91
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:58:09.493Z, 
+Method - GET 
+URL - /api/v1/payment 
+Response Status - 304 
+Response Time - 84.132 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T15:58:17.557Z, 
+Method - POST 
+URL - /api/v1/payment/create 
+Response Status - 200 
+Response Time - 537.962 ms - 207
+Request Body: {"amount":"1200"}
+Response Body - -
+
+Date - 2024-11-21T15:58:22.510Z, 
+Method - GET 
+URL - /api/v1/user/application/recent 
+Response Status - 304 
+Response Time - 5.961 ms - -
+Request Body: {}
+Response Body - -
+

@@ -1,10 +1,9 @@
 const BadRequestException = require("../../../exceptions/bad-requests");
 const NotFoundErrorException = require("../../../exceptions/not-found");
 const { apiErrors } = require("../../../exceptions/status-codes");
-const { PrismaClient } = require("../../../prisma/generated/api-client");
 const { phoneNumberData } = require("../../data/sandboxData");
-
-const prisma = new PrismaClient({ log: ["warn", "error"] });
+const CreateLog = require("../../functions/CreateLog");
+const CreateRecentActivity = require("../../functions/CreateRecentActivity");
 
 const sandboxPhoneNumber = async (req, res) => {
   const { phone_number } = req.query;
@@ -18,80 +17,34 @@ const sandboxPhoneNumber = async (req, res) => {
     );
   }
 
-  // Check if phone number is correct
-  if (phone_number !== "09011111111") {
-    // Create API log for request
-    await prisma.log.create({
-      data: {
-        application: {
-          connect: {
-            id: app.id,
-          },
-        },
-        service: "Phone Number",
-        statusCode: "404",
-        environment: "sandbox",
-      },
-    });
+  const isValidPhoneNumber = phone_number === "09011111111";
+  const service = "Phone Number";
+  const statusCode = isValidPhoneNumber ? "200" : "404";
+  const environment = "sandbox";
 
-    // Create recent activity log for request
-    await prisma.recentActivities.create({
-      data: {
-        application: {
-          connect: {
-            id: app.id,
-          },
-        },
-        company: {
-          connect: {
-            id: company.id,
-          },
-        },
-        environment: "sandbox",
-        service: "Phone Number",
-        cost: "0",
-        status: "404",
-      },
-    });
+  // Create Log
+  await CreateLog({
+    appId: app.id,
+    service,
+    statusCode,
+    environment,
+  });
+
+  await CreateRecentActivity({
+    appId: app.id,
+    companyId: company.id,
+    service,
+    status: statusCode,
+    cost: 0,
+    environment,
+  });
+
+  if (!isValidPhoneNumber) {
     throw new NotFoundErrorException(
       "Phone number not found",
       apiErrors.INCORRECT_VETT_DATA
     );
   }
-
-  // Create API log for request
-  await prisma.log.create({
-    data: {
-      application: {
-        connect: {
-          id: app.id,
-        },
-      },
-      service: "Phone Number",
-      statusCode: "200",
-      environment: "sandbox",
-    },
-  });
-
-  // Create recent activity log for request
-  await prisma.recentActivities.create({
-    data: {
-      application: {
-        connect: {
-          id: app.id,
-        },
-      },
-      company: {
-        connect: {
-          id: company.id,
-        },
-      },
-      environment: "sandbox",
-      service: "Phone Number",
-      cost: "0",
-      status: "200",
-    },
-  });
 
   // Return dummy data
   res.status(200).json({

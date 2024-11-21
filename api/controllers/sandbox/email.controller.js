@@ -1,6 +1,10 @@
 const BadRequestException = require("../../../exceptions/bad-requests");
+const NotFoundErrorException = require("../../../exceptions/not-found");
 const { apiErrors } = require("../../../exceptions/status-codes");
 const { PrismaClient } = require("../../../prisma/generated/api-client");
+const { bvnData } = require("../../data/sandboxData");
+const CreateLog = require("../../functions/CreateLog");
+const CreateRecentActivity = require("../../functions/CreateRecentActivity");
 
 const prisma = new PrismaClient({ log: ["warn", "error"] });
 
@@ -10,38 +14,6 @@ const sandboxEmail = async (req, res) => {
   const company = req.company;
 
   if (!email) {
-    await prisma.log.create({
-      data: {
-        application: {
-          connect: {
-            id: app.id,
-          },
-        },
-        service: "Email",
-        statusCode: "404",
-        environment: "sandbox",
-      },
-    });
-
-    // Create recent activity log for request
-    await prisma.recentActivities.create({
-      data: {
-        application: {
-          connect: {
-            id: app.id,
-          },
-        },
-        company: {
-          connect: {
-            id: company.id,
-          },
-        },
-        environment: "sandbox",
-        service: "Email",
-        cost: "0",
-        status: "404",
-      },
-    });
     throw new BadRequestException(
       "Email is required",
       apiErrors.DATA_NOT_PROVIDED
@@ -49,46 +21,40 @@ const sandboxEmail = async (req, res) => {
   }
 
   // Check if email is correct
+  const isValidEmail = email === "sample@email.com";
+  const statusCode = isValidEmail ? "200" : "404";
+  const environment = "sandbox";
+  const service = "email";
 
-  // Create API log for request
-  const newApiLog = await prisma.log.create({
-    data: {
-      application: {
-        connect: {
-          id: app.id,
-        },
-      },
-      service: "Email",
-      statusCode: "200",
-      environment: "sandbox",
-    },
+  // Create Logs
+  await CreateLog({
+    appId: app.id,
+    service,
+    statusCode,
+    environment,
   });
 
-  // Create recent activity log for request
-  await prisma.recentActivities.create({
-    data: {
-      application: {
-        connect: {
-          id: app.id,
-        },
-      },
-      company: {
-        connect: {
-          id: company.id,
-        },
-      },
-      environment: "sandbox",
-      service: "Email",
-      cost: "0",
-      status: "200",
-    },
+  await CreateRecentActivity({
+    appId: app.id,
+    companyId: company.id,
+    environment,
+    status: statusCode,
+    cost: "0",
+    service,
   });
+
+  if (!isValidEmail) {
+    throw new NotFoundErrorException(
+      "Email address not found",
+      apiErrors.INCORRECT_VETT_DATA
+    );
+  }
 
   // Return dummy data
   res.status(200).json({
     status: "success",
     message: "Email data fetched successfully",
-    data: newApiLog, //Return dummy email data instead
+    data: bvnData, //Return dummy email data instead
   });
 };
 

@@ -6,6 +6,8 @@ const UnauthorizedRequestException = require("../../../exceptions/unauthorized")
 const { PrismaClient } = require("../../../prisma/generated/api-client");
 const axiosInstance = require("../../../utils/axiosConfig");
 const endpoints = require("../../../utils/VettEndpoints");
+const CreateLog = require("../../functions/CreateLog");
+const CreateRecentActivity = require("../../functions/CreateRecentActivity");
 
 const prisma = new PrismaClient({ log: ["warn", "error"] });
 
@@ -29,12 +31,15 @@ const liveBvn = async (req, res) => {
     );
   }
 
+  let requestSuccessful;
+  let requestError = null;
+  let requestResult = null;
+
   // Make dojah request here
   try {
     const result = await axiosInstance.get(endpoints.bvn, {
       params: { bvn },
     });
-
     // Deduct charge from company account
     await prisma.company.update({
       where: {
@@ -45,67 +50,50 @@ const liveBvn = async (req, res) => {
       },
     });
 
-    // Create API log for request
-    await prisma.log.create({
-      data: {
-        application: {
-          connect: {
-            id: app.id,
-          },
-        },
-        service: "Bvn",
-        statusCode: "200",
-        environment: "live",
-      },
-    });
-
-    // Create recent activity log for request
-    await prisma.recentActivities.create({
-      data: {
-        application: {
-          connect: {
-            id: app.id,
-          },
-        },
-        company: {
-          connect: {
-            id: company.id,
-          },
-        },
-        environment: "live",
-        service: "Bvn",
-        cost: "0",
-        status: "200",
-      },
-    });
-
-    // Return dummy data
-    res.status(200).json({
-      status: "success",
-      message: "Bvn data fetched successfully",
-      data: result.data.entity,
-    });
+    requestSuccessful = true;
+    requestResult = result.data.entity;
   } catch (error) {
-    // Create error log
-    await prisma.log.create({
-      data: {
-        application: {
-          connect: {
-            id: app.id,
-          },
-        },
-        service: "Bvn",
-        statusCode: error.response.status.toString(),
-        environment: "live",
-      },
-    });
+    requestSuccessful = false;
+    requestError = error;
+  }
 
+  const statusCode = requestSuccessful
+    ? "200"
+    : requestError.response.status.toString();
+  const service = "Bvn";
+  const environment = "live";
+  const cost = requestSuccessful ? "300" : "0";
+
+  // Create Logs
+  await CreateLog({
+    appId: app.id,
+    service,
+    statusCode,
+    environment,
+  });
+
+  await CreateRecentActivity({
+    appId: app.id,
+    companyId: company.id,
+    service,
+    cost,
+    status: statusCode,
+    environment,
+  });
+
+  if (!requestSuccessful) {
     throw new NotFoundErrorException(
-      error.response.data.error,
+      requestError.response.data.error,
       null,
-      error.response.data
+      requestError.response.data
     );
   }
+
+  res.status(200).json({
+    status: "success",
+    message: "Bvn data fetched successfully",
+    data: requestResult,
+  });
 };
 
 module.exports = liveBvn;
