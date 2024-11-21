@@ -85,7 +85,7 @@ const paymentStatus = async (req, res) => {
           type: "topup",
           amount: verificationCost,
           status: "success",
-          reference: "hg123fgrd45",
+          reference: event.data.reference,
         },
       });
     } catch (error) {

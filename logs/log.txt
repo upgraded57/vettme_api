@@ -14053,3 +14053,11 @@ Response Time - 700.599 ms - 265
 Request Body: {}
 Response Body - -
 
+Date - 2024-11-21T12:27:17.794Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 403 
+Response Time - 1217.649 ms - 77
+Request Body: {}
+Response Body - -
+
