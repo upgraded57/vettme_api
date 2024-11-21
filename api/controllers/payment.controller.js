@@ -66,12 +66,13 @@ const paymentStatus = async (req, res) => {
         where: { email: event.data.customer.email },
       });
       const verificationCost = event.data.amount / 100;
-      await prisma.company.update({
+      const updatedCompany = await prisma.company.update({
         where: {
           id: company.id,
         },
         data: { balance: company.balance + verificationCost },
       });
+      console.log("Account topup successful", updatedCompany);
     } catch (error) {
       console.log("Account topup error", error);
     }

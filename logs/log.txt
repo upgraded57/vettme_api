@@ -13533,3 +13533,35 @@ Response Time - 101.268 ms - -
 Request Body: {}
 Response Body - -
 
+Date - 2024-11-21T10:47:42.823Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 304 
+Response Time - 251.902 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T10:47:43.276Z, 
+Method - GET 
+URL - /api/v1/payment 
+Response Status - 304 
+Response Time - 68.307 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T10:47:50.187Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 304 
+Response Time - 5.359 ms - -
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T10:47:50.451Z, 
+Method - GET 
+URL - /api/v1/payment 
+Response Status - 304 
+Response Time - 6.507 ms - -
+Request Body: {}
+Response Body - -
+
