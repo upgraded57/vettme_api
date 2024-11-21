@@ -47,7 +47,6 @@ const createPayment = async (req, res) => {
 };
 
 const paymentStatus = async (req, res) => {
-  console.log("Payment webhook reached");
   const secret = process.env.PAYSTACK_API_TEST_SECRET_KEY;
   const hash = crypto
     .createHmac("sha512", secret)
@@ -68,15 +67,30 @@ const paymentStatus = async (req, res) => {
       });
       const verificationCost = event.data.amount / 100;
       await prisma.company.update({
-        where: { email: company.email },
+        where: {
+          id: company.id,
+        },
         data: { balance: company.balance + verificationCost },
       });
-
-      console.log("Payment successful", event);
     } catch (error) {
       console.log("Account topup error", error);
     }
   }
+
+  await prisma.transaction.create({
+    data: {
+      company: {
+        connect: {
+          company: {
+            id: company.id,
+          },
+        },
+      },
+      type: "topup",
+      amount: response.data.data.amount / 100,
+      status: "success",
+    },
+  });
 
   res
     .status(200)
@@ -91,36 +105,9 @@ const verifyPayment = async (req, res) => {
       .json({ status: "error", message: "Reference code not provided" });
 
   try {
-    const response = await axios.get(
-      `https://api.paystack.co/transaction/verify/${reference}`,
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.PAYSTACK_LIVE_SECRET_KEY}`,
-        },
-      }
-    );
-
-    const company = await prisma.company.findUnique({
-      where: { email: response.data.data.customer.email },
-    });
-    if (!company)
-      return res.status(500).json({
-        status: "failure",
-        message: "Cannot find company with the specified email",
-      });
-
-    await prisma.transaction.create({
-      data: {
-        company: {
-          connect: {
-            company: {
-              id: company.id,
-            },
-          },
-        },
-        type: "topup",
-        amount: response.data.data.amount / 100,
-        status: "success",
+    await axios.get(`https://api.paystack.co/transaction/verify/${reference}`, {
+      headers: {
+        Authorization: `Bearer ${process.env.PAYSTACK_API_TEST_SECRET_KEY}`,
       },
     });
 
@@ -131,7 +118,7 @@ const verifyPayment = async (req, res) => {
     res.status(500).json({
       status: "failure",
       message: "Payment verification failed",
-      error,
+      error: error?.response?.data,
     });
   }
 };
