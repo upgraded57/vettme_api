@@ -14061,3 +14061,67 @@ Response Time - 1217.649 ms - 77
 Request Body: {}
 Response Body - -
 
+Date - 2024-11-21T12:28:07.418Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 200 
+Response Time - 1548.608 ms - 363
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T12:28:10.497Z, 
+Method - GET 
+URL - /api/v1/payment 
+Response Status - 200 
+Response Time - 2746.856 ms - 490
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T12:30:01.932Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 403 
+Response Time - 1603.644 ms - 77
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T12:30:03.143Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 403 
+Response Time - 182.093 ms - 77
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T12:30:05.532Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 200 
+Response Time - 337.617 ms - 363
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T12:30:06.240Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 403 
+Response Time - 1025.590 ms - 77
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T12:30:07.805Z, 
+Method - GET 
+URL - /api/v1/payment 
+Response Status - 200 
+Response Time - 1629.896 ms - 699
+Request Body: {}
+Response Body - -
+
+Date - 2024-11-21T12:30:10.441Z, 
+Method - GET 
+URL - /api/v1/company 
+Response Status - 403 
+Response Time - 184.472 ms - 77
+Request Body: {}
+Response Body - -
+

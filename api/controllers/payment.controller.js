@@ -62,7 +62,6 @@ const paymentStatus = async (req, res) => {
   const event = req.body;
 
   if (event.event === "charge.success") {
-    console.log("Event", event);
     try {
       const company = await prisma.company.findUnique({
         where: { email: event.data.customer.email },
@@ -130,6 +129,9 @@ const getPaymentHistory = async (req, res) => {
     const transactions = await prisma.transaction.findMany({
       where: {
         companyId: company.id,
+      },
+      orderBy: {
+        createdAt: "desc",
       },
     });
     res.status(200).json({
