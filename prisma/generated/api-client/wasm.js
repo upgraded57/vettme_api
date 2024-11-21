@@ -167,6 +167,7 @@ exports.Prisma.RecentActivitiesScalarFieldEnum = {
 
 exports.Prisma.TransactionScalarFieldEnum = {
   id: 'id',
+  reference: 'reference',
   companyId: 'companyId',
   type: 'type',
   amount: 'amount',

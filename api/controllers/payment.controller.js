@@ -60,7 +60,9 @@ const paymentStatus = async (req, res) => {
   }
 
   const event = req.body;
+
   if (event.event === "charge.success") {
+    console.log("Event", event);
     try {
       const company = await prisma.company.findUnique({
         where: { email: event.data.customer.email },
@@ -83,6 +85,7 @@ const paymentStatus = async (req, res) => {
           type: "topup",
           amount: verificationCost,
           status: "success",
+          reference: "hg123fgrd45",
         },
       });
     } catch (error) {

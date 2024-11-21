@@ -5608,6 +5608,7 @@ export namespace Prisma {
 
   export type TransactionMinAggregateOutputType = {
     id: string | null
+    reference: string | null
     companyId: string | null
     type: string | null
     amount: number | null
@@ -5617,6 +5618,7 @@ export namespace Prisma {
 
   export type TransactionMaxAggregateOutputType = {
     id: string | null
+    reference: string | null
     companyId: string | null
     type: string | null
     amount: number | null
@@ -5626,6 +5628,7 @@ export namespace Prisma {
 
   export type TransactionCountAggregateOutputType = {
     id: number
+    reference: number
     companyId: number
     type: number
     amount: number
@@ -5645,6 +5648,7 @@ export namespace Prisma {
 
   export type TransactionMinAggregateInputType = {
     id?: true
+    reference?: true
     companyId?: true
     type?: true
     amount?: true
@@ -5654,6 +5658,7 @@ export namespace Prisma {
 
   export type TransactionMaxAggregateInputType = {
     id?: true
+    reference?: true
     companyId?: true
     type?: true
     amount?: true
@@ -5663,6 +5668,7 @@ export namespace Prisma {
 
   export type TransactionCountAggregateInputType = {
     id?: true
+    reference?: true
     companyId?: true
     type?: true
     amount?: true
@@ -5759,6 +5765,7 @@ export namespace Prisma {
 
   export type TransactionGroupByOutputType = {
     id: string
+    reference: string
     companyId: string
     type: string
     amount: number
@@ -5787,6 +5794,7 @@ export namespace Prisma {
 
   export type TransactionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    reference?: boolean
     companyId?: boolean
     type?: boolean
     amount?: boolean
@@ -5797,6 +5805,7 @@ export namespace Prisma {
 
   export type TransactionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
+    reference?: boolean
     companyId?: boolean
     type?: boolean
     amount?: boolean
@@ -5807,6 +5816,7 @@ export namespace Prisma {
 
   export type TransactionSelectScalar = {
     id?: boolean
+    reference?: boolean
     companyId?: boolean
     type?: boolean
     amount?: boolean
@@ -5814,7 +5824,7 @@ export namespace Prisma {
     createdAt?: boolean
   }
 
-  export type TransactionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "companyId" | "type" | "amount" | "status" | "createdAt", ExtArgs["result"]["transaction"]>
+  export type TransactionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "reference" | "companyId" | "type" | "amount" | "status" | "createdAt", ExtArgs["result"]["transaction"]>
   export type TransactionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     company?: boolean | CompanyDefaultArgs<ExtArgs>
   }
@@ -5829,6 +5839,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
+      reference: string
       companyId: string
       type: string
       amount: number
@@ -6229,6 +6240,7 @@ export namespace Prisma {
    */ 
   interface TransactionFieldRefs {
     readonly id: FieldRef<"Transaction", 'String'>
+    readonly reference: FieldRef<"Transaction", 'String'>
     readonly companyId: FieldRef<"Transaction", 'String'>
     readonly type: FieldRef<"Transaction", 'String'>
     readonly amount: FieldRef<"Transaction", 'Int'>
@@ -6684,6 +6696,7 @@ export namespace Prisma {
 
   export const TransactionScalarFieldEnum: {
     id: 'id',
+    reference: 'reference',
     companyId: 'companyId',
     type: 'type',
     amount: 'amount',
@@ -7102,6 +7115,7 @@ export namespace Prisma {
     OR?: TransactionWhereInput[]
     NOT?: TransactionWhereInput | TransactionWhereInput[]
     id?: StringFilter<"Transaction"> | string
+    reference?: StringFilter<"Transaction"> | string
     companyId?: StringFilter<"Transaction"> | string
     type?: StringFilter<"Transaction"> | string
     amount?: IntFilter<"Transaction"> | number
@@ -7112,6 +7126,7 @@ export namespace Prisma {
 
   export type TransactionOrderByWithRelationInput = {
     id?: SortOrder
+    reference?: SortOrder
     companyId?: SortOrder
     type?: SortOrder
     amount?: SortOrder
@@ -7125,6 +7140,7 @@ export namespace Prisma {
     AND?: TransactionWhereInput | TransactionWhereInput[]
     OR?: TransactionWhereInput[]
     NOT?: TransactionWhereInput | TransactionWhereInput[]
+    reference?: StringFilter<"Transaction"> | string
     companyId?: StringFilter<"Transaction"> | string
     type?: StringFilter<"Transaction"> | string
     amount?: IntFilter<"Transaction"> | number
@@ -7135,6 +7151,7 @@ export namespace Prisma {
 
   export type TransactionOrderByWithAggregationInput = {
     id?: SortOrder
+    reference?: SortOrder
     companyId?: SortOrder
     type?: SortOrder
     amount?: SortOrder
@@ -7152,6 +7169,7 @@ export namespace Prisma {
     OR?: TransactionScalarWhereWithAggregatesInput[]
     NOT?: TransactionScalarWhereWithAggregatesInput | TransactionScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Transaction"> | string
+    reference?: StringWithAggregatesFilter<"Transaction"> | string
     companyId?: StringWithAggregatesFilter<"Transaction"> | string
     type?: StringWithAggregatesFilter<"Transaction"> | string
     amount?: IntWithAggregatesFilter<"Transaction"> | number
@@ -7493,6 +7511,7 @@ export namespace Prisma {
 
   export type TransactionCreateInput = {
     id?: string
+    reference?: string
     type: string
     amount: number
     status: string
@@ -7502,6 +7521,7 @@ export namespace Prisma {
 
   export type TransactionUncheckedCreateInput = {
     id?: string
+    reference?: string
     companyId: string
     type: string
     amount: number
@@ -7511,6 +7531,7 @@ export namespace Prisma {
 
   export type TransactionUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    reference?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     amount?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
@@ -7520,6 +7541,7 @@ export namespace Prisma {
 
   export type TransactionUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
+    reference?: StringFieldUpdateOperationsInput | string
     companyId?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     amount?: IntFieldUpdateOperationsInput | number
@@ -7529,6 +7551,7 @@ export namespace Prisma {
 
   export type TransactionCreateManyInput = {
     id?: string
+    reference?: string
     companyId: string
     type: string
     amount: number
@@ -7538,6 +7561,7 @@ export namespace Prisma {
 
   export type TransactionUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
+    reference?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     amount?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
@@ -7546,6 +7570,7 @@ export namespace Prisma {
 
   export type TransactionUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
+    reference?: StringFieldUpdateOperationsInput | string
     companyId?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     amount?: IntFieldUpdateOperationsInput | number
@@ -7892,6 +7917,7 @@ export namespace Prisma {
 
   export type TransactionCountOrderByAggregateInput = {
     id?: SortOrder
+    reference?: SortOrder
     companyId?: SortOrder
     type?: SortOrder
     amount?: SortOrder
@@ -7905,6 +7931,7 @@ export namespace Prisma {
 
   export type TransactionMaxOrderByAggregateInput = {
     id?: SortOrder
+    reference?: SortOrder
     companyId?: SortOrder
     type?: SortOrder
     amount?: SortOrder
@@ -7914,6 +7941,7 @@ export namespace Prisma {
 
   export type TransactionMinOrderByAggregateInput = {
     id?: SortOrder
+    reference?: SortOrder
     companyId?: SortOrder
     type?: SortOrder
     amount?: SortOrder
@@ -8443,6 +8471,7 @@ export namespace Prisma {
 
   export type TransactionCreateWithoutCompanyInput = {
     id?: string
+    reference?: string
     type: string
     amount: number
     status: string
@@ -8451,6 +8480,7 @@ export namespace Prisma {
 
   export type TransactionUncheckedCreateWithoutCompanyInput = {
     id?: string
+    reference?: string
     type: string
     amount: number
     status: string
@@ -8548,6 +8578,7 @@ export namespace Prisma {
     OR?: TransactionScalarWhereInput[]
     NOT?: TransactionScalarWhereInput | TransactionScalarWhereInput[]
     id?: StringFilter<"Transaction"> | string
+    reference?: StringFilter<"Transaction"> | string
     companyId?: StringFilter<"Transaction"> | string
     type?: StringFilter<"Transaction"> | string
     amount?: IntFilter<"Transaction"> | number
@@ -9038,6 +9069,7 @@ export namespace Prisma {
 
   export type TransactionCreateManyCompanyInput = {
     id?: string
+    reference?: string
     type: string
     amount: number
     status: string
@@ -9109,6 +9141,7 @@ export namespace Prisma {
 
   export type TransactionUpdateWithoutCompanyInput = {
     id?: StringFieldUpdateOperationsInput | string
+    reference?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     amount?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
@@ -9117,6 +9150,7 @@ export namespace Prisma {
 
   export type TransactionUncheckedUpdateWithoutCompanyInput = {
     id?: StringFieldUpdateOperationsInput | string
+    reference?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     amount?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
@@ -9125,6 +9159,7 @@ export namespace Prisma {
 
   export type TransactionUncheckedUpdateManyWithoutCompanyInput = {
     id?: StringFieldUpdateOperationsInput | string
+    reference?: StringFieldUpdateOperationsInput | string
     type?: StringFieldUpdateOperationsInput | string
     amount?: IntFieldUpdateOperationsInput | number
     status?: StringFieldUpdateOperationsInput | string
