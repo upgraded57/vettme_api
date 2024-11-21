@@ -20,6 +20,39 @@ const sandboxDriversLicense = async (req, res) => {
 
   // Check if license_number is correct
   if (license_number !== "FKJ494A2133") {
+    // Create API log for request
+    await prisma.log.create({
+      data: {
+        application: {
+          connect: {
+            id: app.id,
+          },
+        },
+        service: "Driver's License",
+        statusCode: "404",
+        environment: "sandbox",
+      },
+    });
+
+    // Create recent activity log for request
+    await prisma.recentActivities.create({
+      data: {
+        application: {
+          connect: {
+            id: app.id,
+          },
+        },
+        company: {
+          connect: {
+            id: company.id,
+          },
+        },
+        environment: "sandbox",
+        service: "Driver's License",
+        cost: "0",
+        status: "404",
+      },
+    });
     throw new NotFoundErrorException(
       "License number not found",
       apiErrors.INCORRECT_VETT_DATA

@@ -20,6 +20,39 @@ const sandboxNin = async (req, res) => {
 
   // Check if nin is correct
   if (nin !== "70123456789") {
+    // Create API log for request
+    await prisma.log.create({
+      data: {
+        application: {
+          connect: {
+            id: app.id,
+          },
+        },
+        service: "Nin",
+        statusCode: "404",
+        environment: "sandbox",
+      },
+    });
+
+    // Create recent activity log for request
+    await prisma.recentActivities.create({
+      data: {
+        application: {
+          connect: {
+            id: app.id,
+          },
+        },
+        company: {
+          connect: {
+            id: company.id,
+          },
+        },
+        environment: "sandbox",
+        service: "nin",
+        cost: "0",
+        status: "404",
+      },
+    });
     throw new NotFoundErrorException(
       "Nin not found",
       apiErrors.INCORRECT_VETT_DATA

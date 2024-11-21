@@ -20,6 +20,39 @@ const sandboxAccountNumber = async (req, res) => {
 
   // Check if account_number is correct
   if (account_number !== "1234567890" || bank_code !== "058") {
+    // Create API log for request
+    await prisma.log.create({
+      data: {
+        application: {
+          connect: {
+            id: app.id,
+          },
+        },
+        service: "Account Number",
+        statusCode: "404",
+        environment: "sandbox",
+      },
+    });
+
+    // Create recent activity log for request
+    await prisma.recentActivities.create({
+      data: {
+        application: {
+          connect: {
+            id: app.id,
+          },
+        },
+        company: {
+          connect: {
+            id: company.id,
+          },
+        },
+        environment: "sandbox",
+        service: "Account Number",
+        cost: "0",
+        status: "404",
+      },
+    });
     throw new NotFoundErrorException(
       "Account number or bank code not found",
       apiErrors.INCORRECT_VETT_DATA

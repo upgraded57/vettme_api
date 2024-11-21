@@ -20,6 +20,39 @@ const sandboxPhoneNumber = async (req, res) => {
 
   // Check if phone number is correct
   if (phone_number !== "09011111111") {
+    // Create API log for request
+    await prisma.log.create({
+      data: {
+        application: {
+          connect: {
+            id: app.id,
+          },
+        },
+        service: "Phone Number",
+        statusCode: "404",
+        environment: "sandbox",
+      },
+    });
+
+    // Create recent activity log for request
+    await prisma.recentActivities.create({
+      data: {
+        application: {
+          connect: {
+            id: app.id,
+          },
+        },
+        company: {
+          connect: {
+            id: company.id,
+          },
+        },
+        environment: "sandbox",
+        service: "Phone Number",
+        cost: "0",
+        status: "404",
+      },
+    });
     throw new NotFoundErrorException(
       "Phone number not found",
       apiErrors.INCORRECT_VETT_DATA

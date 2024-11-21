@@ -20,6 +20,39 @@ const sandboxVin = async (req, res) => {
 
   // Check if bvn is correct
   if (vin !== "91F1234567890123") {
+    // Create API log for request
+    await prisma.log.create({
+      data: {
+        application: {
+          connect: {
+            id: app.id,
+          },
+        },
+        service: "Voter's Id",
+        statusCode: "404",
+        environment: "sandbox",
+      },
+    });
+
+    // Create recent activity log for request
+    await prisma.recentActivities.create({
+      data: {
+        application: {
+          connect: {
+            id: app.id,
+          },
+        },
+        company: {
+          connect: {
+            id: company.id,
+          },
+        },
+        environment: "sandbox",
+        service: "Voter's ID",
+        cost: "0",
+        status: "404",
+      },
+    });
     throw new NotFoundErrorException(
       "VIN not found",
       apiErrors.INCORRECT_VETT_DATA

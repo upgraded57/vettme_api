@@ -10,6 +10,38 @@ const sandboxEmail = async (req, res) => {
   const company = req.company;
 
   if (!email) {
+    await prisma.log.create({
+      data: {
+        application: {
+          connect: {
+            id: app.id,
+          },
+        },
+        service: "Email",
+        statusCode: "404",
+        environment: "sandbox",
+      },
+    });
+
+    // Create recent activity log for request
+    await prisma.recentActivities.create({
+      data: {
+        application: {
+          connect: {
+            id: app.id,
+          },
+        },
+        company: {
+          connect: {
+            id: company.id,
+          },
+        },
+        environment: "sandbox",
+        service: "Email",
+        cost: "0",
+        status: "404",
+      },
+    });
     throw new BadRequestException(
       "Email is required",
       apiErrors.DATA_NOT_PROVIDED
