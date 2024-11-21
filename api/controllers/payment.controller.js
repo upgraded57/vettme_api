@@ -77,9 +77,7 @@ const paymentStatus = async (req, res) => {
         data: {
           company: {
             connect: {
-              company: {
-                id: company.id,
-              },
+              id: company.id,
             },
           },
           type: "topup",
