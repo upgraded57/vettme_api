@@ -55,6 +55,33 @@ const getCompany = async (req, res) => {
   });
 };
 
+const getAllCompanies = async (req, res) => {
+  try {
+    // Fetch all companies from the database
+    const companies = await prisma.company.findMany();
+
+    // Fetching all comapanies without the passwords
+    const companiesWithoutPassword = companies.map(({ password, ...others }) => others);
+    console.log(companiesWithoutPassword);
+
+    // Send a successful response with companies data
+    return res.status(200).json({
+      status: "success",
+      message: "All companies data have been fetched",
+      companiesWithoutPassword,
+    });
+  } catch (error) {
+    // Handle any errors that occur during the database query
+    console.error("Error fetching companies:", error);
+    return res.status(500).json({
+      status: "error",
+      message: "An error occurred while fetching companies data",
+      error: error.message,
+    });
+  }
+};
+
+
 const updateCompanyInfo = async (req, res) => {
   const company = req.company;
   const { companyName, companyEmail, companyPhone } = req.body;
@@ -187,4 +214,4 @@ const updateCompanyPassword = async (req, res) => {
     );
   }
 };
-module.exports = { getCompany, updateCompanyInfo, updateCompanyPassword };
+module.exports = { getCompany, getAllCompanies, updateCompanyInfo, updateCompanyPassword };

@@ -125,7 +125,7 @@ const signup = async (req, res) => {
       signupErrors.COMPANY_ALEADY_EXISTS
     );
 
-  //   Check if company with same id exists
+  //   Check if company with same email exists
   const companyWithEmailExists = await prisma.company.findFirst({
     where: {
       email,

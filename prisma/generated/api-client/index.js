@@ -178,7 +178,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\Users\\user\\Desktop\\IJM\\vettme\\server\\prisma\\generated\\api-client",
+      "value": "C:\\Users\\User\\Desktop\\vettme_api\\prisma\\generated\\api-client",
       "fromEnvVar": null
     },
     "config": {
@@ -202,7 +202,7 @@ const config = {
     "previewFeatures": [
       "omitApi"
     ],
-    "sourceFilePath": "C:\\Users\\user\\Desktop\\IJM\\vettme\\server\\prisma\\api-schema.prisma",
+    "sourceFilePath": "C:\\Users\\User\\Desktop\\vettme_api\\prisma\\api-schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {

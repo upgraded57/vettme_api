@@ -6,6 +6,7 @@ const cors = require("cors");
 const rootRouter = require("./routes/index.js");
 const adminRouter = require("./admin/routes/index.js");
 const apiRouter = require("./api/routes/index.js");
+const proRouter = require("./pro/routes/index.js");
 const { ErrorHandler } = require("./middlewares/errors.js");
 const fs = require("fs");
 const path = require("path");
@@ -91,6 +92,9 @@ app.use("/api/basic/admin", adminRouter);
 
 // Hook api root router
 app.use("/api/v1", apiRouter);
+
+//Hook pro root router
+app.use("/api/pro", proRouter)
 
 // Global error handler
 app.use(ErrorHandler);

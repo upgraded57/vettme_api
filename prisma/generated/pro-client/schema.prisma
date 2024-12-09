@@ -1,0 +1,103 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+// All amount fields are integers in kobo i.e NGN100 === 100 * 100 kobo
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["omitApi"]
+  binaryTargets   = ["native", "debian-openssl-1.1.x", "debian-openssl-3.0.x"]
+  output          = "./generated/pro-client"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_PRO_URL")
+}
+
+model Company {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  companyName  String
+  companyId    String
+  phone_number String?  @unique
+  isActive     Boolean  @default(false)
+  isVerified   Boolean  @default(false)
+  password     String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  balance      Int      @default(0)
+
+  verificationBatch VerificationForm[]
+}
+
+enum VerificationType {
+  PERSONNEL
+  LOAN
+  CRIMINALRECORD
+}
+
+model VerificationForm {
+  id                                               String                 @id @default(uuid())
+  title                                            String
+  company                                          Company                @relation(fields: [companyId], references: [id])
+  companyId                                        String
+  // verificationType                                 VerificationType       @default(PERSONNEL)
+  expiryDate                                       DateTime               @default(dbgenerated("NOW() + INTERVAL '20 days'"))
+  max                                              Int                    @default(0)
+  piFullname                                       Boolean                @default(false)
+  piDateOfBirth                                    Boolean                @default(false)
+  piGender                                         Boolean                @default(false)
+  piNationality                                    Boolean                @default(false)
+  piResidentialAddress                             Boolean                @default(false)
+  piPhoneNumber                                    Boolean                @default(false)
+  piEmailAddress                                   Boolean                @default(false)
+  piNationalIdentificationNumber                   Boolean                @default(false)
+  piMaritalStatus                                  Boolean                @default(false)
+  piNextofKinName                                  Boolean                @default(false)
+  piNextofKinRelationship                          Boolean                @default(false)
+  piNextofKinPhoneNumber                           Boolean                @default(false)
+  giFullName                                       Boolean                @default(false)
+  giRelationshiptoPersonnel                        Boolean                @default(false)
+  giOccupation                                     Boolean                @default(false)
+  giPhoneNumber                                    Boolean                @default(false)
+  giResidentialAddress                             Boolean                @default(false)
+  giEmailAddress                                   Boolean                @default(false)
+  giYearsKnown                                     Boolean                @default(false)
+  giNationalIdenificationNumber                    Boolean                @default(false)
+  aiHighestQualification                           Boolean                @default(false)
+  aiNameofInstitution                              Boolean                @default(false)
+  aiYearofGraduation                               Boolean                @default(false)
+  aiDegreeOrCertificationUpload                    Boolean                @default(false)
+  aiProfessionalCertifications                     Boolean                @default(false)
+  priCurrentJob                                    Boolean                @default(false)
+  priOrganizationName                              Boolean                @default(false)
+  priEmploymentStartDate                           Boolean                @default(false)
+  priEmploymentType                                Boolean                @default(false)
+  priJobResponsibility                             Boolean                @default(false)
+  priProfessionalSkills                            Boolean                @default(false)
+  priLinkedInProfile                               Boolean                @default(false)
+  priProfessionalReferenceName                     Boolean                @default(false)
+  priProfessionalReferencePhoneNumber              Boolean                @default(false)
+  priCurrentSalary                                 Boolean                @default(false)
+  priExpectedSalaryRange                           Boolean                @default(false)
+  mhaCurrentMentalHealthCondition                  Boolean                @default(false)
+  mhaHistoryofMentalHealthConditions               Boolean                @default(false)
+  mhaAreYouCurrentlyUnderAnyMedicationOrTreatment  Boolean                @default(false)
+  mhaHaveYouHadAnyPreviousPsychiatricConsultations Boolean                @default(false)
+  mhaHaveYouExperiencedAnyMajorTraumaInThePastYear Boolean                @default(false)
+  mhaEmotionalWellbeing                            Boolean                @default(false)
+  verificationResponse                             VerificationResponse[]
+}
+
+model VerificationResponse {
+  id           String           @id @default(uuid())
+  formId       String // Reference to the VerificationForm
+  form         VerificationForm @relation(fields: [formId], references: [id])
+  respondentId String // ID of the user filling out the form (optional)
+  responses    Json // Store responses in JSON format
+  submittedAt  DateTime         @default(now())
+}

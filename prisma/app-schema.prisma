@@ -7,10 +7,10 @@
 // All amount fields are integers in kobo i.e NGN100 === 100 * 100 kobo
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["omitApi"]
-  binaryTargets = ["native", "debian-openssl-1.1.x", "debian-openssl-3.0.x"]
-  output = "./generated/app-client"
+  binaryTargets   = ["native", "debian-openssl-1.1.x", "debian-openssl-3.0.x"]
+  output          = "./generated/app-client"
 }
 
 datasource db {
@@ -19,70 +19,70 @@ datasource db {
 }
 
 model User {
-  id              String  @id @default(uuid())
-  email           String  @unique
-  name            String?
-  phone_number    String @unique
-  nin             String @unique
-  isActive        Boolean @default(false)
-  isVerified      Boolean @default(false)
-  password        String 
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-  balance         Int @default(0)
-  avatar          String?
-  verifications   Verification[]
-  transactions    Transaction[]
-  otps            otp[]
-  notifications  Notification[]
+  id            String         @id @default(uuid())
+  email         String         @unique
+  name          String?
+  phone_number  String         @unique
+  nin           String         @unique
+  isActive      Boolean        @default(false)
+  isVerified    Boolean        @default(false)
+  password      String
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  balance       Int            @default(0)
+  avatar        String?
+  verifications Verification[]
+  transactions  Transaction[]
+  otps          otp[]
+  notifications Notification[]
 }
 
 model Verification {
-  id              String @id @default(uuid())
-  user            User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  userId          String
-  title           String
-  personnel_name  String
-  verified_with   String
-  info            Json
-  status          String
-  createdAt       DateTime @default(now())
+  id             String   @id @default(uuid())
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId         String
+  title          String
+  personnel_name String
+  verified_with  String
+  info           Json
+  status         String
+  createdAt      DateTime @default(now())
 }
 
 model Transaction {
-  id            String @id @default(uuid())
-  user          User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  userId       String
-  type          String
-  amount        Int
-  status        String 
-  createdAt     DateTime @default(now())
+  id        String   @id @default(uuid())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId    String
+  type      String
+  amount    Int
+  status    String
+  createdAt DateTime @default(now())
 }
 
 model otp {
-  id          String @id @default(uuid())
-  user        User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  userId      String
-  otp         Int
-  used        Boolean @default(false)
-  createdAt   DateTime @default(now())
+  id        String   @id @default(uuid())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  userId    String
+  otp       Int
+  used      Boolean  @default(false)
+  createdAt DateTime @default(now())
 }
 
 model Notification {
-  id           String     @id @default(uuid())
-  subject      String
-  description  String
-  status       String     @default("unread")  // "unread" or "read"
-  isGeneral    Boolean    @default(false)     // To distinguish between general and targeted notifications
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
-  userId       String?                        // For targeted notifications, this is the target user's ID, nullable for general notifications
-  user         User?      @relation(fields: [userId], references: [id])
+  id          String   @id @default(uuid())
+  subject     String
+  description String
+  status      String   @default("unread") // "unread" or "read"
+  isGeneral   Boolean  @default(false) // To distinguish between general and targeted notifications
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  userId      String? // For targeted notifications, this is the target user's ID, nullable for general notifications
+  user        User?    @relation(fields: [userId], references: [id])
 }
 
 model Waitlist {
-  id            String @id @default(uuid())
-  name          String 
-  email         String @unique
-  phone_number  String @unique
+  id           String @id @default(uuid())
+  name         String
+  email        String @unique
+  phone_number String @unique
 }
