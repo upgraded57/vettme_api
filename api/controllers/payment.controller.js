@@ -8,6 +8,7 @@ const {
   paymentErrors,
   serverErrors,
 } = require("../../exceptions/status-codes");
+const UnauthorizedRequestException = require("../../exceptions/unauthorized");
 
 const prisma = new PrismaClient({ log: ["warn", "error"] });
 
@@ -21,6 +22,12 @@ const createPayment = async (req, res) => {
       paymentErrors.AMOUNT_NOT_PROVIDED
     );
 
+  if (!company.isVerified) {
+    throw new UnauthorizedRequestException(
+      "Cannot create payment for sandbox account.",
+      null
+    );
+  }
   try {
     const response = await axios.post(
       "https://api.paystack.co/transaction/initialize",
