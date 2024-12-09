@@ -60,6 +60,7 @@ router.get(
   validatePublicKey,
   globalErrorCatcher(sandboxEmail)
 );
+
 router.get(
   "/vin",
   validateAppID,

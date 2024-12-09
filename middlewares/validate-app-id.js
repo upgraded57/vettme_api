@@ -1,5 +1,6 @@
 const BadRequestException = require("../exceptions/bad-requests");
 const { apiErrors } = require("../exceptions/status-codes");
+const UnauthorizedRequestException = require("../exceptions/unauthorized");
 const { PrismaClient } = require("../prisma/generated/api-client");
 
 const prisma = new PrismaClient({ log: ["warn", "error"] });
@@ -32,7 +33,7 @@ const validateAppID = async (req, res, next) => {
     );
   }
 
-  // Check if company is attached to request boxy
+  // Check if company is attached to request body
   let company;
   if (req.company) {
     company = req.company;
@@ -57,6 +58,7 @@ const validateAppID = async (req, res, next) => {
       );
     }
   }
+
 
   req.app = appExists;
   req.company = company;

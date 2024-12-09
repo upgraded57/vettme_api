@@ -17,7 +17,7 @@ const sandboxVin = async (req, res) => {
     );
   }
 
-  const isValidVin = vin === "FKJ494A2133";
+  const isValidVin = vin === "90F5B1C5B1234567890";
   const service = "Voter's ID";
   const statusCode = isValidVin ? "200" : "404";
   const environment = "sandbox";
