@@ -160,7 +160,7 @@ const signup = async (req, res) => {
       }
     );
 
-    const url = `https://api.vettme.ng/auth/activate/${token}`;
+    const url = `https://developer.vettme.ng/auth/activate/${token}`;
     sendActivationMail(newCompany.email, url);
 
     res.status(201).json({
@@ -290,7 +290,7 @@ const requestLink = async (req, res) => {
     }
   );
 
-  const url = `https://api.vettme.ng/auth/activate/${newToken}`;
+  const url = `https://developer.vettme.ng/auth/activate/${newToken}`;
   sendActivationMail(foundCompany.email, url);
 
   res.status(200).json({
@@ -350,7 +350,7 @@ const forgotPassword = async (req, res) => {
     }
   );
 
-  const url = `https://api.vettme.ng/auth/reset-password/${token}`;
+  const url = `https://developer.vettme.ng/auth/reset-password/${token}`;
   sendResetMail(foundCompany.email, url);
 
   return res.status(200).json({
