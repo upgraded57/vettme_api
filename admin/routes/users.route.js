@@ -8,7 +8,7 @@ const {
 
 const router = require("express").Router();
 
-router.get("/", validateAdminAuth, globalErrorCatcher(getUsers));
+router.get("/",  globalErrorCatcher(getUsers));
 
 router.patch(
   "/:userId/deactivate",

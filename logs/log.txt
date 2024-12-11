@@ -16445,3 +16445,51 @@ Response Time - 4.856 ms - 34
 Request Body: {"formId":"2cd3066d-1942-4e71-8a21-f63424c4a282","respondentId":"748899","responses":{"piDateOfBirth":"18 of June, 2001","piEmailAddress":"njokanmadon@gmail.com","piFullname":"Njokanma Donaldo","piGender":"Male","piMaritalStatus":"Single","piNationalIdentificationNumber":"0898992233","piNationality":"Nigerian","piNextofKinName":"Danielle Njokanma","piPhoneNumber":"08181050129","piResidentialAddress":"Ajao estate"}}
 Response Body - -
 
+Date - 2024-12-09T09:51:44.537Z, 
+Method - POST 
+URL - /api/basic/auth/login 
+Response Status - 200 
+Response Time - 1422.189 ms - 569
+Request Body: {"email":"shokunbiupgraded@gmail.com","password":"Payboi.10"}
+Response Body - -
+
+Date - 2024-12-11T09:00:14.283Z, 
+Method - GET 
+URL - /api/basic/admin/users/companies 
+Response Status - 200 
+Response Time - 2366.591 ms - 799
+Request Body: {}
+Response Body - -
+
+Date - 2024-12-11T10:24:34.868Z, 
+Method - GET 
+URL - /api/basic/admin/users 
+Response Status - 500 
+Response Time - 1481.261 ms - 68
+Request Body: {}
+Response Body - -
+
+Date - 2024-12-11T10:24:51.026Z, 
+Method - GET 
+URL - /api/basic/admin/users/ 
+Response Status - 500 
+Response Time - 416.150 ms - 68
+Request Body: {}
+Response Body - -
+
+Date - 2024-12-11T10:25:35.167Z, 
+Method - GET 
+URL - /api/basic/admin/users/ 
+Response Status - 200 
+Response Time - 1104.392 ms - 8200
+Request Body: {}
+Response Body - -
+
+Date - 2024-12-11T10:26:29.237Z, 
+Method - GET 
+URL - /api/basic/admin/users/ 
+Response Status - 200 
+Response Time - 1118.501 ms - 8211
+Request Body: {}
+Response Body - -
+

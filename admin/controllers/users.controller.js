@@ -2,6 +2,7 @@ require("dotenv").config({
   path: "../.env",
 });
 const { PrismaClient } = require("../../prisma/generated/app-client");
+const {PrismaClient: apiPrismaClient} = require("../../prisma/generated/api-client")
 const BadRequestException = require("../../exceptions/bad-requests");
 const ServerErrorException = require("../../exceptions/server-error");
 
@@ -9,13 +10,18 @@ const prisma = new PrismaClient({
   log: ["warn", "error"],
 });
 
+const apiPrisma = new apiPrismaClient({
+  log: ["warn", "error"],
+});
+
 const getUsers = async (req, res) => {
   const users = await prisma.user.findMany();
+  const companies = await apiPrisma.company.findMany()
 
   return res.status(200).json({
     status: "success",
-    message: "Users found successfully",
-    users,
+    message: "Users and comapanies found successfully",
+    result: {users, companies}
   });
 };
 
