@@ -23,7 +23,7 @@ const liveNin = async (req, res) => {
   }
 
   // Check if compnay has enough balance in wallet
-  if (company.balance < 300) {
+  if (company.balance < 100) {
     throw new UnauthorizedRequestException(
       "Insufficient wallet amount. Please topup",
       apiErrors.INSUFFICIENT_WALLET_AMOUNT
@@ -46,7 +46,7 @@ const liveNin = async (req, res) => {
         id: company.id,
       },
       data: {
-        balance: company.balance - 300,
+        balance: company.balance - 100,
       },
     });
 
@@ -61,7 +61,7 @@ const liveNin = async (req, res) => {
     : requestError.response.status.toString();
   const service = "Nin";
   const environment = "live";
-  const cost = requestSuccessful ? "300" : "0";
+  const cost = requestSuccessful ? "100" : "0";
 
   // Create Logs
   await CreateLog({
